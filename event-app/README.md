@@ -8,4 +8,8 @@ To compile SCSS, download this plugin: [https://marketplace.visualstudio.com/ite
 -   Create an event => place, date
 -   Add participants
 -   Participants => yes, no, maybe
+
 -   Wall => post pictures, ask questions, etc
+-   Add friends
+-   Notifications
+-   Private / public events
