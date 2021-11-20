@@ -77,4 +77,34 @@ router.post("/login", (req, res, next) => {
     })
 })
 
+const loginCheck = () => {
+    return (req, res, next) => {
+      
+      if (req.session.user) {
+        next()
+      } else {
+        res.redirect('/login')
+      }
+    }
+}
+
+router.get("/profile", loginCheck(), (req, res) => {
+    res.cookie('ourCookie', 'hello node')
+    console.log('this is our cookie: ', req.cookies)
+    res.clearCookie('ourCookie');
+    const loggedInUser = req.session.user
+    res.render("profile", { user: loggedInUser });
+  });
+
+router.get("/logout", (req, res, next) => {
+    req.session.destroy(err => {
+     if(err) {
+         next(err)
+     } else {
+         res.redirect('/')
+     }
+ })
+})
+
+
 module.exports = router
