@@ -10,6 +10,7 @@
     <label for="password">Password</label>
     <input type="password" name="password" id="password">
     <button type="button" class="reveal" aria-label="Reveal password">Reveal password</button>
+    <span class="password-hint"></span>
 
     <label for="avatar">Avatar</label>
     <input type="file" name="avatar" id="avatar">
@@ -17,3 +18,7 @@
     <button type="submit">Create your account</button>
     <button type="button">Cancel</button>
 </form>
+
+{{#if message}}
+<p class="error-text">{{ message }}</p>
+{{/if}}
