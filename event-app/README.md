@@ -14,3 +14,4 @@ To compile SCSS, download this plugin: [https://marketplace.visualstudio.com/ite
 -   Notifications
 -   Private / public events
 -   Email reminder
+-   Map
