@@ -17,6 +17,9 @@ const favicon = require("serve-favicon")
 // https://www.npmjs.com/package/path
 const path = require("path")
 
+// Handlebars
+const hbs = require("hbs")
+
 // Middleware configuration
 module.exports = app => {
     // In development environment the app logs
@@ -38,4 +41,7 @@ module.exports = app => {
     app.use(
         favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
     )
+
+    // Register partials
+    hbs.registerPartials(__dirname + "/views/partials")
 }
