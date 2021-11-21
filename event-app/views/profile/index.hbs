@@ -16,10 +16,10 @@
 
 <a href="/logout">Log out</a>
 
-<button class="delete-account">Delete your account</button>
+<button class="delete-account" onclick="toggleModal()">Delete your account</button>
 
-<div class="modal" id="modal-delete">
+<div class="modal hidden" id="modal-delete">
     <p>Are you sure you want to delete your account?</p>
     <a href="/delete-account">Delete your account</a>
-    <button class="cancel" id="cancel-delete">Cancel</button>
+    <button class="cancel" id="cancel-delete" onclick="toggleModal()">Cancel</button>
 </div>

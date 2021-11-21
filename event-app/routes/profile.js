@@ -9,13 +9,13 @@ const loginCheck = () => {
 
 router.get("/profile", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
-    res.render("profile", { user: loggedInUser })
+    res.render("profile", { user: loggedInUser, doctitle: loggedInUser.fullName })
 })
 
 router.get("/profile/new-event", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
     console.log(loggedInUser)
-    res.render("profile/new-event", { user: loggedInUser })
+    res.render("profile/new-event", { user: loggedInUser, doctitle: "Create a new event" })
 })
 
 router.get("/profile/event-created", (req, res, next) => {
