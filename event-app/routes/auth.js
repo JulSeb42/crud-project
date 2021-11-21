@@ -7,6 +7,10 @@ router.get("/signup", (req, res) => {
     res.render("auth/signup")
 })
 
+router.get("/thank-you", (req, res, next) => {
+    res.render("auth/thank-you", { message: "Thank you for creating your account!" })
+})
+
 router.get("/login", (req, res) => {
     res.render("auth/login")
 })
@@ -52,7 +56,7 @@ router.post("/signup", (req, res, next) => {
             })
                 .then(createdUser => {
                     //console.log(createdUser)
-                    res.redirect("/login")
+                    res.redirect("/thank-you")
                 })
                 .catch(err => next(err))
         }
@@ -74,6 +78,28 @@ router.post("/login", (req, res, next) => {
         } else {
             res.render("login", { message: "invalid credentials" })
         }
+    })
+})
+
+// router.post("/delete-account", (req, res, next) => {
+//     const id = req.body.id
+
+//     User.findByIdAndRemove(id).then(deletedUser => {
+//         res.redirect("/")
+//     })
+// })
+
+router.get("/delete-account", (req, res, next) => {
+    const id = req.body.id
+
+    User.findByIdAndRemove(id).then(deletedUser => {
+        res.redirect("/")
+    })
+})
+
+router.get("/logout", (req, res, next) => {
+    req.session.destroy(err => {
+        err ? next(err) : res.redirect("/login")
     })
 })
 
