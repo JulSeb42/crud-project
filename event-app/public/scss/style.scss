@@ -6,14 +6,21 @@
 @import "mixins";
 @import "reset";
 @import "variables";
+@import "fonts";
 
 /*=============================================== General ===============================================*/
 
-* {
-    outline: none;
+body {
+    line-height: var(--line-height);
+    font-family: var(--font-family);
+    font-weight: var(--weight-regular);
 }
 
 /*=============================================== Components ===============================================*/
+
+@import "layout";
+@import "ui";
+@import "form";
 
 /*=============================================== Pages ===============================================*/
 

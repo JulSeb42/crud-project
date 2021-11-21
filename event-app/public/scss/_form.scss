@@ -1,0 +1,76 @@
+/*=============================================== Forms ===============================================*/
+
+.container-form {
+    @include grid(1fr, 0, $margin-l);
+
+    form {
+        @include grid(1fr, 0, $margin-m);
+        max-width: 400px;
+
+        button[type="submit"] {
+            justify-self: start;
+        }
+
+        .item {
+            @include grid(1fr, 0, $margin-xs);
+
+            label {
+                font-weight: $weight-semibold;
+                color: $blue-primary;
+            }
+
+            input[type="text"],
+            input[type="password"],
+            input[type="email"] {
+                border: 1px solid $light-gray;
+                padding: $margin-xxs $margin-xs;
+                border-radius: $radius-s;
+
+                &:focus {
+                    border: 1px solid $blue-primary;
+                }
+            }
+
+            .input-container {
+                position: relative;
+
+                input {
+                    width: 100%;
+                }
+
+                button {
+                    border: none;
+                    background-color: transparent;
+                    padding: $margin-xs;
+                    color: $blue-primary;
+                    position: absolute;
+                    right: 0;
+                    top: -7px;
+
+                    svg {
+                        $size: 24px;
+                        width: $size;
+                        height: $size;
+                    }
+
+                    .icon-slash {
+                        position: relative;
+                        z-index: 1;
+
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            height: 2px;
+                            background-color: $blue-primary;
+                            display: block;
+                            z-index: 2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

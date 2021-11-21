@@ -46,14 +46,19 @@ app.use(
 )
 
 // 👇 Start handling routes here
-const index = require("./routes/index")
-app.use("/", index)
+// const index = require("./routes/index")
+// app.use("/", index)
+
+const events = require("./routes/events")
+app.use("/", events)
 
 const auth = require("./routes/auth")
 app.use("/", auth)
 
 const profile = require("./routes/profile")
 app.use("/", profile)
+
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app)

@@ -4,15 +4,18 @@ const bcrypt = require("bcrypt")
 // const { uploader, cloudinary } = require("../config/cloudinary")
 
 router.get("/signup", (req, res) => {
-    res.render("auth/signup")
+    res.render("auth/signup", { doctitle: "Create an account" })
 })
 
 router.get("/thank-you", (req, res, next) => {
-    res.render("auth/thank-you", { message: "Thank you for creating your account!" })
+    res.render("auth/thank-you", {
+        message: "Thank you for creating your account!",
+        doctitle: "Thank you!",
+    })
 })
 
 router.get("/login", (req, res) => {
-    res.render("auth/login")
+    res.render("auth/login", { doctitle: "Log in" })
 })
 
 router.post("/signup", (req, res, next) => {
@@ -25,16 +28,23 @@ router.post("/signup", (req, res, next) => {
     if (password.length < 6) {
         res.render("auth/signup", {
             message: "Your password needs to be 6 char min",
+            doctitle: "Sign up"
         })
         return
     }
 
     if (fullName.length === 0) {
-        res.render("auth/signup", { message: "Please enter your full name" })
+        res.render("auth/signup", {
+            message: "Please enter your full name",
+            doctitle: "Sign up",
+        })
         return
     }
     if (!email.includes("@")) {
-        res.render("auth/signup", { message: "Please enter valid email" })
+        res.render("auth/signup", {
+            message: "Please enter valid email",
+            doctitle: "Sign up",
+        })
         return
     }
 
@@ -42,6 +52,7 @@ router.post("/signup", (req, res, next) => {
         if (userFromDb !== null) {
             res.render("auth/signup", {
                 message: "This email is already taken",
+                doctitle: "Sign up",
             })
         } else {
             const salt = bcrypt.genSaltSync()
@@ -68,7 +79,10 @@ router.post("/login", (req, res, next) => {
 
     User.findOne({ email: email }).then(userFromDB => {
         if (userFromDB === null) {
-            res.render("login", { message: "incorrect credentials" })
+            res.render("auth/login", {
+                message: "This email address is not in our database",
+                doctitle: "Log in",
+            })
             return
         }
 
@@ -76,7 +90,10 @@ router.post("/login", (req, res, next) => {
             req.session.user = userFromDB
             res.redirect("/profile")
         } else {
-            res.render("login", { message: "invalid credentials" })
+            res.render("auth/login", {
+                message: "Password is invalid",
+                doctitle: "Log in",
+            })
         }
     })
 })
@@ -104,9 +121,11 @@ router.get("/delete-account", (req, res, next) => {
 
     console.log(id)
 
-    User.findByIdAndRemove(id).then(() => {
-        res.redirect("/login")
-    }).catch(err => next(err))
+    User.findByIdAndRemove(id)
+        .then(() => {
+            res.redirect("/login")
+        })
+        .catch(err => next(err))
 })
 
 router.get("/logout", (req, res, next) => {

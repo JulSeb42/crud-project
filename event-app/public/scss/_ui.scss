@@ -1,0 +1,23 @@
+/*=============================================== UI Components ===============================================*/
+
+/*=========================== Buttons ===========================*/
+
+.btn {
+    border: none;
+    background-color: transparent;
+    text-decoration: none;
+
+    &.btn-primary {
+        font-size: $body;
+        background-color: $blue-primary;
+        font-weight: $weight-bold;
+        color: $white;
+        padding: $margin-xs $margin-s;
+        border-radius: $radius-m;
+        transition: $transition-short;
+
+        &:hover {
+            background-color: $blue-primary-70;
+        }
+    }
+}

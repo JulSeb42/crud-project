@@ -6,15 +6,26 @@ const toggleModal = () => modalDelete.classList.toggle("hidden")
 // Password reveal
 const passwordInput = document.querySelector("#password")
 const buttonReveal = document.querySelector(".reveal")
+const iconReveal = document.querySelector(".icon-reveal use")
 
-buttonReveal &&
+if (buttonReveal) {
+    iconReveal.setAttribute("xlink:href", "/images/icon-sprite.svg#show-slash")
     buttonReveal.addEventListener("click", () => {
         if (passwordInput.getAttribute("type") === "password") {
             passwordInput.setAttribute("type", "text")
+            iconReveal.setAttribute(
+                "xlink:href",
+                "/images/icon-sprite.svg#show-slash"
+            )
         } else {
             passwordInput.setAttribute("type", "password")
+            iconReveal.setAttribute(
+                "xlink:href",
+                "/images/icon-sprite.svg#show"
+            )
         }
     })
+}
 
 // Password validation
 const textHint = document.querySelector(".password-hint")
@@ -68,4 +79,3 @@ if (endDate) {
         endDate.setAttribute("min", startDate.value)
     })
 }
-

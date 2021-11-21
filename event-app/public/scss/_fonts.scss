@@ -1,0 +1,54 @@
+/*=============================================== Fonts ===============================================*/
+
+h1 {
+    font-size: $titles-big;
+    font-weight: $weight-bold;
+
+    &.display {
+        font-size: $titles-display;
+    }
+}
+
+h2 {
+    font-size: $titles-medium;
+    font-weight: $weight-bold;
+}
+
+h3 {
+    font-size: $titles-medium;
+    font-weight: $weight-semibold;
+}
+
+h4 {
+    font-size: $titles-small;
+    font-weight: $weight-bold;
+}
+
+h5 {
+    font-size: $titles-small;
+    font-weight: $weight-semibold;
+}
+
+h6 {
+    font-size: $body;
+    font-weight: $weight-bold;
+}
+
+p {
+    font-size: $body;
+    font-weight: $weight-regular;
+
+    strong {
+        font-weight: $weight-semibold;
+    }
+
+    a {
+        color: $blue-primary;
+        transition: $transition-short;
+        text-decoration: none;
+
+        &:hover {
+            color: $blue-primary-70;
+        }
+    }
+}
