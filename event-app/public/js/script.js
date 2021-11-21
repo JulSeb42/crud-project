@@ -1,3 +1,17 @@
+// Delete account modal
+const buttonDelete = document.querySelector(".delete-account")
+const modalDelete = document.querySelector("#modal-delete")
+const cancelDelete = document.querySelector("#cancel-delete")
+modalDelete.classList.add("hidden")
+
+buttonDelete.addEventListener("click", () => {
+    modalDelete.classList.remove("hidden")
+})
+
+cancelDelete.addEventListener("click", () => {
+    modalDelete.classList.add("hidden")
+})
+
 // Password reveal
 const passwordInput = document.querySelector("#password")
 const buttonReveal = document.querySelector(".reveal")
@@ -21,7 +35,8 @@ passwordInput.addEventListener("keyup", () => {
     const min = 6
 
     if (passwordInput.value.length < min) {
-        textHint.innerText = `Only ${min - passwordInput.value.length} characters left`
+        textHint.innerText = `Only ${min - passwordInput.value.length
+            } characters left`
     } else {
         textHint.innerText = "Password is good"
     }

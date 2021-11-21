@@ -89,12 +89,24 @@ router.post("/login", (req, res, next) => {
 //     })
 // })
 
-router.get("/delete-account", (req, res, next) => {
-    const id = req.body.id
+// NOT WORKING => ASK JAN
 
-    User.findByIdAndRemove(id).then(deletedUser => {
-        res.redirect("/")
-    })
+// router.get("/delete-account", (req, res, next) => {
+//     const id = req.body.id
+
+//     User.findByIdAndRemove(id).then(deletedUser => {
+//         res.redirect("/")
+//     })
+// })
+
+router.get("/delete-account", (req, res, next) => {
+    const id = req.params.id
+
+    console.log(id)
+
+    User.findByIdAndRemove(id).then(() => {
+        res.redirect("/login")
+    }).catch(err => next(err))
 })
 
 router.get("/logout", (req, res, next) => {
