@@ -793,6 +793,94 @@ header a:hover {
   width: 100%;
 }
 
+/*=============================================== Events ===============================================*/
+.list-events {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -webkit-column-gap: var(--margin-s);
+     -moz-column-gap: var(--margin-s);
+          column-gap: var(--margin-s);
+  row-gap: var(--margin-s);
+  margin-top: var(--margin-m);
+}
+
+.list-events li {
+  position: relative;
+  aspect-ratio: 1;
+  -webkit-border-radius: var(--radius-xl);
+          border-radius: var(--radius-xl);
+  overflow: hidden;
+  -webkit-transition: var(--transition-short);
+  -o-transition: var(--transition-short);
+  transition: var(--transition-short);
+}
+
+.list-events li a {
+  text-decoration: none;
+}
+
+.list-events li img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.list-events li:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.list-events li .content {
+  color: var(--white);
+  position: relative;
+  z-index: 2;
+  padding: var(--margin-s);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.list-events li:hover {
+  -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
 /*=============================================== Pages ===============================================*/
 /*=============================================== Helpers ===============================================*/
 /*============================================================= Helpers =============================================================*/

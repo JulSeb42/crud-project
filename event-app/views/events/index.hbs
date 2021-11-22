@@ -1,11 +1,18 @@
 <main class="container">
     <h1>All events</h1>
 
-    {{#each event}}
-    <p>
-        <a href="/events/{{_id}}">
-            {{ title }}
-        </a>
-    </p>
-    {{/each}}
+    <ul class="list-events">
+        {{#each event}}
+        <li>
+            <a href="/events/{{id}}">
+                <img src="{{ imgPath }}" alt="Cover {{ title }}">
+
+                <div class="content">
+                    <h5>{{ title }}</h5>
+                    <p>{{ location }}</p>
+                </div>
+            </a>
+        </li>
+        {{/each}}
+    </ul>
 </main>
