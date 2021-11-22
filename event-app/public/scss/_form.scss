@@ -72,5 +72,58 @@
                 }
             }
         }
+
+        .list-invite {
+            height: 300px;
+            overflow-y: scroll;
+            @include flexbox(flex-start, flex-start, nowrap);
+            flex-direction: column;
+            @include ulNone();
+
+            li {
+                width: 100%;
+
+                input[type="checkbox"] {
+                    display: none;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: $margin-s;
+                }
+
+                label {
+                    color: $black;
+                    @include flexbox(center, flex-start, nowrap);
+                    width: 100%;
+                    cursor: pointer;
+
+                    img {
+                        $size: 48px;
+                        width: $size;
+                        height: $size;
+                        border-radius: 50%;
+                        margin-right: $margin-xs;
+                    }
+
+                    span {
+                        flex-grow: 1;
+                    }
+
+                    svg {
+                        color: $success;
+                        $size: 24px;
+                        width: $size;
+                        height: $size;
+                        justify-self: flex-end;
+                        margin-left: $margin-xs;
+                        display: none;
+                    }
+                }
+
+                input:checked ~ label svg {
+                    display: block;
+                }
+            } 
+        }
     }
 }

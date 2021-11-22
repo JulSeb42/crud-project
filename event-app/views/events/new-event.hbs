@@ -47,11 +47,22 @@
         <div class="item">
             <label for="invite">Invite people</label>
 
-            <ul>
+            <ul id="listInvite" class="list-invite">
                 {{#each allUsers}}
                 <li>
                     <input type="checkbox" name="invitedPeople" id="user-{{_id}}" value="{{_id}}">
-                    <label for="user-{{_id}}">{{ fullName }}</label>
+
+                    <label for="user-{{_id}}">
+                        <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+
+                        <span>
+                            {{ fullName }}
+                        </span>
+
+                        <svg class="icon-check">
+                            <use xlink:href="/images/icon-sprite.svg#check"></use>
+                        </svg>
+                    </label>
                 </li>
                 {{/each}}
             </ul>
