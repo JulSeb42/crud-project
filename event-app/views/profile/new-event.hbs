@@ -1,7 +1,7 @@
 <main class="container container-form">
     <h1>Create a new event</h1>
 
-    <form action="/profile/new-event" method="POST">
+    <form action="/profile/new-event" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="organiser" id="organiser" value="{{user._id}}">
 
         <div class="item">
