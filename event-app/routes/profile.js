@@ -11,14 +11,12 @@ const loginCheck = () => {
 
 router.get("/profile", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
-    //console.log(loggedInUser)
-    Event.find({organiser: loggedInUser._id}).then(eventsFromDb=>{
-        console.log(eventsFromDb)
-    
-    res.render("profile", {
-        user: loggedInUser,
-        doctitle: loggedInUser.fullName, event: eventsFromDb
-     })   
+    Event.find({ organiser: loggedInUser._id }).then(eventsFromDb => {
+        res.render("profile", {
+            user: loggedInUser,
+            doctitle: loggedInUser.fullName,
+            event: eventsFromDb,
+        })
     })
 })
 

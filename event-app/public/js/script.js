@@ -106,7 +106,6 @@ if (endTime) {
     startTime.addEventListener("change", () => {
         const time = startTime.value
         const splitted = time.split(":")
-        console.log(splitted[0])
         endTime.setAttribute(
             "value",
             `${
