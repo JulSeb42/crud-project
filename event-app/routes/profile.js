@@ -21,6 +21,7 @@ router.get("/all-users", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
 
     User.find()
+        .sort("fullName")
         .then(allUsers => {
             res.render("profile/all-users", {
                 doctitle: "All users",
@@ -43,7 +44,5 @@ router.get("/profile/:id", loginCheck(), (req, res, next) => {
         })
     })
 })
-
-
 
 module.exports = router

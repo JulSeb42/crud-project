@@ -18,13 +18,15 @@ for (let i = 0; i < 50; i++) {
     avatarsArr.push(`https://randomuser.me/api/portraits/women/${i}.jpg`)
 }
 
+faker.locale = "de"
+
 for (let i = 0; i < 100; i++) {
     fakeUsers.push({
         fullName: faker.name.findName(),
         email: faker.internet.email(),
         password: faker.internet.password(),
         imgPath: avatarsArr[i],
-        // imgPath: faker.image.imageUrl()
+        city: "Berlin",
     })
 }
 

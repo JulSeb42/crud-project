@@ -25,7 +25,7 @@ router.get("/", loginCheck(), (req, res, next) => {
 router.get("/events/new-event", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
 
-    User.find()
+    User.find().sort("fullName")
         .then(userFromDb => {
             res.render("events/new-event", {
                 user: loggedInUser,

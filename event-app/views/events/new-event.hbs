@@ -44,14 +44,29 @@
             <textarea name="description" id="description"></textarea>
         </div>
 
-        <div class="item">
+        <div class="item search-list">
             <label for="invite">Invite people</label>
 
-            <ul>
+            <input type="text" id="searchInvite" onkeyup="searchFunction()" placeholder="Search here...">
+
+            <ul id="listInvite" class="list-invite">
                 {{#each allUsers}}
                 <li>
                     <input type="checkbox" name="invitedPeople" id="user-{{_id}}" value="{{_id}}">
-                    <label for="user-{{_id}}">{{ fullName }}</label>
+
+                    <label for="user-{{_id}}">
+                        <span class="img-container">
+                            <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+                        </span>
+
+                        <span class="name">
+                            {{ fullName }}
+                        </span>
+
+                        <svg class="icon-check">
+                            <use xlink:href="/images/icon-sprite.svg#check"></use>
+                        </svg>
+                    </label>
                 </li>
                 {{/each}}
             </ul>

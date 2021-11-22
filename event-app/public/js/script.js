@@ -90,8 +90,6 @@ const checkboxConfidentiality = document.querySelector("#public")
 if (textConfidentiality) {
     textConfidentiality.innerText = "Private"
 
-    console.log(checkboxConfidentiality.value)
-
     checkboxConfidentiality.addEventListener("click", () => {
         if (checkboxConfidentiality.checked) {
             checkboxConfidentiality.setAttribute("value", "public")
@@ -101,4 +99,32 @@ if (textConfidentiality) {
             textConfidentiality.innerText = "Private"
         }
     })
+}
+
+// Filter invite
+const listInvite = document.querySelector("#listInvite")
+
+function searchFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i, txtValue
+    input = document.querySelector("#searchInvite")
+    filter = input.value.toUpperCase()
+    ul = listInvite
+    li = ul.querySelectorAll("li")
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        let name = li[i].querySelector(".name").innerText
+        let txtValue = name
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = ""
+        } else {
+            li[i].style.display = "none"
+        }
+    }
+}
+
+if (listInvite) {
+    searchFunction()
 }
