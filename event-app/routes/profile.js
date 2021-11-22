@@ -32,6 +32,20 @@ router.get("/profile/event-created", loginCheck(), (req, res, next) => {
     })
 })
 
+router.get("/all-users", loginCheck(), (req, res, next) => {
+    const loggedInUser = req.session.user
+
+    User.find()
+        .then(allUsers => {
+            res.render("profile/all-users", {
+                doctitle: "All users",
+                user: loggedInUser,
+                allUsers,
+            })
+        })
+        .catch(err => next(err))
+})
+
 router.get("/profile/:id", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
     const id = req.params.id

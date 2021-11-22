@@ -12,6 +12,9 @@ for (let i = 0; i < 100; i++) {
         fullName: faker.name.findName(),
         email: faker.internet.email(),
         password: faker.internet.password(),
+        imgPath: faker.image.avatar(),
+        // imgName: faker.image.avatar(),
+        // publicId: faker.internet.avatar(),
     })
 }
 
