@@ -41,7 +41,4 @@ module.exports = app => {
     app.use(
         favicon(path.join(__dirname, "..", "public", "images", "favicon.ico"))
     )
-
-    // Register partials
-    hbs.registerPartials(__dirname + "/views/partials")
 }

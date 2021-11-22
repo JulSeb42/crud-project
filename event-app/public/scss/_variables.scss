@@ -2,6 +2,23 @@
 
 :root {
     // Colors
+    --blue-primary: #1353d1;
+    --blue-primary-70: #447dee;
+    --blue-primary-50: #a1bef7;
+    --blue-primary-10: #e8effd;
+    --danger: #d00000;
+    --danger-70: #ff3333;
+    --danger-50: #ff9999;
+    --danger-10: #ffe5e6;
+    --success: #a2d729;
+    --success-70: #b4df53;
+    --success-50: #daefa9;
+    --success-10: #f6fbea;
+    --black: #0d1321;
+    --dark-gray: #2f2f2f;
+    --gray: #767676;
+    --light-gray: #e4e4e4;
+    --white: #fff;
 
     // Margins
     --margin-xxl: 48px;
@@ -13,8 +30,18 @@
     --margin-xxs: 4px;
 
     // Fonts
-    --font-family: -apple-system, Arial, Helvetica, sans-serif;
-    --line-height: 1.4;
+    --font-family: "Lato", sans-serif;
+    --line-height: 1.5;
+    --weight-regular: 300;
+    --weight-semibold: 700;
+    --weight-bold: 900;
+    // Font sizes
+    --titles-display: 64px;
+    --titles-big: 32px;
+    --titles-medium: 24px;
+    --titles-small: 20px;
+    --body: 16px;
+    --labels: 14px;
 
     // Border Radiuses
     --radius-xl: 16px;
@@ -24,17 +51,63 @@
     --radius-round: 99em;
 
     // Container
-    --grid-template: 1fr 600px 1fr;
-    --grid-column: 2;
-    --grid-padding: var(--margin-xxl) 0;
-
+    --container-template: 1fr 60ch 1fr;
+    --container-column: 2;
+    --container-padding: var(--margin-xxl) 0;
+    
     @include tablet() {
-        --grid-template: 1fr;
-        --grid-column: 1;
-        --grid-padding: var(--margin-xxl) 5vw;
+        --container-template: 5vw 1fr 5vw;
     }
 
     // Transitions
     --transition-short: all 0.2s ease;
     --transition-long: all 0.5s ease;
 }
+
+/*=============================================== SCSS Variables ===============================================*/
+
+$blue-primary: var(--blue-primary);
+$blue-primary-70: var(--blue-primary-70);
+$blue-primary-50: var(--blue-primary-50);
+$blue-primary-10: var(--blue-primary-10);
+$danger: var(--danger);
+$danger-70: var(--danger-70);
+$danger-50: var(--danger-50);
+$danger-10: var(--danger-10);
+$success: var(--success);
+$success-70: var(--success-70);
+$success-50: var(--success-50);
+$success-10: var(--success-10);
+$black: var(--black);
+$dark-gray: var(--dark-gray);
+$gray: var(--gray);
+$light-gray: var(--light-gray);
+$white: var(--white);
+
+$margin-xxl: var(--margin-xxl);
+$margin-xl: var(--margin-xl);
+$margin-l: var(--margin-l);
+$margin-m: var(--margin-m);
+$margin-s: var(--margin-s);
+$margin-xs: var(--margin-xs);
+$margin-xxs: var(--margin-xxs);
+
+$weight-regular: var(--weight-regular);
+$weight-semibold: var(--weight-semibold);
+$weight-bold: var(--weight-bold);
+
+$titles-display: var(--titles-display);
+$titles-big: var(--titles-big);
+$titles-medium: var(--titles-medium);
+$titles-small: var(--titles-small);
+$body: var(--body);
+$labels: var(--labels);
+
+$radius-xl: var(--radius-xl);
+$radius-l: var(--radius-l);
+$radius-m: var(--radius-m);
+$radius-s: var(--radius-s);
+$radius-round: var(--radius-round);
+
+$transition-short: var(--transition-short);
+$transition-long: var(--transition-long);

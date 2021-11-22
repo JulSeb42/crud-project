@@ -1,6 +1,27 @@
-<h1>Profile page</h1>
+<main class="container">
+    <h1>Profile page</h1>
 
-<h3>Welcome {{ user.fullName }}</h3>
+    <h3>Welcome {{ user.fullName }}</h3>
 
-<a href="/logout">Log out</a>
+    <p><a href="/profile/new-event">Add a new event</a></p>
 
+    <h2>Events</h2>
+
+    <h4>Events you organise</h4>
+
+    {{!-- Organised events --}}
+
+    <h4>Events you are interested into</h4>
+
+    {{!-- Events interest --}}
+
+    <a href="/logout">Log out</a>
+
+    <button class="delete-account">Delete your account</button>
+
+    <div class="modal hidden" id="modal-delete">
+        <p>Are you sure you want to delete your account?</p>
+        <a href="/delete-account">Delete your account</a>
+        <button class="cancel" id="cancel-delete">Cancel</button>
+    </div>
+</main>

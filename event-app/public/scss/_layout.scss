@@ -1,0 +1,10 @@
+/*=============================================== Layout ===============================================*/
+
+.wrapper {
+    @include grid(var(--container-template), 0, 0);
+    padding: var(--container-padding);
+
+    main.container {
+        grid-column: var(--container-column);
+    }
+}
