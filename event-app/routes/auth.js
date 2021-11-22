@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const User = require("../models/User.model")
 const bcrypt = require("bcrypt")
-// const { uploader, cloudinary } = require("../config/cloudinary")
+const { uploader, cloudinary } = require("../config/cloudinary")
 
 router.get("/signup", (req, res) => {
     res.render("auth/signup", { doctitle: "Create an account" })
@@ -18,12 +18,13 @@ router.get("/login", (req, res) => {
     res.render("auth/login", { doctitle: "Log in" })
 })
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploader.single('avatar'), (req, res, next) => {
     const { fullName, email, password } = req.body
+    console.log("the path: ", req.file)
 
-    // const imgPath = req.file.path
-    // const imgName = req.file.originalname
-    // const publicId = req.file.filename
+    const imgPath = req.file.path
+    const imgName = req.file.originalname
+    const publicId = req.file.filename
 
     if (password.length < 6) {
         res.render("auth/signup", {
@@ -61,9 +62,9 @@ router.post("/signup", (req, res, next) => {
                 fullName,
                 email,
                 password: hash,
-                // imgPath,
-                // imgName,
-                // publicId,
+                imgPath,
+                imgName,
+                publicId,
             })
                 .then(createdUser => {
                     //console.log(createdUser)
