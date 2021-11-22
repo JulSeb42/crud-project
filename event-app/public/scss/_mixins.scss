@@ -1,7 +1,14 @@
 /*============================================================= Mixins =============================================================*/
 
-@mixin flexbox($align, $justify, $wrap) {
+@mixin flexbox($align, $justify, $wrap: nowrap) {
     display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-wrap: $wrap;
+}
+
+@mixin inlineflex($align, $justify, $wrap: nowrap) {
+    display: inline-flex;
     align-items: $align;
     justify-content: $justify;
     flex-wrap: $wrap;

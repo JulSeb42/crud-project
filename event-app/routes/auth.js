@@ -72,6 +72,7 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
                 imgPath,
                 imgName,
                 publicId,
+                city,
             })
                 .then(() => {
                     res.redirect("/thank-you")

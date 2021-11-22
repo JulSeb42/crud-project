@@ -1,46 +1,54 @@
-<main class="container">
-    <h1>Profile page</h1>
+<main class="container container-profile">
+    <div class="user-card">
+        <img src="{{user.imgPath}}" alt="Picture {{user.fullName}}" />
 
-    <h3>Welcome {{user.fullName}}</h3>
+        <div class="content">
+            <h1>Welcome {{user.fullName}}</h1>
+            <p>Bio</p>
+            <p><em>Lives in {{ user.city }}</em></p>
 
-    <img src="{{user.imgPath}}" alt="Picture {{user.fullName}}" />
+            {{!-- Link to edit account --}}
 
-    <p><a href="/events/new-event">Add a new event</a></p>
+            {{!-- <div class="buttons-container">
+                <a href="/logout" class="btn btn-secondary">Log out</a>
+                <button class="btn btn-secondary" id="btnModal">Delete your account</button>
 
-    <h2>Events</h2>
+                <form action="/profile/{{user._id}}/delete" method="POST" class="modal hidden" id="modal-delete">
+                    <button type="submit">Confirm</button>
+                </form>
+            </div> --}}
+        </div>
+    </div>
 
-    <h4>Events you organise</h4>
+    <div class="title-container">
+        <h2>Events</h2>
 
-     {{! Organised events }}
+        <a href="/events/new-event" class="btn btn-primary">Add a new event</a>
+    </div>
 
-     {{#each event}}
-    <p>
-        <a href="/events/{{id}}">
-             {{title}}
-        </a>
-    </p>
-   
-    {{/each}}
+    <div class="profile-event-container">
+        <h4>Events you organise</h4>
 
-   
+        {{! Organised events }}
 
-    <h4>Events you are interested into</h4>
+        <ul class="list-events">
+            {{#each event}}
+            <li>
+                <a href="/events/{{id}}">
+                    <img src="{{ imgPath }}" alt="Cover {{ title }}">
 
-    {{! Events interest }}
+                    <div class="content">
+                        <h5>{{ title }}</h5>
+                        <h6>{{ location }}</h6>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
 
-    <a href="/logout">Log out</a>
-
-    <button class="btn btn-secondary" id="btnModal">Delete your account</button>
-
-    <form action="/profile/{{user._id}}/delete" method="POST" class="modal hidden" id="modal-delete">
-        <button type="submit">Confirm</button>
-    </form>
-
-
-
-    {{!-- <div class="modal hidden" id="modal-delete">
-        <p>Are you sure you want to delete your account?</p>
-        <a href="/profile/{{_id}}/delete">Delete your account</a>
-        <button class="cancel" id="cancel-delete">Cancel</button>
-    </div> --}}
+    <div class="profile-event-container">
+        <h4>Events you are interested into</h4>
+        {{! Events interest }}
+    </div>
 </main>
