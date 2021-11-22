@@ -44,8 +44,10 @@
             <textarea name="description" id="description"></textarea>
         </div>
 
-        <div class="item">
+        <div class="item search-list">
             <label for="invite">Invite people</label>
+
+            <input type="text" id="searchInvite" onkeyup="searchFunction()" placeholder="Search here...">
 
             <ul id="listInvite" class="list-invite">
                 {{#each allUsers}}
@@ -53,9 +55,11 @@
                     <input type="checkbox" name="invitedPeople" id="user-{{_id}}" value="{{_id}}">
 
                     <label for="user-{{_id}}">
-                        <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+                        <span class="img-container">
+                            <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+                        </span>
 
-                        <span>
+                        <span class="name">
                             {{ fullName }}
                         </span>
 
