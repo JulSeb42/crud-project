@@ -27,6 +27,7 @@ router.get("/profile/new-event", loginCheck(), (req, res, next) => {
 
 router.get("/profile/event-created", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
+    
     res.render("profile/event-created", {
         doctitle: "Event created!",
         user: loggedInUser,
@@ -132,7 +133,7 @@ router.post(
             publicId,
         }).then(createdEvent => {
             console.log(createdEvent)
-            res.redirect("/profile/event-created")
+            res.redirect(`/events/${createdEvent._id}`)
         })
     }
 )
