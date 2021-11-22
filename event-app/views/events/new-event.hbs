@@ -44,6 +44,19 @@
             <textarea name="description" id="description"></textarea>
         </div>
 
+        <div class="item">
+            <label for="invite">Invite people</label>
+
+            <ul>
+                {{#each allUsers}}
+                <li>
+                    <input type="checkbox" name="invitedPeople" id="user-{{_id}}" value="{{_id}}">
+                    <label for="user-{{_id}}">{{ fullName }}</label>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
         <div class="buttons-container">
             <button type="submit" class="btn btn-primary">Create event</button>
             <a href="/profile" class="btn btn-secondary">Cancel</a>

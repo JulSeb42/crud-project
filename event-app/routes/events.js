@@ -25,10 +25,15 @@ router.get("/", loginCheck(), (req, res, next) => {
 router.get("/events/new-event", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
 
-    res.render("events/new-event", {
-        user: loggedInUser,
-        doctitle: "Create a new event",
-    })
+    User.find()
+        .then(userFromDb => {
+            res.render("events/new-event", {
+                user: loggedInUser,
+                doctitle: "Create a new event",
+                allUsers: userFromDb,
+            })
+        })
+        .catch(err => next(err))
 })
 
 router.get("/events/:id", loginCheck(), (req, res, next) => {
@@ -63,6 +68,7 @@ router.post(
             endTime,
             organiser,
             description,
+            invitedPeople,
         } = req.body
 
         const imgPath = req.file.path
@@ -115,6 +121,7 @@ router.post(
             imgPath,
             imgName,
             publicId,
+            invitedPeople,
         }).then(createdEvent => {
             console.log(createdEvent)
             res.redirect(`/events/${createdEvent._id}`)
