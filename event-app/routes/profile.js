@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const Event = require("../models/Event.model")
 const User = require("../models/User.model")
+const { uploader, cloudinary } = require("../config/cloudinary")
 
 const loginCheck = () => {
     return (req, res, next) => {
@@ -48,7 +49,7 @@ router.get("/profile/:id", loginCheck(), (req, res, next) => {
     })
 })
 
-router.post("/profile/new-event", loginCheck(), (req, res, next) => {
+router.post("/profile/new-event", loginCheck(), uploader.single('cover'), (req, res, next) => {
     const loggedInUser = req.session.user
 
     const {

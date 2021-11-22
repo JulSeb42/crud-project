@@ -17,11 +17,15 @@
 
     <a href="/logout">Log out</a>
 
-    <button class="delete-account">Delete your account</button>
+    <form action="/profile/{{user._id}}/delete" method="POST">
+    <button type="submit">Delete your account</button>
+    </form>
 
-    <div class="modal hidden" id="modal-delete">
+    {{!-- <button class="delete-account">Delete your account</button> --}}
+
+    {{!-- <div class="modal hidden" id="modal-delete">
         <p>Are you sure you want to delete your account?</p>
-        <a href="/delete-account">Delete your account</a>
+        <a href="/profile/{{_id}}/delete">Delete your account</a>
         <button class="cancel" id="cancel-delete">Cancel</button>
-    </div>
+    </div> --}}
 </main>
