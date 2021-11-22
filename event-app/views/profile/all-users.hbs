@@ -1,0 +1,15 @@
+<main class="container">
+    <h1>All users</h1>
+
+    <ul>
+        {{#each allUsers}}
+        <li>
+            <a href="/profile/{{ _id }}">
+                <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+                {{ fullName }}
+            </a>
+        </li>
+        {{/each}}
+    </ul>
+
+</main>
