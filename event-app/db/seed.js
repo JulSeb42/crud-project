@@ -2,6 +2,7 @@ const faker = require("faker")
 const mongoose = require("mongoose")
 
 const User = require("../models/User.model")
+const Event = require("../models/Event.model")
 
 mongoose.connect("mongodb://localhost/event-app")
 
@@ -25,6 +26,7 @@ for (let i = 0; i < 100; i++) {
         email: faker.internet.email(),
         password: faker.internet.password(),
         imgPath: avatarsArr[i],
+        // imgPath: faker.image.imageUrl()
     })
 }
 
@@ -34,3 +36,15 @@ User.insertMany(fakeUsers)
         mongoose.connection.close()
     })
     .catch(err => console.log(err))
+
+// Generate fake events
+
+faker.locale = "de"
+
+let fakeEvents = []
+
+for (let i = 0; i < 50; i++) {
+    fakeEvents.push({
+        
+    })
+}
