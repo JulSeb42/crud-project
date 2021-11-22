@@ -26,6 +26,7 @@ const eventSchema = new Schema({
         ref: "User",
     },
     description: String,
+    location: String,
     imgPath: String,
     imgName: String,
     publicId: String,
