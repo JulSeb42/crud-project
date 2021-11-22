@@ -1,0 +1,44 @@
+/*=============================================== User content ===============================================*/
+
+.container-profile {
+    @include grid(1fr, 0, $margin-l);
+
+    .title-container {
+        width: 100%;
+        @include flexbox(center, space-between, nowrap);
+    }
+}
+
+.user-card {
+    $picture-size: 100px;
+    border: 1px solid $light-gray;
+    border-radius: $radius-xl;
+    padding: $margin-l;
+    @include grid($picture-size 1fr, $margin-l, 0);
+
+    img {
+        width: $picture-size;
+        height: $picture-size;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .content {
+        @include flexbox(flex-start, flex-start, nowrap);
+        flex-direction: column;
+
+        h1 {
+            margin-bottom: $margin-m;
+        }
+
+        p {
+            width: 100%;
+            display: block;
+        }
+
+        p:first-of-type {
+            margin-bottom: $margin-s;
+            width: 100%;
+        }
+    }
+}

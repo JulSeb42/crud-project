@@ -6,6 +6,9 @@
     border: none;
     background-color: transparent;
     text-decoration: none;
+    color: currentColor;
+    box-sizing: border-box !important;
+    display: inline-block;
 
     &.btn-primary {
         font-size: $body;
@@ -18,6 +21,17 @@
 
         &:hover {
             background-color: $blue-primary-70;
+        }
+    }
+
+    &.btn-secondary {
+        font-weight: $weight-semibold;
+        font-size: $body;
+        color: $blue-primary;
+        transition: $transition-short;
+
+        &:hover {
+            color: $blue-primary-70;
         }
     }
 }

@@ -73,13 +73,46 @@ today = `${yy}-${mm}-${dd}`
 
 if (startDate) {
     startDate.setAttribute("min", today)
+    startDate.setAttribute("value", today)
 }
 
 if (endDate) {
     endDate.setAttribute("min", today)
+    endDate.setAttribute("value", today)
 
     startDate.addEventListener("change", () => {
         endDate.setAttribute("min", startDate.value)
+        endDate.setAttribute("value", startDate.value)
+    })
+}
+
+let nowDate = new Date()
+let nowHour = nowDate.getHours()
+let nowMinute = nowDate.getMinutes()
+
+const startTime = document.querySelector("#startTime")
+const endTime = document.querySelector("#endTime")
+
+if (startTime) {
+    startTime.setAttribute("value", `${nowHour}:${nowMinute}`)
+}
+
+if (endTime) {
+    endTime.setAttribute(
+        "value",
+        `${nowHour < 24 ? nowHour + 1 : "00"}:${nowMinute}`
+    )
+
+    startTime.addEventListener("change", () => {
+        const time = startTime.value
+        const splitted = time.split(":")
+        console.log(splitted[0])
+        endTime.setAttribute(
+            "value",
+            `${
+                parseInt(splitted[0]) < 23 ? parseInt(splitted[0]) + 1 : "00"
+            }:${nowMinute}`
+        )
     })
 }
 
@@ -100,6 +133,8 @@ if (textConfidentiality) {
         }
     })
 }
+
+
 
 // Filter invite
 const listInvite = document.querySelector("#listInvite")

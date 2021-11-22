@@ -15,23 +15,36 @@
         </div>
 
         <div class="item">
-            <label for="startDate">Start date</label>
-            <input type="date" name="startDate" id="startDate">
+            <label for="public">Confidentiality</label>
+            <div class="toggle-container">
+                <input type="checkbox" name="public" id="public" value="private" class="input-toggle">
+                <label for="public" class="toggle"></label>
+                <label for="public"><span id="textConfidentiality"></span></label>
+            </div>
         </div>
 
-        <div class="item">
-            <label for="endDate">End date</label>
-            <input type="date" name="endDate" id="endDate">
+        <div class="item-grid">
+            <div class="item">
+                <label for="startDate">Start date</label>
+                <input type="date" name="startDate" id="startDate">
+            </div>
+
+            <div class="item">
+                <label for="endDate">End date</label>
+                <input type="date" name="endDate" id="endDate">
+            </div>
         </div>
 
-        <div class="item">
-            <label for="startTime">Start time</label>
-            <input type="time" name="startTime" id="startTime">
-        </div>
+        <div class="item-grid">
+            <div class="item">
+                <label for="startTime">Start time</label>
+                <input type="time" name="startTime" id="startTime">
+            </div>
 
-        <div class="item">
-            <label for="endTime">End time</label>
-            <input type="time" name="endTime" id="endTime">
+            <div class="item">
+                <label for="endTime">End time</label>
+                <input type="time" name="endTime" id="endTime">
+            </div>
         </div>
 
         <div class="item">
@@ -72,11 +85,6 @@
             </ul>
         </div>
 
-        <div class="item">
-            <label for="confidentiality">Confidentiality: <span id="textConfidentiality"></span></label>
-            <input type="checkbox" name="public" id="public" value="private">
-        </div>
-
         <div class="buttons-container">
             <button type="submit" class="btn btn-primary">Create event</button>
             <a href="/profile" class="btn btn-secondary">Cancel</a>
@@ -84,6 +92,6 @@
     </form>
 
     {{#if message}}
-    <p>{{ message }}</p>
+    <p class="error">{{ message }}</p>
     {{/if}}
 </main>

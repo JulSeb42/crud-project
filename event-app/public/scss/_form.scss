@@ -5,10 +5,13 @@
 
     form {
         @include grid(1fr, 0, $margin-m);
-        max-width: 400px;
 
         button[type="submit"] {
             justify-self: start;
+        }
+
+        .item-grid {
+            @include grid(repeat(2, 1fr), $margin-l, 0);
         }
 
         .item {
@@ -21,14 +24,23 @@
 
             input[type="text"],
             input[type="password"],
-            input[type="email"] {
+            input[type="email"],
+            input[type="date"],
+            input[type="time"],
+            textarea {
                 border: 1px solid $light-gray;
                 padding: $margin-xxs $margin-xs;
                 border-radius: $radius-s;
+                font-family: var(--font-family);
+                font-size: $labels;
 
                 &:focus {
                     border: 1px solid $blue-primary;
                 }
+            }
+
+            textarea {
+                min-height: 150px;
             }
 
             .input-container {
@@ -150,12 +162,72 @@
                     .img-container:after {
                         display: block;
                     }
-                    
+
                     svg {
                         display: block;
                     }
                 }
             }
+        }
+    }
+
+    .buttons-container {
+        @include flexbox(center, flex-start);
+
+        button {
+            margin-right: $margin-s;
+        }
+    }
+}
+
+#textConfidentiality {
+    color: $black;
+    font-weight: $weight-semibold;
+}
+
+.toggle-container {
+    @include inlineflex(center, flex-start, nowrap);
+
+    label {
+        cursor: pointer;
+    }
+
+    .toggle {
+        width: 24px;
+        height: 14px;
+        border: 2px solid $blue-primary;
+        border-radius: 999em;
+        position: relative;
+        margin-right: var(--margin-xxs);
+        transition: $transition-short;
+
+        &:before {
+            content: "";
+            $size: 8px;
+            width: $size;
+            height: $size;
+            border-radius: 50%;
+            background-color: $blue-primary;
+            position: absolute;
+            top: 0;
+            left: 0;
+            top: calc(50% - #{$size} / 2);
+            left: 1px;
+            transition: $transition-short;
+        }
+    }
+
+    .input-toggle {
+        display: none;
+    }
+
+    input:checked ~ .toggle {
+        border-color: $success;
+
+        &:before {
+            background-color: $success;
+            left: 11px;
+            // right: 1px;
         }
     }
 }
