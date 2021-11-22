@@ -1,7 +1,13 @@
 // Delete account modal
 const modalDelete = document.querySelector("#modal-delete")
+const buttonDelete = document.querySelector("#btnModal")
+// const toggleModal = () => modalDelete.classList.toggle("hidden")
 
-const toggleModal = () => modalDelete.classList.toggle("hidden")
+if (buttonDelete) {
+    buttonDelete.addEventListener("click", () => {
+        modalDelete.classList.toggle("hidden")
+    })
+}
 
 // Password reveal
 const passwordInput = document.querySelector("#password")
@@ -54,8 +60,6 @@ let today = new Date()
 const dd = today.getDate()
 const mm = today.getMonth() + 1
 const yy = today.getFullYear()
-
-console.log(`Day: ${dd}, Month: ${mm}, Year: ${yy}`)
 
 if (dd < 10) {
     dd = "0" + dd

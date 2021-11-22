@@ -5,7 +5,7 @@
 
     <img src="{{user.imgPath}}" alt="Picture {{user.fullName}}" />
 
-    <p><a href="/profile/new-event">Add a new event</a></p>
+    <p><a href="/events/new-event">Add a new event</a></p>
 
     <h2>Events</h2>
 
@@ -19,11 +19,13 @@
 
     <a href="/logout">Log out</a>
 
-    <form action="/profile/{{user._id}}/delete" method="POST">
-    <button type="submit">Delete your account</button>
+    <button class="btn btn-secondary" id="btnModal">Delete your account</button>
+
+    <form action="/profile/{{user._id}}/delete" method="POST" class="modal hidden" id="modal-delete">
+        <button type="submit">Confirm</button>
     </form>
 
-    {{!-- <button class="delete-account">Delete your account</button> --}}
+
 
     {{!-- <div class="modal hidden" id="modal-delete">
         <p>Are you sure you want to delete your account?</p>

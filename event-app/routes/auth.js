@@ -18,9 +18,8 @@ router.get("/login", (req, res) => {
     res.render("auth/login", { doctitle: "Log in" })
 })
 
-router.post("/signup", uploader.single('avatar'), (req, res, next) => {
+router.post("/signup", uploader.single("avatar"), (req, res, next) => {
     const { fullName, email, password, city } = req.body
-
 
     const imgPath = req.file.path
     const imgName = req.file.originalname
@@ -29,14 +28,14 @@ router.post("/signup", uploader.single('avatar'), (req, res, next) => {
     if (password.length < 6) {
         res.render("auth/signup", {
             message: "Your password needs to be 6 char min",
-            doctitle: "Sign up"
+            doctitle: "Sign up",
         })
         return
     }
 
     if (city.length === 0) {
         res.render("auth/signup", {
-            message: "Please enter your city"
+            message: "Please enter your city",
         })
         return
     }
@@ -48,6 +47,7 @@ router.post("/signup", uploader.single('avatar'), (req, res, next) => {
         })
         return
     }
+
     if (!email.includes("@")) {
         res.render("auth/signup", {
             message: "Please enter valid email",
@@ -73,8 +73,7 @@ router.post("/signup", uploader.single('avatar'), (req, res, next) => {
                 imgName,
                 publicId,
             })
-                .then(createdUser => {
-                    //console.log(createdUser)
+                .then(() => {
                     res.redirect("/thank-you")
                 })
                 .catch(err => next(err))
@@ -106,12 +105,8 @@ router.post("/login", (req, res, next) => {
     })
 })
 
-
-
 router.post("/profile/:id/delete", (req, res, next) => {
     const id = req.params.id
-
-    console.log(id)
 
     User.findByIdAndRemove(id)
         .then(() => {
