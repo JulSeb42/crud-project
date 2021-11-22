@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const Event = require("../models/Event.model")
+const User = require("../models/User.model")
 
 const loginCheck = () => {
     return (req, res, next) => {
@@ -9,20 +10,47 @@ const loginCheck = () => {
 
 router.get("/profile", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
-    res.render("profile", { user: loggedInUser, doctitle: loggedInUser.fullName })
+    res.render("profile", {
+        user: loggedInUser,
+        doctitle: loggedInUser.fullName,
+    })
 })
 
 router.get("/profile/new-event", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
-    console.log(loggedInUser)
-    res.render("profile/new-event", { user: loggedInUser, doctitle: "Create a new event" })
+    res.render("profile/new-event", {
+        user: loggedInUser,
+        doctitle: "Create a new event",
+    })
 })
 
-router.get("/profile/event-created", (req, res, next) => {
-    res.render("profile/event-created")
+router.get("/profile/event-created", loginCheck(), (req, res, next) => {
+    const loggedInUser = req.session.user
+    res.render("profile/event-created", {
+        doctitle: "Event created!",
+        user: loggedInUser,
+    })
 })
 
-router.post("/profile/new-event", (req, res, next) => {
+router.get("/profile/:id", loginCheck(), (req, res, next) => {
+    const loggedInUser = req.session.user
+    const id = req.params.id
+    // res.render("profile/public", {
+    //     user: loggedInUser,
+    //     doctitle: loggedInUser.fullName,
+    // })
+    User.findById(id).then(userFromDb => {
+        res.render("profile/public", {
+            doctitle: userFromDb.fullName,
+            userPublic: userFromDb,
+            user: loggedInUser,
+        })
+    })
+})
+
+router.post("/profile/new-event", loginCheck(), (req, res, next) => {
+    const loggedInUser = req.session.user
+
     const {
         title,
         startDate,

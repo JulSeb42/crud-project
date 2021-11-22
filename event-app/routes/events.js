@@ -23,13 +23,17 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
     const id = req.params.id
     const loggedInUser = req.session.user
 
-    Events.findById(id).then(eventFromDb => {
-        res.render("events/detail", {
-            doctitle: eventFromDb.title,
-            event: eventFromDb,
-            user: loggedInUser,
-        }).catch(err => next(err))
-    })
+    Events.findById(id)
+        .populate("organiser")
+        .then(eventFromDb => {
+            console.log(eventFromDb.organiser)
+            res.render("events/detail", {
+                doctitle: eventFromDb.title,
+                event: eventFromDb,
+                user: loggedInUser,
+            })
+        })
+        .catch(err => next(err))
 })
 
 module.exports = router
