@@ -11,7 +11,18 @@
 
     <h4>Events you organise</h4>
 
-    {{! Organised events }}
+     {{! Organised events }}
+
+     {{#each event}}
+    <p>
+        <a href="/events/{{id}}">
+             {{title}}
+        </a>
+    </p>
+   
+    {{/each}}
+
+   
 
     <h4>Events you are interested into</h4>
 
