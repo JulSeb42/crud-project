@@ -82,3 +82,23 @@ if (endDate) {
         endDate.setAttribute("min", startDate.value)
     })
 }
+
+// Toggle confidentiality
+const textConfidentiality = document.querySelector("#textConfidentiality")
+const checkboxConfidentiality = document.querySelector("#public")
+
+if (textConfidentiality) {
+    textConfidentiality.innerText = "Private"
+
+    console.log(checkboxConfidentiality.value)
+
+    checkboxConfidentiality.addEventListener("click", () => {
+        if (checkboxConfidentiality.checked) {
+            checkboxConfidentiality.setAttribute("value", "public")
+            textConfidentiality.innerText = "Public"
+        } else {
+            checkboxConfidentiality.setAttribute("value", "private")
+            textConfidentiality.innerText = "Private"
+        }
+    })
+}

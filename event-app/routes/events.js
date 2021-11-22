@@ -69,6 +69,7 @@ router.post(
             organiser,
             description,
             invitedPeople,
+            public,
         } = req.body
 
         const imgPath = req.file.path
@@ -118,10 +119,11 @@ router.post(
             endTime,
             organiser,
             description,
+            invitedPeople,
+            public,
             imgPath,
             imgName,
             publicId,
-            invitedPeople,
         }).then(createdEvent => {
             console.log(createdEvent)
             res.redirect(`/events/${createdEvent._id}`)
