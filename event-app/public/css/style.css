@@ -170,7 +170,7 @@ button {
   --radius-m: 8px;
   --radius-s: 4px;
   --radius-round: 99em;
-  --container-template: 1fr 800px 1fr;
+  --container-template: 1fr 60ch 1fr;
   --container-column: 2;
   --container-padding: var(--margin-xxl) 0;
   --transition-short: all 0.2s ease;
@@ -264,6 +264,63 @@ body {
 
 .wrapper main.container {
   grid-column: var(--container-column);
+}
+
+/*=============================================== Header ===============================================*/
+header {
+  width: 100%;
+  background-color: var(--blue-primary);
+  padding: var(--margin-l) 5vw;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+}
+
+header nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+}
+
+header nav a:not(:last-child) {
+  margin-right: var(--margin-m);
+}
+
+header a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: var(--weight-bold);
+  -webkit-transition: var(--transition-short);
+  -o-transition: var(--transition-short);
+  transition: var(--transition-short);
+}
+
+header a:hover {
+  color: var(--blue-primary-50);
 }
 
 /*=============================================== UI Components ===============================================*/

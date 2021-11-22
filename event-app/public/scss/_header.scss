@@ -1,0 +1,27 @@
+/*=============================================== Header ===============================================*/
+
+header {
+    width: 100%;
+    background-color: $blue-primary;
+    padding: $margin-l 5vw;
+    @include flexbox(center, space-between, nowrap);
+
+    nav {
+        @include flexbox(center, flex-start, nowrap);
+
+        a:not(:last-child) {
+            margin-right: $margin-m;
+        }
+    }
+
+    a {
+        color: $white;
+        text-decoration: none;
+        font-weight: $weight-bold;
+        transition: $transition-short;
+
+        &:hover {
+            color: $blue-primary-50;
+        }
+    }
+}
