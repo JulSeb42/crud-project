@@ -19,8 +19,8 @@ router.get("/login", (req, res) => {
 })
 
 router.post("/signup", uploader.single('avatar'), (req, res, next) => {
-    const { fullName, email, password } = req.body
-    console.log("the path: ", req.file)
+    const { fullName, email, password, city } = req.body
+
 
     const imgPath = req.file.path
     const imgName = req.file.originalname
@@ -30,6 +30,13 @@ router.post("/signup", uploader.single('avatar'), (req, res, next) => {
         res.render("auth/signup", {
             message: "Your password needs to be 6 char min",
             doctitle: "Sign up"
+        })
+        return
+    }
+
+    if (city.length === 0) {
+        res.render("auth/signup", {
+            message: "Please enter your city"
         })
         return
     }
@@ -99,25 +106,9 @@ router.post("/login", (req, res, next) => {
     })
 })
 
-// router.post("/delete-account", (req, res, next) => {
-//     const id = req.body.id
 
-//     User.findByIdAndRemove(id).then(deletedUser => {
-//         res.redirect("/")
-//     })
-// })
 
-// NOT WORKING => ASK JAN
-
-// router.get("/delete-account", (req, res, next) => {
-//     const id = req.body.id
-
-//     User.findByIdAndRemove(id).then(deletedUser => {
-//         res.redirect("/")
-//     })
-// })
-
-router.get("/delete-account", (req, res, next) => {
+router.post("/profile/:id/delete", (req, res, next) => {
     const id = req.params.id
 
     console.log(id)
