@@ -34,7 +34,7 @@ router.post("/signup", uploader.single('avatar'), (req, res, next) => {
         return
     }
 
-    if(city.length === 0) {
+    if (city.length === 0) {
         res.render("auth/signup", {
             message: "Please enter your city"
         })
