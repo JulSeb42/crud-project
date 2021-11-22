@@ -2,6 +2,8 @@ const router = require("express").Router()
 const Event = require("../models/Event.model")
 const { uploader } = require("../config/cloudinary")
 
+const User = require("../models/User.model")
+
 const loginCheck = () => {
     return (req, res, next) => {
         req.session.user ? next() : res.redirect("/login")
@@ -17,6 +19,15 @@ router.get("/", loginCheck(), (req, res, next) => {
             event: eventFromDb,
             doctitle: "Events",
         })
+    })
+})
+
+router.get("/events/new-event", loginCheck(), (req, res, next) => {
+    const loggedInUser = req.session.user
+
+    res.render("events/new-event", {
+        user: loggedInUser,
+        doctitle: "Create a new event",
     })
 })
 
@@ -36,17 +47,9 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get("/profile/new-event", loginCheck(), (req, res, next) => {
-    const loggedInUser = req.session.user
-    res.render("profile/new-event", {
-        user: loggedInUser,
-        doctitle: "Create a new event",
-    })
-})
-
 // Create Events
 router.post(
-    "/profile/new-event",
+    "/events/new-event",
     loginCheck(),
     uploader.single("cover"),
     (req, res, next) => {
@@ -67,35 +70,35 @@ router.post(
         const publicId = req.file.filename
 
         if (title.length === 0) {
-            res.render("profile/new-event", {
+            res.render("events/new-event", {
                 message: "The title can not be empty",
             })
             return
         }
 
         if (startDate.length === 0) {
-            res.render("profile/new-event", {
+            res.render("events/new-event", {
                 message: "Please enter a start date",
             })
             return
         }
 
         if (endDate.length === 0) {
-            res.render("profile/new-event", {
+            res.render("events/new-event", {
                 message: "Please enter an end date",
             })
             return
         }
 
         if (startTime.length === 0) {
-            res.render("profile/new-event", {
+            res.render("events/new-event", {
                 message: "Please enter a start time",
             })
             return
         }
 
         if (endTime.length === 0) {
-            res.render("profile/new-event", {
+            res.render("events/new-event", {
                 message: "Please enter an end time",
             })
             return
