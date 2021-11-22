@@ -31,6 +31,7 @@ const eventSchema = new Schema({
     imgPath: String,
     imgName: String,
     publicId: String,
+    confidentiality: Boolean,
 })
 
 const Event = model("Event", eventSchema)
