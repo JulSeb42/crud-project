@@ -127,7 +127,6 @@ router.post(
             publicId,
             location,
         }).then(createdEvent => {
-            console.log(createdEvent)
             res.redirect(`/events/${createdEvent._id}`)
         })
     }
