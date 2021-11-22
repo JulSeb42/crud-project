@@ -46,6 +46,7 @@ p {
         color: $blue-primary;
         transition: $transition-short;
         text-decoration: none;
+        font-weight: $weight-semibold;
 
         &:hover {
             color: $blue-primary-70;

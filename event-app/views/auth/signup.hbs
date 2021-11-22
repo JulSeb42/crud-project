@@ -1,26 +1,46 @@
-<h1>Sign up</h1>
+<main class="container container-form">
+    <h1>Sign up</h1>
 
-<form action="/signup" method="POST">
-    <label for="fullName">Full name</label>
-    <input type="text" name="fullName" id="fullName">
+    <form action="/signup" method="POST">
+        <div class="item">
+            <label for="fullName">Full name</label>
+            <input type="text" name="fullName" id="fullName">
+        </div>
 
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email">
+        <div class="item">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+        </div>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-    <button type="button" class="reveal" aria-label="Reveal password">Reveal password</button>
-    <span class="password-hint"></span>
+        <div class="item">
+            <label for="password">Password</label>
 
-    <label for="avatar">Avatar</label>
-    <input type="file" name="avatar" id="avatar">
+            <span class="input-container">
+                <input type="password" name="password" id="password">
+                <button type="button" aria-label="Reveal password" class="reveal" tabindex="0">
+                    <svg class="icon-reveal">
+                        <use xlink:href="/images/icon-sprite.svg#show-slash"></use>
+                    </svg>
+                </button>
+            </span>
 
-    <button type="submit">Create your account</button>
-    <button type="button">Cancel</button>
-</form>
+            <span class="password-hint"></span>
+        </div>
 
-<p>Already have an account? <a href="/login">Log in</a></p>
+        <div class="item">
+            <label for="avatar">Avatar</label>
+            <input type="file" name="avatar" id="avatar">
+        </div>
 
-{{#if message}}
-<p class="error-text">{{ message }}</p>
-{{/if}}
+        <div class="buttons-container">
+            <button type="submit" class="btn btn-primary">Create your account</button>
+            <a href="/login" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+
+    <p>Already have an account? <a href="/login">Log in</a></p>
+
+    {{#if message}}
+    <p class="error-text">{{ message }}</p>
+    {{/if}}
+</main>

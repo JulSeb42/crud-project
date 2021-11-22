@@ -234,6 +234,7 @@ p a {
   -o-transition: var(--transition-short);
   transition: var(--transition-short);
   text-decoration: none;
+  font-weight: var(--weight-semibold);
 }
 
 p a:hover {

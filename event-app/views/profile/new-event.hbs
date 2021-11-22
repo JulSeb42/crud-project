@@ -1,32 +1,51 @@
-<h1>Create a new event</h1>
+<main class="container container-form">
+    <h1>Create a new event</h1>
 
-<form action="/profile/new-event" method="POST">
-    <input type="hidden" name="organiser" id="organiser" value="{{user._id}}">
+    <form action="/profile/new-event" method="POST">
+        <input type="hidden" name="organiser" id="organiser" value="{{user._id}}">
 
-    <label for="title">Title of the event</label>
-    <input type="text" name="title" id="title">
+        <div class="item">
+            <label for="title">Title of the event</label>
+            <input type="text" name="title" id="title">
+        </div>
 
-    <label for="startDate">Start date</label>
-    <input type="date" name="startDate" id="startDate">
+        <div class="item">
+            <label for="startDate">Start date</label>
+            <input type="date" name="startDate" id="startDate">
+        </div>
 
-    <label for="endDate">End date</label>
-    <input type="date" name="endDate" id="endDate">
+        <div class="item">
+            <label for="endDate">End date</label>
+            <input type="date" name="endDate" id="endDate">
+        </div>
 
-    <label for="startTime">Start time</label>
-    <input type="time" name="startTime" id="startTime">
+        <div class="item">
+            <label for="startTime">Start time</label>
+            <input type="time" name="startTime" id="startTime">
+        </div>
 
-    <label for="endTime">End time</label>
-    <input type="time" name="endTime" id="endTime">
+        <div class="item">
+            <label for="endTime">End time</label>
+            <input type="time" name="endTime" id="endTime">
+        </div>
 
-    <label for="cover">Cover</label>
-    <input type="file" name="cover" id="cover">
+        <div class="item">
+            <label for="cover">Cover</label>
+            <input type="file" name="cover" id="cover">
+        </div>
 
-    <label for="description">Description</label>
-    <textarea name="description" id="description"></textarea>
+        <div class="item">
+            <label for="description">Description</label>
+            <textarea name="description" id="description"></textarea>
+        </div>
 
-    <button type="submit">Create event</button>
-</form>
+        <div class="buttons-container">
+            <button type="submit" class="btn btn-primary">Create event</button>
+            <a href="/profile" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
 
-{{#if message}}
-<p>{{ message }}</p>
-{{/if}}
+    {{#if message}}
+    <p>{{ message }}</p>
+    {{/if}}
+</main>

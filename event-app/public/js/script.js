@@ -9,19 +9,18 @@ const buttonReveal = document.querySelector(".reveal")
 const iconReveal = document.querySelector(".icon-reveal use")
 
 if (buttonReveal) {
-    iconReveal.setAttribute("xlink:href", "/images/icon-sprite.svg#show-slash")
     buttonReveal.addEventListener("click", () => {
         if (passwordInput.getAttribute("type") === "password") {
             passwordInput.setAttribute("type", "text")
             iconReveal.setAttribute(
                 "xlink:href",
-                "/images/icon-sprite.svg#show-slash"
+                "/images/icon-sprite.svg#show"
             )
         } else {
             passwordInput.setAttribute("type", "password")
             iconReveal.setAttribute(
                 "xlink:href",
-                "/images/icon-sprite.svg#show"
+                "/images/icon-sprite.svg#show-slash"
             )
         }
     })
