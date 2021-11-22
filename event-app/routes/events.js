@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const Events = require("../models/Event.model")
+const { cloudinary } = require("../config/cloudinary")
 
 const loginCheck = () => {
     return (req, res, next) => {
@@ -26,7 +27,6 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
     Events.findById(id)
         .populate("organiser")
         .then(eventFromDb => {
-            console.log(eventFromDb.organiser)
             res.render("events/detail", {
                 doctitle: eventFromDb.title,
                 event: eventFromDb,

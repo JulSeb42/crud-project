@@ -18,8 +18,6 @@ for (let i = 0; i < 50; i++) {
     avatarsArr.push(`https://randomuser.me/api/portraits/women/${i}.jpg`)
 }
 
-console.log(avatarsArr)
-
 for (let i = 0; i < 100; i++) {
     fakeUsers.push({
         fullName: faker.name.findName(),
@@ -36,15 +34,3 @@ User.insertMany(fakeUsers)
         mongoose.connection.close()
     })
     .catch(err => console.log(err))
-
-// Generate fake events
-
-faker.locale = "de"
-
-let fakeEvents = []
-
-for (let i = 0; i < 50; i++) {
-    fakeEvents.push({
-        
-    })
-}
