@@ -5,8 +5,33 @@
     <nav>
         <a href="/">Home</a>
         <a href="/all-users">Users</a>
-        <a href="/profile">{{ fullName }}</a>
-        
+
+        <div class="nav-account">
+            <button>
+                <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+                <span>
+                    {{ fullName }}
+                </span>
+            </button>
+
+            <ul>
+                <li>
+                    <a href="/profile">Profile</a>
+                </li>
+
+                <li>
+                    <a href="/profile/edit">Edit account</a>
+                </li>
+
+                <hr />
+
+                <li>
+                    <a href="/logout">Log out</a>
+                </li>
+            </ul>
+        </div>
+
+        {{!-- <a href="/profile">{{ fullName }}</a> --}}
         {{!-- <a href="/logout" class="logout">Log out</a> --}}
     </nav>
 </header>
