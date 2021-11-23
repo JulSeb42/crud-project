@@ -1,7 +1,25 @@
+// Dropdown navbar
+const buttonNavbar = document.querySelector(".nav-account button")
+const dropdownNav = document.querySelector(".nav-account ul")
+
+if (buttonNavbar) {
+    buttonNavbar.addEventListener("click", () => {
+        dropdownNav.classList.toggle("open")
+    })
+
+    const nameContainer = buttonNavbar.querySelector("span")
+
+    const firstName = nameContainer.innerText.split(" ")[0]
+    console.log(firstName)
+
+    nameContainer.innerText = firstName
+}
+
+
+
 // Delete account modal
 const modalDelete = document.querySelector("#modal-delete")
 const buttonDelete = document.querySelector("#btnModal")
-// const toggleModal = () => modalDelete.classList.toggle("hidden")
 
 if (buttonDelete) {
     buttonDelete.addEventListener("click", () => {
@@ -132,8 +150,6 @@ if (textConfidentiality) {
         }
     })
 }
-
-
 
 // Filter invite
 const listInvite = document.querySelector("#listInvite")

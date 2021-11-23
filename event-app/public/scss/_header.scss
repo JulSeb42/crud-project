@@ -19,9 +19,64 @@ header {
         text-decoration: none;
         font-weight: $weight-bold;
         transition: $transition-short;
+        font-size: $body;
 
         &:hover {
             color: $blue-primary-50;
+        }
+    }
+}
+
+.nav-account {
+    position: relative;
+
+    button {
+        @include flexbox(center, flex-start);
+        border: none;
+        background: none;
+        color: $white;
+        font-size: $labels;
+        font-weight: $weight-bold;
+        font-size: $body;
+        transition: $transition-short;
+
+        img {
+            $size: 32px;
+            width: $size;
+            height: $size;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: $margin-xxs;
+        }
+
+        &:hover {
+            color: $blue-primary-50;
+        }
+    }
+
+    ul {
+        position: absolute;
+        top: 40px;
+        right: 0;
+        @include ulNone();
+        background: $blue-primary;
+        padding: $margin-m;
+        border-radius: $radius-l;
+        transition: $transition-long;
+        max-height: 0;
+        overflow: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+        width: 150px;
+
+        li:not(:last-child) {
+            margin-bottom: $margin-s;
+        }
+
+        &.open {
+            padding-top: $margin-m;
+            padding-bottom: $margin-m;
+            max-height: 138px;
         }
     }
 }
