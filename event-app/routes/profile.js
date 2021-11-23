@@ -88,16 +88,6 @@ router.post(
 
         let imgPath, imgName, publicId
 
-        // if (imgPath === null) {
-        //     imgPath = loggedInUser.imgPath
-        //     imgName = loggedInUser.imgName
-        //     publicId = loggedInUser.publicId
-        // } else {
-        //     imgPath = req.file.path
-        //     imgName = req.file.originalname
-        //     publicId = req.file.filename
-        // }
-
         if (req.file === undefined) {
             imgPath = loggedInUser.imgPath
             imgName = loggedInUser.imgName

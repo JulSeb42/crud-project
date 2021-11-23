@@ -12,7 +12,6 @@ if (buttonNavbar) {
     const nameContainer = buttonNavbar.querySelector("span")
 
     const firstName = nameContainer.innerText.split(" ")[0]
-    console.log(firstName)
 
     nameContainer.innerText = firstName
 }
@@ -201,8 +200,17 @@ if (profilePicture) {
     })
 }
 
+// Get random quote
+const area = document.querySelector(".textarea-hidden")
+
+const getRandomQuote = () => allQuotes[Math.floor(Math.random() * 102)].quote
+
+if (area) {
+    area.value = getRandomQuote()
+}
+
 // Helper bio
-const bioArea = document.querySelector("#bio")
+const bioArea = document.querySelector(".bio-area")
 const bioHelper = document.querySelector("#helper-bio")
 
 if (bioArea) {
@@ -211,4 +219,19 @@ if (bioArea) {
     bioArea.addEventListener("keyup", () => {
         bioHelper.innerText = `${bioArea.value.length}/140`
     })
+}
+
+// Get random avatar
+const randomAvatar = () => {
+    const random = Math.floor(Math.random() * 114)
+    const randomMf = Math.floor(Math.random() + 0.5)
+    const mf = ["male", "female"]
+
+    return `https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/${mf[randomMf]}/${random}.png`
+}
+
+const randomAvatarInput = document.querySelector(".random-avatar")
+
+if (randomAvatarInput) {
+    randomAvatarInput.setAttribute("value", randomAvatar())
 }
