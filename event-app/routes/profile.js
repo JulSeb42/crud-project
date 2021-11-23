@@ -15,12 +15,11 @@ router.get("/profile", loginCheck(), (req, res, next) => {
     const id = req.params.id
     Event.find({ organiser: loggedInUser._id }).then(eventsFromDb => {
         Event.find({ invitedPeople: id }).then(eventsInvited => {
-
             res.render("profile", {
                 user: loggedInUser,
                 doctitle: loggedInUser.fullName,
                 event: eventsFromDb,
-                events: eventsInvited
+                events: eventsInvited,
             })
         })
     })
@@ -48,7 +47,6 @@ router.get("/profile/:id", loginCheck(), (req, res, next) => {
     User.findById(id).then(userFromDb => {
         Event.find({ organiser: id }).then(eventsFromDb => {
             Event.find({ invitedPeople: id }).then(eventsInvited => {
-
                 res.render("profile/public", {
                     doctitle: userFromDb.fullName,
                     userPublic: userFromDb,
@@ -84,7 +82,7 @@ router.post(
         const id = req.params.id
         const loggedInUser = req.session.user
 
-        const { avatar, fullName, city, password } = req.body
+        const { avatar, fullName, city, password, bio } = req.body
 
         let imgPath, imgName, publicId
 
@@ -129,7 +127,18 @@ router.post(
         const salt = bcrypt.genSaltSync()
         const hash = bcrypt.hashSync(password, salt)
 
-        User.findByIdAndUpdate(id, { avatar, fullName, city, password: hash, imgPath, imgName, publicId, },
+        User.findByIdAndUpdate(
+            id,
+            {
+                avatar,
+                fullName,
+                city,
+                password: hash,
+                imgPath,
+                imgName,
+                publicId,
+                bio,
+            },
             { new: true }
         )
             .then(updatedUser => {
