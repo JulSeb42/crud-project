@@ -1,31 +1,35 @@
 <main class="container container-form">
-    {{#with userInfo}}
-
-    <form action="/profile/edit/:id" method="POST" enctype="multipart/form-data">
+    <form action="/profile/edit/{{ userInfo._id }}" method="POST" enctype="multipart/form-data">
         <div class="edit-title-container">
             <div class="edit-picture-container">
                 <label for="avatar" class="label-avatar-picture">
-                    <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+                    <img src="{{ userInfo.imgPath }}" alt="Picture {{ userInfo.fullName }}">
+
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/images/icon-sprite.svg#camera"></use>
+                        </svg>
+                    </div>
                 </label>
 
-                <input type="file" name="avatar" id="avatar">
+                <input type="file" name="avatar" id="avatar" value="{{userInfo.imgPath}}">
             </div>
-            <h1>Edit {{ fullName }}</h1>
+            <h1>Edit {{ userInfo.fullName }}</h1>
         </div>
 
         <div class="item">
             <label for="fullName">Full name</label>
-            <input type="text" name="fullName" id="fullName" value="{{ fullName }}">
+            <input type="text" name="fullName" id="fullName" value="{{ userInfo.fullName }}">
         </div>
 
         <div class="item">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="{{ email }}" disabled>
+            <input type="email" name="email" id="email" value="{{ userInfo.email }}" disabled>
         </div>
 
         <div class="item">
             <label for="city">City</label>
-            <input type="text" name="city" id="city" value="{{ city }}">
+            <input type="text" name="city" id="city" value="{{ userInfo.city }}">
         </div>
 
         <div class="item">
@@ -52,15 +56,19 @@
     <div class="modal-container">
         <button class="btn btn-danger" id="btnModal">Delete your account</button>
 
-        <form action="/profile/{{_id}}/delete" method="POST" class="modal" id="modal-delete">
+        <form action="/profile/{{userInfo._id}}/delete" method="POST" class="error" id="modal-delete">
             <p>{{ messageDelete }}</p>
-            <button type="submit">Confirm</button>
+
+            <div class="buttons-container">
+                <button type="submit" class="btn btn-danger">Confirm</button>
+                <button type="button" id="cancelDelete" class="btn btn-secondary">Cancel</button>
+            </div>
+
+
         </form>
     </div>
 
     {{#if message}}
     <p class="error-text">{{ message }}</p>
     {{/if}}
-
-    {{/with}}
 </main>

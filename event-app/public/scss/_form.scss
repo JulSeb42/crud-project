@@ -231,3 +231,80 @@
         }
     }
 }
+
+.error {
+    background-color: $danger-10;
+    margin-top: $margin-l;
+    padding: $margin-l;
+    border-radius: $radius-xl;
+    border: 1px solid $danger;
+}
+
+.edit-title-container {
+    @include flexbox(center, flex-start);
+
+    .edit-picture-container {
+        $size: 80px;
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        margin-right: $margin-m;
+
+        input {
+            display: none;
+        }
+
+        .label-avatar-picture {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+
+            .icon-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                @include flexbox(center, center);
+                opacity: 0;
+                transition: $transition-short;
+
+                svg {
+                    $size: 32px;
+                    width: $size;
+                    height: $size;
+                    position: relative;
+                    z-index: 2;
+                    color: $dark-gray;
+                }
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-color: rgba(255, 255, 255, 0.5);
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: relative;
+                z-index: 0;
+            }
+
+            &:hover .icon-container {
+                opacity: 1;
+            }
+        }
+    }
+}
