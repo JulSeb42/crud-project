@@ -833,7 +833,7 @@ header a:hover {
           flex-wrap: nowrap;
 }
 
-.edit-title-container .edit-picture-container {
+.edit-picture-container {
   width: 80px;
   height: 80px;
   -webkit-border-radius: 50%;
@@ -843,11 +843,11 @@ header a:hover {
   margin-right: var(--margin-m);
 }
 
-.edit-title-container .edit-picture-container input {
+.edit-picture-container input {
   display: none;
 }
 
-.edit-title-container .edit-picture-container .label-avatar-picture {
+.edit-picture-container .label-avatar-picture {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -856,7 +856,7 @@ header a:hover {
   cursor: pointer;
 }
 
-.edit-title-container .edit-picture-container .label-avatar-picture .icon-container {
+.edit-picture-container .label-avatar-picture .icon-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -883,7 +883,7 @@ header a:hover {
   transition: var(--transition-short);
 }
 
-.edit-title-container .edit-picture-container .label-avatar-picture .icon-container svg {
+.edit-picture-container .label-avatar-picture .icon-container svg {
   width: 32px;
   height: 32px;
   position: relative;
@@ -891,7 +891,7 @@ header a:hover {
   color: var(--dark-gray);
 }
 
-.edit-title-container .edit-picture-container .label-avatar-picture .icon-container:before {
+.edit-picture-container .label-avatar-picture .icon-container:before {
   content: "";
   position: absolute;
   top: 0;
@@ -901,7 +901,7 @@ header a:hover {
   height: 100%;
 }
 
-.edit-title-container .edit-picture-container .label-avatar-picture img {
+.edit-picture-container .label-avatar-picture img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -910,7 +910,7 @@ header a:hover {
   z-index: 0;
 }
 
-.edit-title-container .edit-picture-container .label-avatar-picture:hover .icon-container {
+.edit-picture-container .label-avatar-picture:hover .icon-container {
   opacity: 1;
 }
 
@@ -918,6 +918,10 @@ header a:hover {
   min-height: inherit !important;
   height: -webkit-calc(var(--labels) * var(--line-height) * 3 + (var(--margin-xxs) * 2));
   height: calc(var(--labels) * var(--line-height) * 3 + (var(--margin-xxs) * 2));
+}
+
+.textarea-hidden {
+  display: none;
 }
 
 /*=============================================== User content ===============================================*/

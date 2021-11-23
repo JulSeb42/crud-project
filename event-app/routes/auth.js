@@ -18,12 +18,31 @@ router.get("/thank-you", (req, res, next) => {
     })
 })
 
-router.post("/signup", uploader.single("avatar"), (req, res, next) => {
-    const { fullName, email, password, city } = req.body
+const randomAvatar = () => {
+    const random = Math.floor(Math.random() * 114)
+    const randomMf = Math.floor(Math.random() + 0.5)
+    const mf = ["male", "female"]
 
-    const imgPath = req.file.path
-    const imgName = req.file.originalname
-    const publicId = req.file.filename
+    return `https://raw.githubusercontent.com/Ashwinvalento/cartoon-avatar/master/lib/images/${mf[randomMf]}/${random}.png`
+}
+
+router.post("/signup", uploader.single("avatar"), (req, res, next) => {
+    const { fullName, email, password, city, bio } = req.body
+
+    // const imgPath = req.file.path
+    // const imgName = req.file.originalname
+    // const publicId = req.file.filename
+    let imgPath, imgName, publicId
+
+    if (req.file === undefined) {
+        imgPath = randomAvatar()
+        imgName = randomAvatar()
+        publicId = randomAvatar()
+    } else {
+        imgPath = req.file.path
+        imgName = req.file.originalname
+        publicId = req.file.filename
+    }
 
     if (password.length < 6) {
         res.render("auth/signup", {
@@ -73,6 +92,7 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
                 imgName,
                 publicId,
                 city,
+                bio,
             })
                 .then(() => {
                     res.redirect("/thank-you")
