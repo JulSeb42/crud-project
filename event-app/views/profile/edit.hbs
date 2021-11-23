@@ -33,6 +33,12 @@
         </div>
 
         <div class="item">
+            <label for="bio">Bio</label>
+            <textarea name="bio" id="bio" maxlength="140" class="bio-area">{{ userInfo.bio }}</textarea>
+            <span id="helper-bio"></span>
+        </div>
+
+        <div class="item">
             <label for="password">New password</label>
 
             <span class="input-container">
@@ -63,8 +69,6 @@
                 <button type="submit" class="btn btn-danger">Confirm</button>
                 <button type="button" id="cancelDelete" class="btn btn-secondary">Cancel</button>
             </div>
-
-
         </form>
     </div>
 

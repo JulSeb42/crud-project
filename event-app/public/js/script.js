@@ -200,3 +200,15 @@ if (profilePicture) {
         profilePicture.setAttribute("src", url)
     })
 }
+
+// Helper bio
+const bioArea = document.querySelector("#bio")
+const bioHelper = document.querySelector("#helper-bio")
+
+if (bioArea) {
+    bioHelper.innerText = `${bioArea.value.length}/140`
+
+    bioArea.addEventListener("keyup", () => {
+        bioHelper.innerText = `${bioArea.value.length}/140`
+    })
+}

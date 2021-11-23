@@ -914,6 +914,12 @@ header a:hover {
   opacity: 1;
 }
 
+.bio-area {
+  min-height: inherit !important;
+  height: -webkit-calc(var(--labels) * var(--line-height) * 3 + (var(--margin-xxs) * 2));
+  height: calc(var(--labels) * var(--line-height) * 3 + (var(--margin-xxs) * 2));
+}
+
 /*=============================================== User content ===============================================*/
 .container-profile {
   display: -ms-grid;
