@@ -1,0 +1,98 @@
+<main class="container container-form">
+    <h1>Edit the event</h1>
+
+    <form action="/events/{{event._id}}/edit" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="organiser" id="organiser" value="{{event._id}}">
+        <h2>Edit {{event.title}}</h2>
+        <div class="item">
+            <label for="title">Title of the event</label>
+            <input type="text" name="title" id="title" value="{{event.title}}">
+        </div>
+
+        <div class="item">
+            <label for="location">Location of event</label>
+            <input type="text" name="location" id="location" value="{{event.location}}">
+        </div>
+
+        <div class="item">
+            <label for="public">Confidentiality</label>
+            <div class="toggle-container">
+                <input type="checkbox" name="public" id="public" value="private" class="input-toggle">
+                <label for="public" class="toggle"></label>
+                <label for="public"><span id="textConfidentiality"></span></label>
+            </div>
+        </div>
+
+        <div class="item-grid">
+            <div class="item">
+                <label for="startDate">Start date</label>
+                <input type="date" name="startDate" id="startDate" value="{{event.startDate}}">
+            </div>
+
+            <div class="item">
+                <label for="endDate">End date</label>
+                <input type="date" name="endDate" id="endDate" value="{{event.endDate}}">
+            </div>
+        </div>
+
+        <div class="item-grid">
+            <div class="item">
+                <label for="startTime">Start time</label>
+                <input type="time" name="startTime" id="startTime" value="{{event.startTime}}">
+            </div>
+
+            <div class="item">
+                <label for="endTime">End time</label>
+                <input type="time" name="endTime" id="endTime" value="{{endTime}}">
+            </div>
+        </div>
+
+        {{!-- <div class="item">
+            <label for="cover">Cover</label>
+            <input type="file" name="cover" id="cover">
+        </div> --}}
+
+        <div class="item">
+            <label for="description">Description</label>
+            <textarea name="description" id="description">{{event.description}}</textarea>
+        </div>
+
+        <div class="item search-list">
+            <label for="invite">Invite people</label>
+
+            <input type="text" id="searchInvite" onkeyup="searchFunction()" placeholder="Search here...">
+
+            <ul id="listInvite" class="list-invite">
+                {{#each allUsers}}
+                <li>
+                    <input type="checkbox" name="invitedPeople" id="user-{{_id}}" value="{{_id}}">
+
+                    <label for="user-{{_id}}">
+                        <span class="img-container">
+                            <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+                        </span>
+
+                        <span class="name">
+                            {{ fullName }}
+                        </span>
+
+                        <svg class="icon-check">
+                            <use xlink:href="/images/icon-sprite.svg#check"></use>
+                        </svg>
+                    </label>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="buttons-container">
+            <button type="submit" class="btn btn-primary">Update event</button>
+            <a href="/profile" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+
+    {{#if message}}
+    <p class="error">{{ message }}</p>
+    {{/if}}
+</main>

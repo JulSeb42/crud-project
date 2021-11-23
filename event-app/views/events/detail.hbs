@@ -1,29 +1,38 @@
 <main class="container">
-    {{#with event}}
+  {{#with event}}
+  {{#if ../canEdit}}
+  <a href="/events/{{_id}}/edit">
     <h1>{{ title }}</h1>
-    <p>Organised by <a href="/profile/{{ organiser._id }}">{{ organiser.fullName }}</a></p>
+  </a>
+  {{else}}
+    <h1>{{ title }}</h1>
+  {{/if}}
 
-    <img src="{{imgPath}}"/>
+  <p>Organised by <a href="/profile/{{ organiser._id }}">{{ organiser.fullName }}</a></p>
 
-    <p>Date: {{ startDate }} - {{ endDate }}</p>
-    
-    
- 
-    <p> Time: {{ startTime }} - {{ endTime }}</p>
-   
-    
-    <p>About: {{ description }}</p>
+  <img src="{{imgPath}}" />
 
-    <p>Location: {{ location }} </p>
+  <p>Date: {{ startDate }} - {{ endDate }}</p>
 
- 
-  
-    <p> Invited people: </p>
-   {{#each invitedPeople }}
-   <a href="/profile/{{_id}}"><p>{{fullName}} , {{ city }}</p></a>
-   {{/each}}
-    
-  {{/with}}  
 
-   
+
+  <p> Time: {{ startTime }} - {{ endTime }}</p>
+
+
+  <p>About: {{ description }}</p>
+
+  <p>Location: {{ location }} </p>
+
+
+
+  <p> Invited people: </p>
+  {{#each invitedPeople }}
+  <a href="/profile/{{_id}}">
+    <p>{{fullName}} , {{ city }}</p>
+  </a>
+  {{/each}}
+
+  {{/with}}
+
+
 </main>
