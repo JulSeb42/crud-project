@@ -308,3 +308,8 @@
         }
     }
 }
+
+.bio-area {
+    min-height: inherit !important;
+    height: calc(#{$labels} * var(--line-height) * 3 + (#{$margin-xxs} * 2));
+}
