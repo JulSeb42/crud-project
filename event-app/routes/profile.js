@@ -12,12 +12,16 @@ const loginCheck = () => {
 
 router.get("/profile", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
-
+    const id = req.params.id
     Event.find({ organiser: loggedInUser._id }).then(eventsFromDb => {
-        res.render("profile", {
-            user: loggedInUser,
-            doctitle: loggedInUser.fullName,
-            event: eventsFromDb,
+        Event.find({ invitedPeople: id }).then(eventsInvited => {
+
+            res.render("profile", {
+                user: loggedInUser,
+                doctitle: loggedInUser.fullName,
+                event: eventsFromDb,
+                events: eventsInvited
+            })
         })
     })
 })
@@ -43,17 +47,19 @@ router.get("/profile/:id", loginCheck(), (req, res, next) => {
 
     User.findById(id).then(userFromDb => {
         Event.find({ organiser: id }).then(eventsFromDb => {
-            console.log("events", eventsFromDb)
-            res.render("profile/public", {
-                doctitle: userFromDb.fullName,
-                userPublic: userFromDb,
-                user: loggedInUser,
-                event: eventsFromDb,
+            Event.find({ invitedPeople: id }).then(eventsInvited => {
+
+                res.render("profile/public", {
+                    doctitle: userFromDb.fullName,
+                    userPublic: userFromDb,
+                    user: loggedInUser,
+                    event: eventsFromDb,
+                    events: eventsInvited,
+                })
             })
         })
     })
 })
-
 router.get("/profile/edit/:id", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
     const id = req.params.id

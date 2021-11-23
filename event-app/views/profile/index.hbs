@@ -4,9 +4,9 @@
 
         <div class="content">
             <h1>Welcome {{user.fullName}}</h1>
-            
+
             <p>Bio</p>
-            
+
             <p><em>Lives in {{ user.city }}</em></p>
         </div>
     </div>
@@ -38,8 +38,52 @@
         </ul>
     </div>
 
-    <div class="profile-event-container">
-        <h4>Events you are interested into</h4>
+    {{!-- <div class="profile-event-container">
+        <h4>Events you are invited to</h4>
         {{! Events interest }}
+        <ul class="list-events">
+            {{#each events}}
+            <li>
+                <a href="/events/{{id}}">
+                    <img src="{{ imgPath }}" alt="Cover {{ title }}">
+
+                    <div class="content">
+                        <h5>{{ title }}</h5>
+                        <p>{{ location }}</p>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </div> --}}
+
+    <div class="profile-event-container">
+
+
+
+        <h4>Events you are invited to</h4>
+
+
+        <ul class="list-events">
+            {{#if event.length }}
+            {{#each events}}
+            <li>
+                <a href="/events/{{id}}">
+                    <img src="{{ imgPath }}" alt="Cover {{ title }}">
+
+                    <div class="content">
+                        <h5>{{ title }}</h5>
+                        <p>{{ location }}</p>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+            {{else}}
+            <p>No events yet</p>
+            {{/if}}
+
+
+        </ul>
     </div>
+
 </main>
