@@ -40,12 +40,16 @@ router.get("/profile/:id", loginCheck(), (req, res, next) => {
     const id = req.params.id
 
     User.findById(id).then(userFromDb => {
+        Event.find({ organiser: id }).then(eventsFromDb => {  
+            console.log('events', eventsFromDb)
         res.render("profile/public", {
             doctitle: userFromDb.fullName,
             userPublic: userFromDb,
             user: loggedInUser,
+            event: eventsFromDb,
         })
     })
+})
 })
 
 module.exports = router
