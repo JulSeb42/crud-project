@@ -1,0 +1,66 @@
+<main class="container container-form">
+    {{#with userInfo}}
+
+    <form action="/profile/edit/:id" method="POST" enctype="multipart/form-data">
+        <div class="edit-title-container">
+            <div class="edit-picture-container">
+                <label for="avatar" class="label-avatar-picture">
+                    <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
+                </label>
+
+                <input type="file" name="avatar" id="avatar">
+            </div>
+            <h1>Edit {{ fullName }}</h1>
+        </div>
+
+        <div class="item">
+            <label for="fullName">Full name</label>
+            <input type="text" name="fullName" id="fullName" value="{{ fullName }}">
+        </div>
+
+        <div class="item">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value="{{ email }}" disabled>
+        </div>
+
+        <div class="item">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" value="{{ city }}">
+        </div>
+
+        <div class="item">
+            <label for="password">New password</label>
+
+            <span class="input-container">
+                <input type="password" name="password" id="password">
+                <button type="button" aria-label="Reveal password" class="reveal" tabindex="0">
+                    <svg class="icon-reveal">
+                        <use xlink:href="/images/icon-sprite.svg#show-slash"></use>
+                    </svg>
+                </button>
+            </span>
+
+            <span class="password-hint"></span>
+        </div>
+
+        <div class="buttons-container">
+            <button type="submit" class="btn btn-primary">Update your account</button>
+            <a href="/login" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+
+    <div class="modal-container">
+        <button class="btn btn-danger" id="btnModal">Delete your account</button>
+
+        <form action="/profile/{{_id}}/delete" method="POST" class="modal" id="modal-delete">
+            <p>{{ messageDelete }}</p>
+            <button type="submit">Confirm</button>
+        </form>
+    </div>
+
+    {{#if message}}
+    <p class="error-text">{{ message }}</p>
+    {{/if}}
+
+    {{/with}}
+</main>
