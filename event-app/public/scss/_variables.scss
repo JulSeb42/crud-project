@@ -20,6 +20,9 @@
     --light-gray: #e4e4e4;
     --white: #fff;
 
+    // Gradient overlay
+    --overlay: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(255,255,255,0) 100%);
+
     // Margins
     --margin-xxl: 48px;
     --margin-xl: 32px;
@@ -83,6 +86,8 @@ $dark-gray: var(--dark-gray);
 $gray: var(--gray);
 $light-gray: var(--light-gray);
 $white: var(--white);
+
+$overlay: var(--overlay);
 
 $margin-xxl: var(--margin-xxl);
 $margin-xl: var(--margin-xl);

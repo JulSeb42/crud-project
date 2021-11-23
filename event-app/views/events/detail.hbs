@@ -1,38 +1,46 @@
-<main class="container">
-  {{#with event}}
-  {{#if ../canEdit}}
-  <a href="/events/{{_id}}/edit">
-    <h1>{{ title }}</h1>
-  </a>
-  {{else}}
-    <h1>{{ title }}</h1>
-  {{/if}}
+<main class="container container-event">
+    {{#with event}}
+    <div class="cover">
+        <img src="{{ imgPath }}" alt="Cover {{ title }}">
 
-  <p>Organised by <a href="/profile/{{ organiser._id }}">{{ organiser.fullName }}</a></p>
+        <div class="content">
+            <h1 class="capitalised">{{ title }}</h1>
+            <p>From {{ startDate }} at {{ startTime }} to {{ endDate }} at {{ endTime }}</p>
+        </div>
+    </div>
 
-  <img src="{{imgPath}}" />
+    <h6>Organised by <a href="/profile/{{ organiser._id }}" class="capitalised">{{ organiser.fullName }}</a></h6>
 
-  <p>Date: {{ startDate }} - {{ endDate }}</p>
+    {{#if ../canEdit}}
+    <a href="/events/{{_id}}/edit" class="btn btn-primary">Edit event</a>
+    {{/if}}
 
+    <div class="item">
+        <h4>About</h4>
+        <p>{{ description }}</p>
+    </div>
 
+    <div class="item">
+        <h4>Location</h4>
+        <p class="capitalised">{{ location }}</p>
+    </div>
 
-  <p> Time: {{ startTime }} - {{ endTime }}</p>
+    <div class="item">
+        <h4>Participants</h4>
 
+        <ul class="list-users">
+            {{#each invitedPeople }}
+            <li>
+                <a href="/profile/{{_id}}">
+                    <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
 
-  <p>About: {{ description }}</p>
-
-  <p>Location: {{ location }} </p>
-
-
-
-  <p> Invited people: </p>
-  {{#each invitedPeople }}
-  <a href="/profile/{{_id}}">
-    <p>{{fullName}} , {{ city }}</p>
-  </a>
-  {{/each}}
-
-  {{/with}}
-
-
+                    <div class="content">
+                        <h5 class="capitalised">{{ fullName }}</h5>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    {{/with}}
 </main>

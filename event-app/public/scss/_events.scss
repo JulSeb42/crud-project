@@ -2,54 +2,149 @@
 
 .list-events {
     @include ulNone();
-    @include grid(repeat(3, 1fr), $margin-s, $margin-s);
-    margin-top: $margin-m;
+    @include grid(1fr, 0, $margin-l);
+    margin-top: var(--margin-m);
 
     li {
-        position: relative;
-        aspect-ratio: 1;
+        width: 100%;
+        border: 1px solid $light-gray;
         border-radius: $radius-xl;
         overflow: hidden;
         transition: $transition-short;
 
         a {
+            @include flexbox(center, flex-start);
+            color: $black;
             text-decoration: none;
+
+            img {
+                width: 120px;
+                height: 150px;
+                object-fit: cover;
+            }
+
+            .content {
+                @include grid(1fr, 0, 0);
+                padding: $margin-m;
+                
+                h5 {
+                    color: $blue-primary;
+                }
+
+                .capitalised {
+                    font-weight: $weight-semibold
+                }
+            }
         }
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+}
+
+.container-event {
+    @include grid(1fr, 0, $margin-l);
+
+    .cover {
+        width: 100%;
+        position: relative;
+        border-radius: $radius-xl;
+        overflow: hidden;
+        height: 20vw;
+        min-height: 300px;
 
         img {
-            width: 100%;
-            height: 100%;
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-        }
-
-        &:after {
-            content: "";
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-            position: absolute;
-            top: 0;
-            left: 0;
+            z-index: 0;
         }
 
         .content {
-            color: $white;
             position: relative;
             z-index: 2;
-            padding: $margin-s;
+            color: $white;
+            padding: $margin-m;
             @include flexbox(flex-start, flex-end);
             flex-direction: column;
             width: 100%;
             height: 100%;
+
+            p {
+                font-weight: $weight-semibold;
+            }
         }
 
-        &:hover {
-            transform: scale(1.05);
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $overlay;
         }
+    }
+
+    .btn {
+        justify-self: start;
+    }
+
+    .item {
+        @include grid(1fr, 0, $margin-xxs);
+    }
+}
+
+// Edit form
+.cover-edit {
+    width: 100%;
+    position: relative;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    height: 20vw;
+    min-height: 300px;
+
+    input {
+        display: none;
+    }
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        cursor: pointer;
+    }
+
+    .icon-container {
+        position: absolute;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.5);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        @include flexbox(center, center);
+        cursor: pointer;
+        opacity: 0;
+        transition: $transition-short;
+
+        svg {
+            color: $dark-gray;
+            $size: 48px;
+            width: $size;
+            height: $size;
+        }
+    }
+
+    &:hover .icon-container {
+        opacity: 1;
     }
 }

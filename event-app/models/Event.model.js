@@ -6,11 +6,11 @@ const eventSchema = new Schema({
         required: true,
     },
     startDate: {
-        type: Date,
+        type: String,
         required: true,
     },
     endDate: {
-        type: Date,
+        type: String,
         required: true,
     },
     startTime: {
@@ -26,10 +26,12 @@ const eventSchema = new Schema({
         ref: "User",
     },
     public: String,
-    invitedPeople:[ {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-    }],
+    invitedPeople: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
     description: String,
     location: String,
     imgPath: String,

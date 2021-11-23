@@ -3,11 +3,11 @@
         <img src="{{user.imgPath}}" alt="Picture {{user.fullName}}" />
 
         <div class="content">
-            <h1>Welcome {{user.fullName}}</h1>
+            <h1 class="capitalised">Welcome {{user.fullName}}</h1>
 
             <p>{{ user.bio }}</p>
 
-            <p><em>Lives in {{ user.city }}</em></p>
+            <p><em>Lives in <span class="capitalised">{{ user.city }}</span></em></p>
         </div>
     </div>
 
@@ -21,43 +21,48 @@
         <h4>Events you organise</h4>
 
         {{! Organised events }}
-
+        {{#if event.length}}
         <ul class="list-events">
             {{#each event}}
             <li>
                 <a href="/events/{{id}}">
                     <img src="{{ imgPath }}" alt="Cover {{ title }}">
-
+            
                     <div class="content">
-                        <h5>{{ title }}</h5>
-                        <p>{{ location }}</p>
+                        <h5 class="capitalised">{{ title }}</h5>
+                        <p><span class="capitalised">{{ location }}</span></p>
+                        <p>{{ startDate }} at {{ startTime }}</p>
                     </div>
                 </a>
             </li>
             {{/each}}
         </ul>
+        {{else}}
+        <p>No event yet</p>
+        {{/if}}
     </div>
 
     <div class="profile-event-container">
         <h4>Events you are invited to</h4>
-
+        
+        {{#if event.length }}
         <ul class="list-events">
-            {{#if event.length }}
             {{#each events}}
             <li>
                 <a href="/events/{{id}}">
                     <img src="{{ imgPath }}" alt="Cover {{ title }}">
-
+            
                     <div class="content">
-                        <h5>{{ title }}</h5>
-                        <p>{{ location }}</p>
+                        <h5 class="capitalised">{{ title }}</h5>
+                        <p><span class="capitalised">{{ location }}</span></p>
+                        <p>{{ startDate }} at {{ startTime }}</p>
                     </div>
                 </a>
             </li>
             {{/each}}
-            {{else}}
-            <p>No events yet</p>
-            {{/if}}
         </ul>
+        {{else}}
+        <p>No event yet</p>
+        {{/if}}
     </div>
 </main>

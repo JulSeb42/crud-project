@@ -1,10 +1,23 @@
 <main class="container container-form">
-    <h1>Edit the event</h1>
+    <h1>Edit {{ event.title }}</h1>
 
     <form action="/events/{{event._id}}/edit" method="POST" enctype="multipart/form-data">
-
         <input type="hidden" name="organiser" id="organiser" value="{{event._id}}">
-        <h2>Edit {{event.title}}</h2>
+
+        <div class="cover cover-edit">
+            <label for="cover" class="label-edit-cover">
+                <img src="{{ event.imgPath }}" alt="Cover {{ event.title }}" id="editCoverImg">
+
+                <div class="icon-container">
+                    <svg>
+                        <use xlink:href="/images/icon-sprite.svg#edit"></use>
+                    </svg>
+                </div>
+            </label>
+
+            <input type="file" name="cover" id="cover" class="editCoverInput" value="{{ event.imgPath }}">
+        </div>
+
         <div class="item">
             <label for="title">Title of the event</label>
             <input type="text" name="title" id="title" value="{{event.title}}">
@@ -88,7 +101,7 @@
 
         <div class="buttons-container">
             <button type="submit" class="btn btn-primary">Update event</button>
-            <a href="/profile" class="btn btn-secondary">Cancel</a>
+            <a href="/events/{{event._id}}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 

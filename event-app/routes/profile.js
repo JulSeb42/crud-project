@@ -13,16 +13,20 @@ const loginCheck = () => {
 router.get("/profile", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
     const id = req.params.id
-    Event.find({ organiser: loggedInUser._id }).then(eventsFromDb => {
-        Event.find({ invitedPeople: id }).then(eventsInvited => {
-            res.render("profile", {
-                user: loggedInUser,
-                doctitle: loggedInUser.fullName,
-                event: eventsFromDb,
-                events: eventsInvited,
-            })
+    Event.find({ organiser: loggedInUser._id })
+        .sort("startDate")
+        .then(eventsFromDb => {
+            Event.find({ invitedPeople: id })
+                .sort("startDate")
+                .then(eventsInvited => {
+                    res.render("profile", {
+                        user: loggedInUser,
+                        doctitle: loggedInUser.fullName,
+                        event: eventsFromDb,
+                        events: eventsInvited,
+                    })
+                })
         })
-    })
 })
 
 router.get("/all-users", loginCheck(), (req, res, next) => {
@@ -45,19 +49,24 @@ router.get("/profile/:id", loginCheck(), (req, res, next) => {
     const id = req.params.id
 
     User.findById(id).then(userFromDb => {
-        Event.find({ organiser: id }).then(eventsFromDb => {
-            Event.find({ invitedPeople: id }).then(eventsInvited => {
-                res.render("profile/public", {
-                    doctitle: userFromDb.fullName,
-                    userPublic: userFromDb,
-                    user: loggedInUser,
-                    event: eventsFromDb,
-                    events: eventsInvited,
-                })
+        Event.find({ organiser: id })
+            .sort("startDate")
+            .then(eventsFromDb => {
+                Event.find({ invitedPeople: id })
+                    .sort("startDate")
+                    .then(eventsInvited => {
+                        res.render("profile/public", {
+                            doctitle: userFromDb.fullName,
+                            userPublic: userFromDb,
+                            user: loggedInUser,
+                            event: eventsFromDb,
+                            events: eventsInvited,
+                        })
+                    })
             })
-        })
     })
 })
+
 router.get("/profile/edit/:id", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
     const id = req.params.id
@@ -150,5 +159,3 @@ router.post(
 )
 
 module.exports = router
-
-// password1

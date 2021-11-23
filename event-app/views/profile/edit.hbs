@@ -7,15 +7,19 @@
 
                     <div class="icon-container">
                         <svg>
-                            <use xlink:href="/images/icon-sprite.svg#camera"></use>
+                            <use xlink:href="/images/icon-sprite.svg#edit"></use>
                         </svg>
                     </div>
                 </label>
 
                 <input type="file" name="avatar" id="avatar" value="{{ userInfo.imgPath }}">
             </div>
-            <h1>Edit {{ userInfo.fullName }}</h1>
+            <h1>Edit <span class="capitalised">{{ userInfo.fullName }}</span></h1>
         </div>
+
+        {{#if message}}
+        <p class="error-text">{{ message }}</p>
+        {{/if}}
 
         <div class="item">
             <label for="fullName">Full name</label>
@@ -39,10 +43,10 @@
         </div>
 
         <div class="item">
-            <label for="password">New password</label>
+            <label for="password">Password</label>
 
             <span class="input-container">
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" value="password">
                 <button type="button" aria-label="Reveal password" class="reveal" tabindex="0">
                     <svg class="icon-reveal">
                         <use xlink:href="/images/icon-sprite.svg#show-slash"></use>
@@ -71,8 +75,4 @@
             </div>
         </form>
     </div>
-
-    {{#if message}}
-    <p class="error-text">{{ message }}</p>
-    {{/if}}
 </main>

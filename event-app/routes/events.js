@@ -12,29 +12,33 @@ const loginCheck = () => {
 
 const isOrganizer = () => {
     return (req, res, next) => {
-        Event.findById(req.params.id)
-        .then(event=>{
-            event.organiser.toString() === req.session.user._id ? next() :  res.redirect("/")
-        } )
-        
+        Event.findById(req.params.id).then(event => {
+            event.organiser.toString() === req.session.user._id
+                ? next()
+                : res.redirect("/")
+        })
     }
 }
+
 router.get("/", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
 
-    Event.find().then(eventFromDb => {
-        res.render("events", {
-            user: loggedInUser,
-            event: eventFromDb,
-            doctitle: "Events",
+    Event.find()
+        .sort("startDate")
+        .then(eventFromDb => {
+            res.render("events", {
+                user: loggedInUser,
+                event: eventFromDb,
+                doctitle: "Events",
+            })
         })
-    })
 })
 
 router.get("/events/new-event", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
 
-    User.find().sort("fullName")
+    User.find()
+        .sort("fullName")
         .then(userFromDb => {
             res.render("events/new-event", {
                 user: loggedInUser,
@@ -48,12 +52,14 @@ router.get("/events/new-event", loginCheck(), (req, res, next) => {
 router.get("/events/:id", loginCheck(), (req, res, next) => {
     const id = req.params.id
     const loggedInUser = req.session.user
-    
+
     Event.findById(id)
         .populate("organiser")
         .populate("invitedPeople")
         .then(eventFromDb => {
-            const canEdit = (eventFromDb.organiser) && eventFromDb.organiser._id.toString() === req.session.user._id
+            const canEdit =
+                eventFromDb.organiser &&
+                eventFromDb.organiser._id.toString() === req.session.user._id
             res.render("events/detail", {
                 doctitle: eventFromDb.title,
                 event: eventFromDb,
@@ -64,6 +70,19 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
         .catch(err => next(err))
 })
 
+const newDates = date => {
+    let convertedDate = new Date(date).toLocaleDateString("en-EN", {
+        weekday: "short",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    })
+
+    let splittedDate = convertedDate.split(",")
+    
+    return splittedDate.join("")
+}
+
 // Create Events
 router.post(
     "/events/new-event",
@@ -72,7 +91,7 @@ router.post(
     (req, res, next) => {
         const loggedInUser = req.session.user
 
-        const {
+        let {
             title,
             startDate,
             endDate,
@@ -85,9 +104,23 @@ router.post(
             location,
         } = req.body
 
-        const imgPath = req.file.path
-        const imgName = req.file.originalname
-        const publicId = req.file.filename
+        // const imgPath = req.file.path
+        // const imgName = req.file.originalname
+        // const publicId = req.file.filename
+
+        let imgPath, imgName, publicId
+
+        // https://res.cloudinary.com/dyfxmafvr/image/upload/v1637686921/event-app/rfkqwvgddravtkkwiwhi.jpg
+
+        if (req.file === undefined) {
+            imgPath = "https://source.unsplash.com/random"
+            imgName = "https://source.unsplash.com/random"
+            publicId = "https://source.unsplash.com/random"
+        } else {
+            imgPath = req.file.path
+            imgName = req.file.originalname
+            publicId = req.file.filename
+        }
 
         if (title.length === 0) {
             res.render("events/new-event", {
@@ -123,11 +156,14 @@ router.post(
             })
             return
         }
+        
+        const newStartDate = newDates(startDate)
+        const newEndDate = newDates(endDate)
 
         Event.create({
             title,
-            startDate,
-            endDate,
+            startDate: newStartDate,
+            endDate: newEndDate,
             startTime,
             endTime,
             organiser,
@@ -144,14 +180,17 @@ router.post(
     }
 )
 
-
 router.get("/events/:id/edit", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
     const id = req.params.id
 
     Event.findById(id)
         .then(event => {
-            res.render("events/edit", { event })
+            res.render("events/edit", {
+                event,
+                user: loggedInUser,
+                doctitle: `Edit ${event.title}`,
+            })
         })
         .catch(err => next(err))
 })
@@ -175,21 +214,24 @@ router.post(
             description,
             invitedPeople,
             public,
-            location, } = req.body
+            location,
+        } = req.body
 
-        // let imgPath, imgName, publicId
+        let imgPath, imgName, publicId
 
-    
+        // https://res.cloudinary.com/dyfxmafvr/image/upload/v1637686921/event-app/rfkqwvgddravtkkwiwhi.jpg
 
-        // if (req.file === undefined) {
-        //     imgPath = loggedInUser.imgPath
-        //     imgName = loggedInUser.imgName
-        //     publicId = loggedInUser.publicId
-        // } else {
-        //     imgPath = req.file.path
-        //     imgName = req.file.originalname
-        //     publicId = req.file.filename
-        // }
+        if (req.file === undefined) {
+            imgPath = imgPath
+            imgName = imgName
+            publicId = publicId
+        } else {
+            imgPath = req.file.path
+            imgName = req.file.originalname
+            publicId = req.file.filename
+        }
+
+        // let event = req.body
 
         if (startDate.length === 0) {
             res.render("events/edit", {
@@ -238,8 +280,20 @@ router.post(
             })
             return
         }
-        
-        Event.findByIdAndUpdate(id, { title, startDate, endDate, location, description, invitedPeople },
+
+        Event.findByIdAndUpdate(
+            id,
+            {
+                title,
+                startDate,
+                endDate,
+                location,
+                description,
+                invitedPeople,
+                imgPath,
+                imgName,
+                publicId,
+            },
             { new: true }
         )
             .then(() => {

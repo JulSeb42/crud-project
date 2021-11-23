@@ -43,13 +43,23 @@ p {
     }
 
     a {
-        color: $blue-primary;
-        transition: $transition-short;
-        text-decoration: none;
         font-weight: $weight-semibold;
-
-        &:hover {
-            color: $blue-primary-70;
-        }
     }
+}
+
+p a,
+h4 a,
+h5 a, 
+h6 a {
+    color: $blue-primary;
+    transition: $transition-short;
+    text-decoration: none;
+
+    &:hover {
+        color: $blue-primary-70;
+    }
+}
+
+.capitalised {
+    text-transform: capitalize;
 }

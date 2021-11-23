@@ -39,6 +39,7 @@ header {
         font-weight: $weight-bold;
         font-size: $body;
         transition: $transition-short;
+        z-index: 999;
 
         img {
             $size: 32px;

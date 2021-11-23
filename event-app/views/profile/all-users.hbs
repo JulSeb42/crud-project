@@ -1,15 +1,15 @@
 <main class="container">
     <h1>All users</h1>
 
-    <ul class="list-events">
+    <ul class="list-users">
         {{#each allUsers}}
         <li>
             <a href="/profile/{{_id}}">
                 <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
 
                 <div class="content">
-                    <h5>{{ fullName }}</h5>
-                    <p>{{ city }}</p>
+                    <h5 class="capitalised">{{ fullName }}</h5>
+                    <p class="capitalised">{{ city }}</p>
                 </div>
             </a>
         </li>
