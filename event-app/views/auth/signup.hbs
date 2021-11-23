@@ -32,18 +32,22 @@
             <input type="text" name="city" id="city">
         </div>
 
-        <div class="edit-picture-container">
-            <label for="avatar" class="label-avatar-picture">
-                <img src="/images/empty-avatar.svg" alt="Empty avatar">
-        
-                <div class="icon-container">
-                    <svg>
-                        <use xlink:href="/images/icon-sprite.svg#camera"></use>
-                    </svg>
-                </div>
-            </label>
-        
-            <input type="file" name="avatar" id="avatar">
+        <div class="item">
+            <label for="avatar">Avatar</label>
+
+            <div class="edit-picture-container">
+                <label for="avatar" class="label-avatar-picture">
+                    <img src="/images/empty-avatar.svg" alt="Empty avatar">
+            
+                    <div class="icon-container">
+                        <svg>
+                            <use xlink:href="/images/icon-sprite.svg#camera"></use>
+                        </svg>
+                    </div>
+                </label>
+            
+                <input type="file" name="avatar" id="avatar">
+            </div>
         </div>
 
         <textarea name="bio" id="bio" class="textarea-hidden"></textarea>
