@@ -194,10 +194,9 @@ const inputPicture = document.querySelector("#avatar")
 
 if (profilePicture) {
     inputPicture.addEventListener("change", () => {
-        console.log(inputPicture.value.replaceAll(" ", "%20"))
-        profilePicture.setAttribute(
-            "src",
-            inputPicture.value.replaceAll(" ", "%20")
-        )
+        const file = inputPicture.files[0]
+        const url = URL.createObjectURL(file)
+
+        profilePicture.setAttribute("src", url)
     })
 }
