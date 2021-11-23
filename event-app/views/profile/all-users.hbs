@@ -1,12 +1,16 @@
 <main class="container">
     <h1>All users</h1>
 
-    <ul>
+    <ul class="list-events">
         {{#each allUsers}}
         <li>
-            <a href="/profile/{{ _id }}">
+            <a href="/profile/{{_id}}">
                 <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
-                {{ fullName }}
+
+                <div class="content">
+                    <h5>{{ fullName }}</h5>
+                    <p>{{ city }}</p>
+                </div>
             </a>
         </li>
         {{/each}}
