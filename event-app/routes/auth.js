@@ -11,6 +11,13 @@ router.get("/login", (req, res) => {
     res.render("auth/login", { doctitle: "Log in" })
 })
 
+router.get("/thank-you", (req, res, next) => {
+    res.render("auth/thank-you", {
+        message: "Thank you for creating your account!",
+        doctitle: "Thank you",
+    })
+})
+
 router.post("/signup", uploader.single("avatar"), (req, res, next) => {
     const { fullName, email, password, city } = req.body
 
@@ -66,7 +73,6 @@ router.post("/signup", uploader.single("avatar"), (req, res, next) => {
                 imgName,
                 publicId,
                 city,
-            
             })
                 .then(() => {
                     res.redirect("/thank-you")

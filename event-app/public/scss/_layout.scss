@@ -8,3 +8,7 @@
         grid-column: var(--container-column);
     }
 }
+
+.thanks {
+    @include grid(1fr, 0, $margin-m);
+}

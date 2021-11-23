@@ -266,6 +266,17 @@ body {
   grid-column: var(--container-column);
 }
 
+.thanks {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -webkit-column-gap: 0;
+     -moz-column-gap: 0;
+          column-gap: 0;
+  row-gap: var(--margin-m);
+}
+
 /*=============================================== Header ===============================================*/
 header {
   width: 100%;
