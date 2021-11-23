@@ -1,5 +1,45 @@
 <main class="container">
     {{#with userPublic}}
+
     <h1>{{ fullName }}</h1>
-    {{/with}}
+
+    <img src="{{imgPath}}" />
+
+    <p> Lives in: {{ city }} </p>
+
+    <p> Bio: {{ bio }} </p>
+
+    <div class="profile-event-container">
+
+        {{/with}}
+
+        <h4>Events they organise</h4>
+
+
+        <ul class="list-events">
+            {{#if event.length }}
+            {{#each event}}
+            <li>
+                <a href="/events/{{id}}">
+                    <img src="{{ imgPath }}" alt="Cover {{ title }}">
+
+                    <div class="content">
+                        <h5>{{ title }}</h5>
+                        <p>{{ location }}</p>
+                    </div>
+                </a>
+            </li>
+            {{/each}}
+            {{else}}
+            <p>No events yet</p>
+            {{/if}}
+
+
+        </ul>
+    </div>
+
+    <h4> Events they are interested into:</h4>
+
+
+
 </main>
