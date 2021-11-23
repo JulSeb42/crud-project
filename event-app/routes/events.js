@@ -42,6 +42,7 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
 
     Event.findById(id)
         .populate("organiser")
+        .populate("invitedPeople")
         .then(eventFromDb => {
             res.render("events/detail", {
                 doctitle: eventFromDb.title,
