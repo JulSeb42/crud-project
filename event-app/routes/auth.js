@@ -7,13 +7,6 @@ router.get("/signup", (req, res) => {
     res.render("auth/signup", { doctitle: "Create an account" })
 })
 
-router.get("/thank-you", (req, res, next) => {
-    res.render("auth/thank-you", {
-        message: "Thank you for creating your account!",
-        doctitle: "Thank you!",
-    })
-})
-
 router.get("/login", (req, res) => {
     res.render("auth/login", { doctitle: "Log in" })
 })

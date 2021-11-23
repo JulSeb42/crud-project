@@ -442,6 +442,23 @@ header a:hover {
   color: var(--blue-primary-70);
 }
 
+.btn.btn-danger {
+  font-size: var(--body);
+  background-color: var(--danger-10);
+  font-weight: var(--weight-bold);
+  color: var(--danger);
+  padding: var(--margin-xs) var(--margin-s);
+  -webkit-border-radius: var(--radius-m);
+          border-radius: var(--radius-m);
+  -webkit-transition: var(--transition-short);
+  -o-transition: var(--transition-short);
+  transition: var(--transition-short);
+}
+
+.btn.btn-danger:hover {
+  background-color: var(--danger-50);
+}
+
 /*=============================================== Forms ===============================================*/
 .container-form {
   display: -ms-grid;
@@ -778,6 +795,114 @@ header a:hover {
   left: 11px;
 }
 
+.error {
+  background-color: var(--danger-10);
+  margin-top: var(--margin-l);
+  padding: var(--margin-l);
+  -webkit-border-radius: var(--radius-xl);
+          border-radius: var(--radius-xl);
+  border: 1px solid var(--danger);
+}
+
+.edit-title-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+}
+
+.edit-title-container .edit-picture-container {
+  width: 80px;
+  height: 80px;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  margin-right: var(--margin-m);
+}
+
+.edit-title-container .edit-picture-container input {
+  display: none;
+}
+
+.edit-title-container .edit-picture-container .label-avatar-picture {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.edit-title-container .edit-picture-container .label-avatar-picture .icon-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+  opacity: 0;
+  -webkit-transition: var(--transition-short);
+  -o-transition: var(--transition-short);
+  transition: var(--transition-short);
+}
+
+.edit-title-container .edit-picture-container .label-avatar-picture .icon-container svg {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  z-index: 2;
+  color: var(--dark-gray);
+}
+
+.edit-title-container .edit-picture-container .label-avatar-picture .icon-container:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.edit-title-container .edit-picture-container .label-avatar-picture img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: relative;
+  z-index: 0;
+}
+
+.edit-title-container .edit-picture-container .label-avatar-picture:hover .icon-container {
+  opacity: 1;
+}
+
 /*=============================================== User content ===============================================*/
 .container-profile {
   display: -ms-grid;
@@ -1052,4 +1177,10 @@ header a:hover {
   -webkit-flex-wrap: nowrap;
       -ms-flex-wrap: nowrap;
           flex-wrap: nowrap;
+}
+
+.stop-scrolling {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }

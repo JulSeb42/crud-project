@@ -1,3 +1,5 @@
+const body = document.body
+
 // Dropdown navbar
 const buttonNavbar = document.querySelector(".nav-account button")
 const dropdownNav = document.querySelector(".nav-account ul")
@@ -15,15 +17,22 @@ if (buttonNavbar) {
     nameContainer.innerText = firstName
 }
 
-
-
 // Delete account modal
 const modalDelete = document.querySelector("#modal-delete")
 const buttonDelete = document.querySelector("#btnModal")
+const buttonCancelModal = document.querySelector("#cancelDelete")
 
 if (buttonDelete) {
+    modalDelete.classList.add("hidden")
+
     buttonDelete.addEventListener("click", () => {
         modalDelete.classList.toggle("hidden")
+        // body.classList.toggle("stop-scrolling")
+    })
+
+    buttonCancelModal.addEventListener("click", () => {
+        modalDelete.classList.toggle("hidden")
+        // body.classList.toggle("stop-scrolling")
     })
 }
 

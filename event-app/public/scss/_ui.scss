@@ -34,4 +34,18 @@
             color: $blue-primary-70;
         }
     }
+
+    &.btn-danger {
+        font-size: $body;
+        background-color: $danger-10;
+        font-weight: $weight-bold;
+        color: $danger;
+        padding: $margin-xs $margin-s;
+        border-radius: $radius-m;
+        transition: $transition-short;
+
+        &:hover {
+            background-color: $danger-50;
+        }
+    }
 }

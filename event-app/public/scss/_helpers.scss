@@ -74,3 +74,9 @@
 .center {
     @include flexbox(center, center, nowrap);
 }
+
+.stop-scrolling {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
