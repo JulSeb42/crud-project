@@ -26,7 +26,10 @@ const eventSchema = new Schema({
         ref: "User",
     },
     public: String,
-    invitedPeople: Array,
+    invitedPeople:[ {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    }],
     description: String,
     location: String,
     imgPath: String,

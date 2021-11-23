@@ -16,9 +16,14 @@
 
     <p>Location: {{ location }} </p>
 
+ 
+  
     <p> Participants: </p>
-
- {{/with}}
+   {{#each invitedPeople }}
+   <a href="/profile/{{_id}}"><p>{{fullName}} , {{ city }}</p></a>
+   {{/each}}
+    
+  {{/with}}  
 
    
 </main>
