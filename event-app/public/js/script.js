@@ -187,3 +187,17 @@ function searchFunction() {
 if (listInvite) {
     searchFunction()
 }
+
+// Display new profile picture
+const profilePicture = document.querySelector(".label-avatar-picture img")
+const inputPicture = document.querySelector("#avatar")
+
+if (profilePicture) {
+    inputPicture.addEventListener("change", () => {
+        console.log(inputPicture.value.replaceAll(" ", "%20"))
+        profilePicture.setAttribute(
+            "src",
+            inputPicture.value.replaceAll(" ", "%20")
+        )
+    })
+}

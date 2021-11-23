@@ -12,6 +12,7 @@ const loginCheck = () => {
 
 router.get("/profile", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
+
     Event.find({ organiser: loggedInUser._id }).then(eventsFromDb => {
         res.render("profile", {
             user: loggedInUser,
@@ -79,9 +80,27 @@ router.post(
 
         const { avatar, fullName, city, password } = req.body
 
-        const imgPath = req.file.path
-        const imgName = req.file.originalname
-        const publicId = req.file.filename
+        let imgPath, imgName, publicId
+
+        // if (imgPath === null) {
+        //     imgPath = loggedInUser.imgPath
+        //     imgName = loggedInUser.imgName
+        //     publicId = loggedInUser.publicId
+        // } else {
+        //     imgPath = req.file.path
+        //     imgName = req.file.originalname
+        //     publicId = req.file.filename
+        // }
+
+        if (req.file === undefined) {
+            imgPath = loggedInUser.imgPath
+            imgName = loggedInUser.imgName
+            publicId = loggedInUser.publicId
+        } else {
+            imgPath = req.file.path
+            imgName = req.file.originalname
+            publicId = req.file.filename
+        }
 
         if (password.length !== 0 && password.length < 6) {
             res.render("profile/edit", {
@@ -89,6 +108,7 @@ router.post(
                 doctitle: "Edit your profile",
                 user: loggedInUser,
             })
+
             return
         }
 
@@ -113,12 +133,11 @@ router.post(
         const salt = bcrypt.genSaltSync()
         const hash = bcrypt.hashSync(password, salt)
 
-        User.findByIdAndUpdate(
-            id,
-            { avatar, fullName, city, password: hash },
+        User.findByIdAndUpdate(id, { avatar, fullName, city, password: hash, imgPath, imgName, publicId, },
             { new: true }
         )
-            .then(() => {
+            .then(updatedUser => {
+                req.session.user = updatedUser
                 res.redirect("/profile")
             })
             .catch(err => next(err))
