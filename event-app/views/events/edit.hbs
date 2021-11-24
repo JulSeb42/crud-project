@@ -105,6 +105,19 @@
         </div>
     </form>
 
+     <div class="modal-container">
+        <button class="btn btn-danger" id="btnModal">Delete the event</button>
+
+        <form action="/events/{{event._id}}/delete" method="POST" class="error" id="modal-delete">
+            <p>{{ messageDelete }}</p>
+
+            <div class="buttons-container">
+                <button type="submit" class="btn btn-danger">Confirm</button>
+                <button type="button" id="cancelDelete" class="btn btn-secondary">Cancel</button>
+            </div>
+        </form>
+    </div>
+
     {{#if message}}
     <p class="error">{{ message }}</p>
     {{/if}}
