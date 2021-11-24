@@ -2,7 +2,7 @@ const router = require("express").Router()
 const Event = require("../models/Event.model")
 const User = require("../models/User.model")
 const { uploader, cloudinary } = require("../config/cloudinary")
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 
 const loginCheck = () => {
     return (req, res, next) => {

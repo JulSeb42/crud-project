@@ -4,6 +4,8 @@ const mongoose = require("mongoose")
 const User = require("../models/User.model")
 const Event = require("../models/Event.model")
 
+require("dotenv/config")
+
 mongoose.connect(process.env.MONGODB_URI)
 
 let fakeUsers = []
