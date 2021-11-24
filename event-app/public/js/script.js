@@ -259,15 +259,17 @@ const submitButton = document.querySelector(".submit")
 const fullNameInput = document.querySelector("#fullName")
 const emailInput = document.querySelector("#email")
 const cityInput = document.querySelector("#city")
+// const passwordInput = document.querySelector("#password")
 // const bioArea
 
 if (form) {
     document.addEventListener("keyup", () => {
         if (
-            fullNameInput.value === "" ||
-            emailInput.value === "" ||
-            cityInput.value === "" ||
-            bioArea.value === ""
+            fullNameInput && fullNameInput.value === "" ||
+            emailInput && emailInput.value === "" ||
+            cityInput && cityInput.value === "" ||
+            bioArea && bioArea.value === "" ||
+            passwordInput && passwordInput.value.length < 6
         ) {
             submitButton.setAttribute("disabled", "disabled")
         } else {
