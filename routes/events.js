@@ -100,13 +100,8 @@ router.post(
             organiser,
             description,
             invitedPeople,
-            public,
             location,
         } = req.body
-
-        // const imgPath = req.file.path
-        // const imgName = req.file.originalname
-        // const publicId = req.file.filename
 
         let imgPath, imgName, publicId
 
@@ -169,7 +164,6 @@ router.post(
             organiser,
             description,
             invitedPeople,
-            public,
             imgPath,
             imgName,
             publicId,
@@ -218,10 +212,8 @@ router.post(
             endDate,
             startTime,
             endTime,
-            organiser,
             description,
             invitedPeople,
-            public,
             location,
         } = req.body
 
@@ -239,6 +231,8 @@ router.post(
             publicId = req.file.filename
         }
 
+        console.log(req.body)
+        
         Event.findByIdAndUpdate(
             id,
             {

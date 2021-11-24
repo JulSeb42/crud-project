@@ -54,4 +54,16 @@
             background-color: $danger-50;
         }
     }
+
+    &.btn-tertiary {
+        padding: 0;
+        color: $blue-primary;
+        font-size: $labels;
+        font-weight: $weight-semibold;
+        transition: $transition-short;
+
+        &:hover {
+            color: $blue-primary-70;
+        }
+    }
 }

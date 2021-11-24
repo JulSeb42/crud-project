@@ -255,6 +255,25 @@ h6 a:hover {
   text-transform: capitalize;
 }
 
+.title-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+}
+
 /*=============================================== General ===============================================*/
 body {
   line-height: var(--line-height);
@@ -489,6 +508,20 @@ header a:hover {
 
 .btn.btn-danger:hover {
   background-color: var(--danger-50);
+}
+
+.btn.btn-tertiary {
+  padding: 0;
+  color: var(--blue-primary);
+  font-size: var(--labels);
+  font-weight: var(--weight-semibold);
+  -webkit-transition: var(--transition-short);
+  -o-transition: var(--transition-short);
+  transition: var(--transition-short);
+}
+
+.btn.btn-tertiary:hover {
+  color: var(--blue-primary-70);
 }
 
 /*=============================================== Forms ===============================================*/
@@ -975,25 +1008,6 @@ textarea {
   row-gap: var(--margin-l);
 }
 
-.container-profile .title-container {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-flex-wrap: nowrap;
-      -ms-flex-wrap: nowrap;
-          flex-wrap: nowrap;
-}
-
 .user-card {
   border: 1px solid var(--light-gray);
   -webkit-border-radius: var(--radius-xl);
@@ -1377,6 +1391,45 @@ textarea {
 
 .cover-edit:hover .icon-container {
   opacity: 1;
+}
+
+.desc-paragraph {
+  white-space: pre-line;
+  max-height: -webkit-calc(var(--body) * var(--line-height) * 5);
+  max-height: calc(var(--body) * var(--line-height) * 5);
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.desc-paragraph.open {
+  max-height: inherit;
+  -webkit-line-clamp: inherit;
+}
+
+.list-users-small {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[8];
+      grid-template-columns: repeat(8, 1fr);
+  -webkit-column-gap: var(--margin-s);
+     -moz-column-gap: var(--margin-s);
+          column-gap: var(--margin-s);
+  row-gap: var(--margin-s);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-users-small li {
+  position: relative;
+  aspect-ratio: 1;
+  -webkit-border-radius: var(--radius-m);
+          border-radius: var(--radius-m);
 }
 
 /*=============================================== Pages ===============================================*/

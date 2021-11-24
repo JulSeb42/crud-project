@@ -148,3 +148,31 @@
         opacity: 1;
     }
 }
+
+.desc-paragraph {
+    white-space: pre-line;
+    max-height: calc(#{$body} * var(--line-height) * 5);
+    overflow: hidden;
+    
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    &.open {
+        max-height: inherit;
+        -webkit-line-clamp: inherit;
+    }
+}
+
+.list-users-small {
+    @include grid(repeat(8, 1fr), $margin-s, $margin-s);
+    @include ulNone();
+
+    li {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: $radius-m;
+    }
+}
