@@ -104,7 +104,7 @@
         <button class="btn btn-danger" id="btnModal">Delete the event</button>
 
         <form action="/events/{{event._id}}/delete" method="POST" class="error" id="modal-delete">
-            <p>{{ messageDelete }}</p>
+            <p>{{ deleteEventMsg }}</p>
 
             <div class="buttons-container">
                 <button type="submit" class="btn btn-danger">Confirm</button>

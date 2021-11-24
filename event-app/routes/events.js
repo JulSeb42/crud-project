@@ -79,7 +79,7 @@ const newDates = date => {
     })
 
     let splittedDate = convertedDate.split(",")
-    
+
     return splittedDate.join("")
 }
 
@@ -156,7 +156,7 @@ router.post(
             })
             return
         }
-        
+
         const newStartDate = newDates(startDate)
         const newEndDate = newDates(endDate)
 
@@ -187,16 +187,17 @@ router.get("/events/:id/edit", loginCheck(), (req, res, next) => {
     Event.findById(id)
         .then(event => {
             User.find()
-            .sort("fullName")
-            .then(userFromDb => {
-                res.render("events/edit", {
-                    event,
-                    user: loggedInUser,
-                    doctitle: "Edit an event",
-                    allUsers: userFromDb,
-                    doctitle: `Edit ${event.title}`,
+                .sort("fullName")
+                .then(userFromDb => {
+                    res.render("events/edit", {
+                        event,
+                        user: loggedInUser,
+                        doctitle: "Edit an event",
+                        allUsers: userFromDb,
+                        doctitle: `Edit ${event.title}`,
+                        deleteEventMsg: 'Are you sure you want to delete this event?'
+                    })
                 })
-            })
         })
         .catch(err => next(err))
 })
@@ -207,9 +208,6 @@ router.post(
     uploader.single("cover"),
     loginCheck(),
     (req, res, next) => {
-
-       
-        
 
         const id = req.params.id
         const loggedInUser = req.session.user
@@ -241,44 +239,6 @@ router.post(
             publicId = req.file.filename
         }
 
-        // let event = req.body
-
-        
-
-        if (location.length === 0) {
-            res.render("events/edit", {
-                message: "Please enter your location",
-                doctitle: "Edit your event",
-                user: loggedInUser,
-            })
-            return
-        }
-
-        if (title.length === 0) {
-            res.render("events/edit", {
-                message: "The title can not be empty",
-                doctitle: "Edit your event",
-                user: loggedInUser,
-            })
-            return
-        }
-
-
-
-        // if (startTime.length === 0) {
-        //     res.render("events/edit", {
-        //         message: "Please enter a start time",
-        //     })
-        //     return
-        // }
-
-        // if (endTime.length === 0) {
-        //     res.render("events/edit", {
-        //         message: "Please enter an end time",
-        //     })
-        //     return
-        // }
-
         Event.findByIdAndUpdate(
             id,
             {
@@ -298,7 +258,7 @@ router.post(
         )
             .then(() => {
                 res.redirect(`/events/${id}`)
-               
+
             })
             .catch(err => next(err))
     }
