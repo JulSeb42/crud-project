@@ -117,6 +117,14 @@ let nowMinute = nowDate.getMinutes()
 const startTime = document.querySelector("#startTime")
 const endTime = document.querySelector("#endTime")
 
+if (nowHour < 10) {
+    nowHour = "0" + nowHour
+}
+
+if (nowMinute < 10) {
+    nowMinute = "0" + nowMinute
+}
+
 if (startTime) {
     startTime.setAttribute("value", `${nowHour}:${nowMinute}`)
 }
