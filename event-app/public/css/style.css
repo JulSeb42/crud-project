@@ -455,6 +455,12 @@ header a:hover {
   background-color: var(--blue-primary-70);
 }
 
+.btn.btn-primary:disabled {
+  background: var(--light-gray);
+  color: var(--dark-gray);
+  cursor: not-allowed;
+}
+
 .btn.btn-secondary {
   font-weight: var(--weight-semibold);
   font-size: var(--body);
@@ -533,38 +539,6 @@ header a:hover {
      -moz-column-gap: 0;
           column-gap: 0;
   row-gap: var(--margin-xs);
-}
-
-.container-form form .item label {
-  font-weight: var(--weight-semibold);
-  color: var(--blue-primary);
-}
-
-.container-form form .item input[type="text"],
-.container-form form .item input[type="password"],
-.container-form form .item input[type="email"],
-.container-form form .item input[type="date"],
-.container-form form .item input[type="time"],
-.container-form form .item textarea {
-  border: 1px solid var(--light-gray);
-  padding: var(--margin-xxs) var(--margin-xs);
-  -webkit-border-radius: var(--radius-s);
-          border-radius: var(--radius-s);
-  font-family: var(--font-family);
-  font-size: var(--labels);
-}
-
-.container-form form .item input[type="text"]:focus,
-.container-form form .item input[type="password"]:focus,
-.container-form form .item input[type="email"]:focus,
-.container-form form .item input[type="date"]:focus,
-.container-form form .item input[type="time"]:focus,
-.container-form form .item textarea:focus {
-  border: 1px solid var(--blue-primary);
-}
-
-.container-form form .item textarea {
-  min-height: 150px;
 }
 
 .container-form form .item .input-container {
@@ -748,6 +722,56 @@ header a:hover {
 
 .container-form .buttons-container button {
   margin-right: var(--margin-s);
+}
+
+.item label {
+  font-weight: var(--weight-semibold);
+  color: var(--blue-primary);
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+textarea {
+  border: 1px solid var(--light-gray);
+  padding: var(--margin-xxs) var(--margin-xs);
+  -webkit-border-radius: var(--radius-s);
+          border-radius: var(--radius-s);
+  font-family: var(--font-family);
+  font-size: var(--labels);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+textarea:focus {
+  border: 1px solid var(--blue-primary);
+}
+
+textarea {
+  min-height: 150px;
+}
+
+.search-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -webkit-column-gap: 0;
+     -moz-column-gap: 0;
+          column-gap: 0;
+  row-gap: var(--margin-xs);
+  margin-top: var(--margin-l);
+}
+
+.search-container input {
+  -ms-grid-column-align: start;
+      justify-self: start;
+  width: 40ch;
 }
 
 #textConfidentiality {

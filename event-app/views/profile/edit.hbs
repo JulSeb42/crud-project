@@ -1,5 +1,5 @@
 <main class="container container-form">
-    <form action="/profile/edit/{{ userInfo._id }}" method="POST" enctype="multipart/form-data">
+    <form action="/profile/{{ userInfo._id }}/edit" method="POST" enctype="multipart/form-data" class="form">
         <div class="edit-title-container">
             <div class="edit-picture-container">
                 <label for="avatar" class="label-avatar-picture">
@@ -42,26 +42,15 @@
             <span id="helper-bio"></span>
         </div>
 
-        <div class="item">
-            <label for="password">Password</label>
-
-            <span class="input-container">
-                <input type="password" name="password" id="password" value="password">
-                <button type="button" aria-label="Reveal password" class="reveal" tabindex="0">
-                    <svg class="icon-reveal">
-                        <use xlink:href="/images/icon-sprite.svg#show-slash"></use>
-                    </svg>
-                </button>
-            </span>
-
-            <span class="password-hint"></span>
-        </div>
-
         <div class="buttons-container">
-            <button type="submit" class="btn btn-primary">Update your account</button>
+            <button type="submit" class="btn btn-primary submit">Update your account</button>
             <a href="/login" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
+
+    <p>
+        <a href="/profile/{{userInfo._id}}/edit-password" class="btn btn-secondary">Edit your password</a>
+    </p>
 
     <div class="modal-container">
         <button class="btn btn-danger" id="btnModal">Delete your account</button>

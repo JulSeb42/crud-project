@@ -26,12 +26,10 @@ if (buttonDelete) {
 
     buttonDelete.addEventListener("click", () => {
         modalDelete.classList.toggle("hidden")
-        // body.classList.toggle("stop-scrolling")
     })
 
     buttonCancelModal.addEventListener("click", () => {
         modalDelete.classList.toggle("hidden")
-        // body.classList.toggle("stop-scrolling")
     })
 }
 
@@ -163,14 +161,12 @@ if (textConfidentiality) {
 const listInvite = document.querySelector("#listInvite")
 
 function searchFunction() {
-    // Declare variables
     var input, filter, ul, li, a, i, txtValue
     input = document.querySelector("#searchInvite")
     filter = input.value.toUpperCase()
     ul = listInvite
     li = ul.querySelectorAll("li")
 
-    // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
         let name = li[i].querySelector(".name").innerText
         let txtValue = name
@@ -249,85 +245,26 @@ if (randomAvatarInput) {
     randomAvatarInput.setAttribute("value", randomAvatar())
 }
 
-// Display dates
-// const startDateSpan = document.querySelectorAll(".startDateSpan")
-// const endDateSpan = document.querySelectorAll(".endDateSpan")
+// Disable button in forms
+const form = document.querySelector(".form")
+const submitButton = document.querySelector(".submit")
+const fullNameInput = document.querySelector("#fullName")
+const emailInput = document.querySelector("#email")
+const cityInput = document.querySelector("#city")
+// const bioArea
 
-// if (startDateSpan) {
-//     let arrStart = Array.from(startDateSpan)
-//     console.log(arrStart)
-
-//     arrStart.forEach(element => {
-
-//         // const dateStartDateSpan = startDateSpan
-//         // arrStart.push(startDateSpan)
-
-//         // const startDaySpan = dateStartDateSpan[span][0]
-//         // const startDayNSpan = dateStartDateSpan[span][2]
-//         // const startMonthSpan = dateStartDateSpan[span][1]
-//         // const startYearSpan = dateStartDateSpan[span][3]
-
-//         // const dateEndDateSpan = startDateSpan[span].innerText.split(" ")
-//         // const endDaySpan = dateEndDateSpan[span][0]
-//         // const endDayNSpan = dateEndDateSpan[span][2]
-//         // const endMonthSpan = dateEndDateSpan[span][1]
-//         // const endYearSpan = dateEndDateSpan[span][3]
-
-//         // // Display inside the span
-//         // startDateSpan[span].innerText = `${startDaySpan} ${startDayNSpan} ${startMonthSpan} ${startYearSpan}`
-//         // endDateSpan[span].innerText = `${endDaySpan} ${endDayNSpan} ${endMonthSpan} ${endYearSpan}`
-//     })
-
-// }
-
-// let startDateSpan = Array.from(document.querySelectorAll(".startDateSpan"))
-// let valuesStart = []
-// startDateSpan.forEach(date => new Date(valuesStart.push(date.innerText)))
-
-// let dayString = startDateSpan.toLocaleString("en-EN", {
-//     weekday: "short",
-//     day: "numeric",
-//     month: "long",
-//     year: "numeric",
-// })
-
-// console.log(valuesStart)
-// let startDateSpan = Array.from(document.querySelectorAll(".startDateSpan"))
-// // console.log(startDateSpan[0])
-
-// if (startDateSpan) {
-//     const newStartDate = new Date(startDateSpan.innerText)
-//     const formattedStartDate = newStartDate
-//         .toString()
-//         .split(" 01:00:00 GMT+0100 (heure normale d’Europe centrale)")
-
-//     for (let i = 0; i < startDateSpan.length; i++) {
-//         console.log(startDateSpan[i].innerText)
-//         startDateSpan[i].innerText = formattedStartDate
-//     }
-//     // startDateSpan.forEach(date => {
-//     //     console.log(startDateSpan)
-//     // })
-//     // startDateSpan.innerText = formattedStartDate[0]
-// }
-
-let testDate = new Date()
-
-console.log(testDate)
-
-let dateToString = testDate.toLocaleDateString("en-EN", {
-    weekday: "short",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-})
-
-console.log(dateToString)
-
-let split = dateToString.split(",")
-
-console.log(split)
-
-let join = split.join("")
-
-console.log(join)
+if (form) {
+    document.addEventListener("keyup", () => {
+        if (
+            fullNameInput.value === "" ||
+            emailInput.value === "" ||
+            cityInput.value === "" ||
+            bioArea.value === ""
+        ) {
+            submitButton.setAttribute("disabled", "disabled")
+        } else {
+            submitButton.removeAttribute("disabled")
+        }
+    })
+    
+}

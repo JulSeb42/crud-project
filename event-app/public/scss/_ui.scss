@@ -22,6 +22,12 @@
         &:hover {
             background-color: $blue-primary-70;
         }
+
+        &:disabled {
+            background: $light-gray;
+            color: $dark-gray;
+            cursor: not-allowed;
+        }
     }
 
     &.btn-secondary {

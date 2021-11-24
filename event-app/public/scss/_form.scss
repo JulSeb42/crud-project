@@ -17,32 +17,6 @@
         .item {
             @include grid(1fr, 0, $margin-xs);
 
-            label {
-                font-weight: $weight-semibold;
-                color: $blue-primary;
-            }
-
-            input[type="text"],
-            input[type="password"],
-            input[type="email"],
-            input[type="date"],
-            input[type="time"],
-            textarea {
-                border: 1px solid $light-gray;
-                padding: $margin-xxs $margin-xs;
-                border-radius: $radius-s;
-                font-family: var(--font-family);
-                font-size: $labels;
-
-                &:focus {
-                    border: 1px solid $blue-primary;
-                }
-            }
-
-            textarea {
-                min-height: 150px;
-            }
-
             .input-container {
                 position: relative;
 
@@ -177,6 +151,42 @@
         button {
             margin-right: $margin-s;
         }
+    }
+}
+
+.item label {
+    font-weight: $weight-semibold;
+    color: $blue-primary;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+textarea {
+    border: 1px solid $light-gray;
+    padding: $margin-xxs $margin-xs;
+    border-radius: $radius-s;
+    font-family: var(--font-family);
+    font-size: $labels;
+
+    &:focus {
+        border: 1px solid $blue-primary;
+    }
+}
+
+textarea {
+    min-height: 150px;
+}
+
+.search-container {
+    @include grid(1fr, 0, $margin-xs);
+    margin-top: $margin-l;
+
+    input {
+        justify-self: start;
+        width: 40ch;
     }
 }
 

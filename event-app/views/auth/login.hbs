@@ -1,7 +1,7 @@
 <main class="container container-form">
     <h1>Login</h1>
 
-    <form action="/login" method="POST">
+    <form action="/login" method="POST" class="form">
         <div class="item">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" tabindex="1">
@@ -21,7 +21,7 @@
             </span>
         </div>
 
-        <button type="submit" class="btn btn-primary" tabindex="3">Log in</button>
+        <button type="submit" class="btn btn-primary submit" tabindex="3">Log in</button>
     </form>
 
     {{#if message}}

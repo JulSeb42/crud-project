@@ -1,14 +1,19 @@
 <main class="container">
     <h1>All users</h1>
 
-    <ul class="list-users">
+    <div class="search-container item">
+        <label for="searchInvite">Search for your friends</label>
+        <input type="text" id="searchInvite" onkeyup="searchFunction()">
+    </div>
+
+    <ul class="list-users" id="listInvite">
         {{#each allUsers}}
         <li>
             <a href="/profile/{{_id}}">
                 <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
 
                 <div class="content">
-                    <h5 class="capitalised">{{ fullName }}</h5>
+                    <h5 class="capitalised name">{{ fullName }}</h5>
                     <p class="capitalised">{{ city }}</p>
                 </div>
             </a>

@@ -67,7 +67,7 @@ router.get("/profile/:id", loginCheck(), (req, res, next) => {
     })
 })
 
-router.get("/profile/edit/:id", loginCheck(), (req, res, next) => {
+router.get("/profile/:id/edit", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
     const id = req.params.id
 
@@ -83,15 +83,28 @@ router.get("/profile/edit/:id", loginCheck(), (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get("/profile/:id/edit-password", loginCheck(), (req, res, next) => {
+    const loggedInUser = req.session.user
+    const id = req.params.id
+
+    User.findById(id).then(userFromDb => {
+        res.render("profile/edit-password", {
+            user: loggedInUser,
+            userInfo: userFromDb,
+            doctitle: "Change your password",
+        })
+    })
+})
+
 router.post(
-    "/profile/edit/:id",
+    "/profile/:id/edit",
     uploader.single("avatar"),
     loginCheck(),
     (req, res, next) => {
         const id = req.params.id
         const loggedInUser = req.session.user
 
-        const { avatar, fullName, city, password, bio } = req.body
+        const { avatar, fullName, city, bio } = req.body
 
         let imgPath, imgName, publicId
 
@@ -103,16 +116,6 @@ router.post(
             imgPath = req.file.path
             imgName = req.file.originalname
             publicId = req.file.filename
-        }
-
-        if (password.length !== 0 && password.length < 6) {
-            res.render("profile/edit", {
-                message: "Your password needs to be 6 characters minimum",
-                doctitle: "Edit your profile",
-                user: loggedInUser,
-            })
-
-            return
         }
 
         if (city.length === 0) {
@@ -133,16 +136,12 @@ router.post(
             return
         }
 
-        const salt = bcrypt.genSaltSync()
-        const hash = bcrypt.hashSync(password, salt)
-
         User.findByIdAndUpdate(
             id,
             {
                 avatar,
                 fullName,
                 city,
-                password: hash,
                 imgPath,
                 imgName,
                 publicId,
@@ -157,5 +156,38 @@ router.post(
             .catch(err => next(err))
     }
 )
+
+router.post("/profile/:id/edit-password", loginCheck(), (req, res, next) => {
+    const id = req.params.id
+    const loggedInUser = req.session.user
+
+    const { password } = req.body
+
+    if (password.length !== 0 && password.length < 6) {
+        res.render("profile/edit", {
+            message: "Your password needs to be 6 characters minimum",
+            doctitle: "Edit your profile",
+            user: loggedInUser,
+        })
+
+        return
+    }
+
+    const salt = bcrypt.genSaltSync()
+    const hash = bcrypt.hashSync(password, salt)
+
+    User.findByIdAndUpdate(
+        id,
+        {
+            password: hash,
+        },
+        { new: true }
+    )
+        .then(updatedUser => {
+            req.session.user = updatedUser
+            res.redirect("/profile")
+        })
+        .catch(err => next(err))
+})
 
 module.exports = router
