@@ -12,13 +12,14 @@ const loginCheck = () => {
 
 router.get("/profile", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
-    const id = req.params.id
+    
     Event.find({ organiser: loggedInUser._id })
         .sort("startDate")
         .then(eventsFromDb => {
-            Event.find({ invitedPeople: id })
+            Event.find({ invitedPeople:  loggedInUser._id })
                 .sort("startDate")
                 .then(eventsInvited => {
+                
                     res.render("profile", {
                         user: loggedInUser,
                         doctitle: loggedInUser.fullName,
