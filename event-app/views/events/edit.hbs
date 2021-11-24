@@ -57,7 +57,7 @@
 
             <div class="item">
                 <label for="endTime">End time</label>
-                <input type="time" name="endTime" id="endTime" value="{{endTime}}">
+                <input type="time" name="endTime" id="endTime" value="{{event.endTime}}">
             </div>
         </div>
 
@@ -101,7 +101,7 @@
 
         <div class="buttons-container">
             <button type="submit" class="btn btn-primary">Update event</button>
-            <a href="/events/{{event._id}}" class="btn btn-secondary">Cancel</a>
+            <a href="/events" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 

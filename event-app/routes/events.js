@@ -186,10 +186,16 @@ router.get("/events/:id/edit", loginCheck(), (req, res, next) => {
 
     Event.findById(id)
         .then(event => {
-            res.render("events/edit", {
-                event,
-                user: loggedInUser,
-                doctitle: `Edit ${event.title}`,
+            User.find()
+            .sort("fullName")
+            .then(userFromDb => {
+                res.render("events/edit", {
+                    event,
+                    user: loggedInUser,
+                    doctitle: "Edit an event",
+                    allUsers: userFromDb,
+                    doctitle: `Edit ${event.title}`,
+                })
             })
         })
         .catch(err => next(err))
@@ -201,6 +207,10 @@ router.post(
     uploader.single("cover"),
     loginCheck(),
     (req, res, next) => {
+
+       
+        
+
         const id = req.params.id
         const loggedInUser = req.session.user
 
@@ -233,14 +243,7 @@ router.post(
 
         // let event = req.body
 
-        if (startDate.length === 0) {
-            res.render("events/edit", {
-                message: "Please enter a start date",
-                doctitle: "Edit your event",
-                user: loggedInUser,
-            })
-            return
-        }
+        
 
         if (location.length === 0) {
             res.render("events/edit", {
@@ -260,26 +263,21 @@ router.post(
             return
         }
 
-        if (endDate.length === 0) {
-            res.render("events/new-event", {
-                message: "Please enter an end date",
-            })
-            return
-        }
 
-        if (startTime.length === 0) {
-            res.render("events/new-event", {
-                message: "Please enter a start time",
-            })
-            return
-        }
 
-        if (endTime.length === 0) {
-            res.render("events/new-event", {
-                message: "Please enter an end time",
-            })
-            return
-        }
+        // if (startTime.length === 0) {
+        //     res.render("events/edit", {
+        //         message: "Please enter a start time",
+        //     })
+        //     return
+        // }
+
+        // if (endTime.length === 0) {
+        //     res.render("events/edit", {
+        //         message: "Please enter an end time",
+        //     })
+        //     return
+        // }
 
         Event.findByIdAndUpdate(
             id,
@@ -287,6 +285,8 @@ router.post(
                 title,
                 startDate,
                 endDate,
+                startTime,
+                endTime,
                 location,
                 description,
                 invitedPeople,
@@ -298,6 +298,7 @@ router.post(
         )
             .then(() => {
                 res.redirect(`/events/${id}`)
+               
             })
             .catch(err => next(err))
     }
