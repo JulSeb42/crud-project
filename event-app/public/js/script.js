@@ -259,17 +259,26 @@ const submitButton = document.querySelector(".submit")
 const fullNameInput = document.querySelector("#fullName")
 const emailInput = document.querySelector("#email")
 const cityInput = document.querySelector("#city")
-// const passwordInput = document.querySelector("#password")
-// const bioArea
+const titleInput = document.querySelector("#title")
+const locationInput = document.querySelector("#location")
+// startDate, endDate, startTime, endTime
+const descInput = document.querySelector("#description")
 
 if (form) {
     document.addEventListener("keyup", () => {
         if (
-            fullNameInput && fullNameInput.value === "" ||
-            emailInput && emailInput.value === "" ||
-            cityInput && cityInput.value === "" ||
-            bioArea && bioArea.value === "" ||
-            passwordInput && passwordInput.value.length < 6
+            (fullNameInput && fullNameInput.value === "") ||
+            (emailInput && emailInput.value === "") ||
+            (cityInput && cityInput.value === "") ||
+            (bioArea && bioArea.value === "") ||
+            (passwordInput && passwordInput.value.length < 6) ||
+            (titleInput && titleInput.value === "") ||
+            (locationInput && locationInput.value === "") ||
+            (startDate && startDate.value === "") ||
+            (endDate && endDate.value === "") ||
+            (startTime && startTime.value === "") ||
+            (endTime && endTime.value === "") ||
+            (descInput && descInput.value === "")
         ) {
             submitButton.setAttribute("disabled", "disabled")
         } else {
