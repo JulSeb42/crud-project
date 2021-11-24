@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 const User = require("../models/User.model")
 const Event = require("../models/Event.model")
 
-mongoose.connect("mongodb://localhost/event-app")
+mongoose.connect(process.env.MONGODB_URI)
 
 let fakeUsers = []
 
