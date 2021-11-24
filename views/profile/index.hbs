@@ -38,7 +38,7 @@
             {{/each}}
         </ul>
         {{else}}
-        <p>No event yet</p>
+        <p>No events yet</p>
         {{/if}}
     </div>
 
@@ -47,7 +47,7 @@
 <div class="profile-event-container">
         <h4>Events you are invited to</h4>
 
-        {{#if event.length }}
+        {{#if events.length }}
         <ul class="list-events">
             {{#each events}}
             <li>
@@ -65,7 +65,7 @@
         </ul>
 
         {{else}}
-        <p>No event yet</p>
+        <p>No events yet</p>
         {{/if}}
     </div>
 
