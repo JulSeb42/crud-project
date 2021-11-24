@@ -1,7 +1,7 @@
 <main class="container container-form">
     <h1>Create a new event</h1>
 
-    <form action="/events/new-event" method="POST" enctype="multipart/form-data" class="form">
+    <form action="/events/new-event" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="organiser" id="organiser" value="{{user._id}}">
 
         <div class="item">
@@ -86,7 +86,7 @@
         </div>
 
         <div class="buttons-container">
-            <button type="submit" class="btn btn-primary submit">Create event</button>
+            <button type="submit" class="btn btn-primary">Create event</button>
             <a href="/profile" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
