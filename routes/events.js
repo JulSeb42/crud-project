@@ -189,7 +189,8 @@ router.get("/events/:id/edit", loginCheck(), (req, res, next) => {
                         doctitle: "Edit an event",
                         allUsers: userFromDb,
                         doctitle: `Edit ${event.title}`,
-                        deleteEventMsg: 'Are you sure you want to delete this event?'
+                        deleteEventMsg:
+                            "Are you sure you want to delete this event?",
                     })
                 })
         })
@@ -202,7 +203,6 @@ router.post(
     uploader.single("cover"),
     loginCheck(),
     (req, res, next) => {
-
         const id = req.params.id
         const loggedInUser = req.session.user
 
@@ -232,7 +232,7 @@ router.post(
         }
 
         console.log(req.body)
-        
+
         Event.findByIdAndUpdate(
             id,
             {
@@ -252,7 +252,6 @@ router.post(
         )
             .then(() => {
                 res.redirect(`/events/${id}`)
-
             })
             .catch(err => next(err))
     }
