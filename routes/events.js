@@ -64,21 +64,20 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
         .populate("organiser")
         .populate("invitedPeople")
         .populate("post")
-        .populate({ path: "post", populate: { path: "poster", model: "User"}})
+        .populate({ path: "post", populate: { path: "poster", model: "User" } })
         .then(eventFromDb => {
             console.log(eventFromDb.post)
             // console.log(pos)
-             const canEdit =
-                 eventFromDb.organiser &&
-                 eventFromDb.organiser._id.toString() === req.session.user._id
-             res.render("events/detail", {
-                 doctitle: eventFromDb.title,
-                 event: eventFromDb,
-                 user: loggedInUser,
-                 canEdit: canEdit,
-                 post: eventFromDb.post,
-             })
-            
+            const canEdit =
+                eventFromDb.organiser &&
+                eventFromDb.organiser._id.toString() === req.session.user._id
+            res.render("events/detail", {
+                doctitle: eventFromDb.title,
+                event: eventFromDb,
+                user: loggedInUser,
+                canEdit: canEdit,
+                post: eventFromDb.post,
+            })
         })
         .catch(err => next(err))
 })
@@ -194,23 +193,18 @@ router.get(
     (req, res, next) => {
         const loggedInUser = req.session.user
         const id = req.params.id
-
-
-
-    Event.findById(id)
-        .then(event => {
-            
-            User.find()
-                .sort("fullName")
-                .then(usersFromDb => {
-                    let list = "";
-                    
-                    for (let user of usersFromDb){
-                        let checked = "";
-                        if (event.invitedPeople.includes(user._id)){
-                            checked = "checked"
-                        }
-                        list += `<li>
+        Event.findById(id)
+            .then(event => {
+                User.find()
+                    .sort("fullName")
+                    .then(usersFromDb => {
+                        let list = ""
+                        for (let user of usersFromDb) {
+                            let checked = ""
+                            if (event.invitedPeople.includes(user._id)) {
+                                checked = "checked"
+                            }
+                            list += `<li>
                             <input type="checkbox" name="invitedPeople" id="user-${user._id}" value="${user._id}" ${checked}>
                             <label for="user-${user._id}">
                                 <span class="img-container">
@@ -223,19 +217,18 @@ router.get(
                             <use xlink:href="/images/icon-sprite.svg#check"></use>
                         </svg>
                     </label>
-                </li>` 
-                    }
-                   
-                    res.render("events/edit", {
-                        event,
-                        list: list,
-                        user: loggedInUser,
-                        doctitle: "Edit an event",
-                        allUsers: usersFromDb,
-                        doctitle: `Edit ${event.title}`,
-                        deleteEventMsg:
-                            "Are you sure you want to delete this event?",
-
+                </li>`
+                        }
+                        res.render("events/edit", {
+                            event,
+                            list: list,
+                            user: loggedInUser,
+                            doctitle: "Edit an event",
+                            allUsers: usersFromDb,
+                            doctitle: `Edit ${event.title}`,
+                            deleteEventMsg:
+                                "Are you sure you want to delete this event?",
+                        })
                     })
             })
             .catch(err => next(err))
@@ -261,7 +254,7 @@ router.post(
             invitedPeople,
             location,
         } = req.body
-        
+
         let imgPath, imgName, publicId
 
         // https://res.cloudinary.com/dyfxmafvr/image/upload/v1637686921/event-app/rfkqwvgddravtkkwiwhi.jpg
@@ -296,7 +289,6 @@ router.post(
             { new: true }
         )
             .then(() => {
-                
                 res.redirect(`/events/${id}`)
             })
             .catch(err => next(err))
