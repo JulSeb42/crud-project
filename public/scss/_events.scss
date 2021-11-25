@@ -35,6 +35,19 @@
                     font-weight: $weight-semibold;
                 }
             }
+
+            @include mobile() {
+                flex-direction: column;
+                
+                img {
+                    width: 100%;
+                }
+
+                .content {
+                    // padding: $margin-xs;
+                    width: 100%;
+                }
+            }
         }
 
         &:hover {
@@ -224,6 +237,10 @@
         &:hover {
             transform: scale(1.05);
         }
+    }
+
+    @include mobile() {
+        @include grid(repeat(3, 1fr), $margin-s, $margin-s);
     }
 }
 

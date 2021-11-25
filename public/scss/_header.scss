@@ -5,6 +5,55 @@ header {
     background-color: $blue-primary;
     padding: $margin-l 5vw;
     @include flexbox(center, space-between, nowrap);
+    position: relative;
+    z-index: 999;
+
+    .burger {
+        display: none;
+        background: none;
+        border: none;
+        padding: 0;
+        width: 30px;
+        height: 20px;
+        position: relative;
+
+        span {
+            width: 100%;
+            height: 2px;
+            background-color: $white;
+            position: absolute;
+            left: 0;
+            transition: $transition-short;
+
+            &:first-child {
+                top: 0;
+            }
+
+            &:nth-child(2) {
+                top: calc(50% - 2px / 2);
+            }
+
+            &:last-child {
+                bottom: 0;
+            }
+        }
+
+        &.burger-open span {
+            &:first-child {
+                transform: rotate(45deg);
+                top: 45%;
+            }
+
+            &:nth-child(2) {
+                width: 0;
+            }
+
+            &:last-child {
+                transform: rotate(-45deg);
+                bottom: 45%;
+            }
+        }
+    }
 
     nav {
         @include flexbox(center, flex-start, nowrap);
@@ -23,6 +72,54 @@ header {
 
         &:hover {
             color: $blue-primary-50;
+        }
+    }
+
+    @include mobile() {
+        .burger {
+            display: inherit;
+        }
+
+        nav {
+            position: absolute;
+            // top: 72px;
+            top: -200px;
+            background-color: $blue-primary;
+            left: 0;
+            width: 100%;
+            padding: $margin-xs 5vw;
+            @include flexbox(flex-start, flex-start);
+            flex-direction: column;
+            transition: $transition-short;
+
+            & > a {
+                margin-bottom: $margin-m;
+
+                &:not(:last-child) {
+                    margin-right: 0;
+                }
+            }
+
+            .nav-account {
+                button {
+                    display: none;
+                }
+
+                ul {
+                    left: -5vw;
+                    right: inherit;
+                    border-radius: 0;
+                    width: 100vw;
+                    max-height: inherit;
+                    padding: $margin-m 5vw;
+                    padding-top: 0;
+                    top: 0;
+                }
+            }
+
+            &.open {
+                top: 72px;
+            }
         }
     }
 }

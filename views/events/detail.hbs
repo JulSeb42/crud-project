@@ -46,26 +46,31 @@
     </div>
     {{/if}}
 
-    <div class="item">
-        <h4>Wall</h4>
+    <h4>Wall</h4>
 
-        <form action="/events/{{_id}}/post" method="POST" class="form">
-            <input type="hidden" name="poster" id="poster" value="{{organiser._id}}">
-            <input type="hidden" name="event" id="event" value="{{_id}}">
-            <input type="hidden" name="datePost" id="datePost" placeholder="Date">
-            <input type="hidden" name="timePost" id="timePost" placeholder="Time">
+    <div class="item wall">
+        <button class="btn btn-modal" id="btn-modal-post">Post a message on the wall</button>
 
-            <div class="item">
-                <label for="message">Post a message</label>
-                <textarea name="message" id="message"></textarea>
-            </div>
+        <div id="form-post-container">
+            <form action="/events/{{_id}}/post" method="POST" class="form">
+                <input type="hidden" name="poster" id="poster" value="{{organiser._id}}">
+                <input type="hidden" name="event" id="event" value="{{_id}}">
+                <input type="hidden" name="datePost" id="datePost" placeholder="Date">
+                <input type="hidden" name="timePost" id="timePost" placeholder="Time">
 
-            <div class="buttons-container">
-                <button type="submit" class="btn btn-primary submit" disabled>Post a message</button>
-            </div>
-        </form>
-        {{/with}}
+                <div class="item">
+                    <label for="message">Type your message</label>
+                    <textarea name="message" id="message"></textarea>
+                </div>
+
+                <div class="buttons-container">
+                    <button type="submit" class="btn btn-primary submit" disabled>Send</button>
+                    <button type="reset" class="btn btn-secondary" id="cancel-post">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
+    {{/with}}
 
     {{#if post}}
     <ul class="list-posts item">
@@ -84,7 +89,7 @@
 
             {{#if isPoster}}
             <form action="/{{../event._id}}/{{this._id}}/{{this.poster._id}}/delete" method="POST">
-                <button type="submit">delete</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
             </form>
             {{/if}}
         </li>

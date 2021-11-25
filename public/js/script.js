@@ -302,7 +302,7 @@ if (textExpand) {
     }
 }
 
-if (textExpand.offsetHeight < 120) {
+if (textExpand && textExpand.offsetHeight < 120) {
     buttonExpand.style.display = "none"
 }
 
@@ -318,7 +318,7 @@ if (timePost) {
     timePost.value = `${nowHour}:${nowMinute}`
 }
 
-// Test 
+// Test
 
 const shortDates = date => {
     let convertedDate = new Date(date).toLocaleDateString("en-EN", {
@@ -333,4 +333,32 @@ const shortDates = date => {
     return `${splittedMonth[1]} ${splittedMonth[0]} ${splittedDate[1]}`
 }
 
-console.log(shortDates("2021-09-17"))
+// Post modal
+const buttonPost = document.querySelector("#btn-modal-post")
+const formPost = document.querySelector("#form-post-container")
+const cancelPostButton = document.querySelector("#cancel-post")
+
+if (formPost) {
+    formPost.classList.add("hidden")
+
+    buttonPost.addEventListener("click", () => {
+        formPost.classList.remove("hidden")
+        buttonPost.classList.add("hidden")
+    })
+
+    cancelPostButton.addEventListener("click", () => {
+        formPost.classList.add("hidden")
+        buttonPost.classList.remove("hidden")
+    })
+}
+
+// Burger menu
+const burgerButton = document.querySelector(".burger")
+const nav = document.querySelector("nav")
+
+if (burgerButton) {
+    burgerButton.addEventListener("click", () => {
+        burgerButton.classList.toggle("burger-open")
+        nav.classList.toggle("open")
+    })
+}

@@ -66,4 +66,16 @@
             color: $blue-primary-70;
         }
     }
+
+    &.btn-modal {
+        font-size: $body;
+        padding: 0;
+        font-weight: $weight-semibold;
+        color: $blue-primary;
+        transition: $transition-short;
+
+        &:hover {
+            color: $blue-primary-70;
+        }
+    }
 }
