@@ -21,15 +21,7 @@ const isOrganizer = () => {
     }
 }
 
-const isPoster = () => {
-    return (req, res, next) => {
-        Post.findById(req.params.id).then(post => {
-            post.poster.toString() === req.session.user._id
-                ? next()
-                : res.redirect("/")
-        })
-    }
-}
+// const isDeletable = ()
 
 router.get("/", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
@@ -80,12 +72,24 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
             const canEdit =
                 eventFromDb.organiser &&
                 eventFromDb.organiser._id.toString() === req.session.user._id
+
+            const newSort = sortedPosts.map(post => {
+                if (eventFromDb.organiser.id === post.poster.id) {
+                    return { ...post, isPoster: true }
+                } else {
+                    return { ...post }
+                }
+            })
+
+            console.log(newSort)
+
             res.render("events/detail", {
                 doctitle: eventFromDb.title,
                 event: eventFromDb,
                 user: loggedInUser,
                 canEdit: canEdit,
                 post: sortedPosts,
+                canDelete: newSort.isPoster,
             })
         })
         .catch(err => next(err))
@@ -360,14 +364,24 @@ router.post("/events/:id/post", loginCheck(), (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post("/:eventId/:postId/delete", loginCheck(), (req, res, next) => {
-    const loggedInUser = req.session.user
-    const id = req.params.eventId
-    const postId = req.params.postId
+router.post(
+    "/:eventId/:postId/:posterId/delete",
+    loginCheck(),
+    (req, res, next) => {
+        const loggedInUser = req.session.user
+        const id = req.params.eventId
+        const postId = req.params.postId
+        const posterId = req.params.posterId
 
-    Post.findByIdAndRemove(postId).then(() => {
-        res.redirect(`/events/${id}`)
-    })
-})
+        console.log(posterId)
+        console.log(loggedInUser._id)
+
+        if (posterId === loggedInUser._id) {
+            Post.findByIdAndRemove(postId).then(() => {
+                res.redirect(`/events/${id}`)
+            })
+        }
+    }
+)
 
 module.exports = router
