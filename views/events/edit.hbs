@@ -72,9 +72,15 @@
             <input type="text" id="searchInvite" onkeyup="searchFunction()" placeholder="Search here...">
 
             <ul id="listInvite" class="list-invite">
-                {{#each allUsers}}
+                {{!-- {{#each allUsers}}
                 <li>
+                    
+                    {{#if event.invitedPeople}}
+                    <input type="checkbox" name="invitedPeople" id="user-{{_id}}" value="{{_id}}" checked>
+                    {{else}}
                     <input type="checkbox" name="invitedPeople" id="user-{{_id}}" value="{{_id}}">
+                    {{/if}}
+                    
 
                     <label for="user-{{_id}}">
                         <span class="img-container">
@@ -90,13 +96,14 @@
                         </svg>
                     </label>
                 </li>
-                {{/each}}
+                {{/each}} --}}
+                {{{list}}}
             </ul>
         </div>
 
         <div class="buttons-container">
             <button type="submit" class="btn btn-primary submit">Update event</button>
-            <a href="/events" class="btn btn-secondary">Cancel</a>
+            <a href="/" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 
