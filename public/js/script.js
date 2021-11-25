@@ -99,7 +99,15 @@ const convertDate = date => {
     const splitted = date.split(" ")
     const year = splitted[3]
     let month = splitted[1]
-    const day = splitted[2]
+    let day = splitted[2]
+    
+    let newDay = 0
+    
+    if (parseInt(day) < 10) {
+        newDay = "0" + day
+    }
+
+    console.log(newDay)
 
     let convertedMonth =
         month === "January"
@@ -128,7 +136,7 @@ const convertDate = date => {
             ? "12"
             : "err"
 
-    return `${year}-${convertedMonth}-${day}`
+    return `${year}-${convertedMonth}-${newDay}`
 }
 
 if (startDate) {
