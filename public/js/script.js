@@ -132,32 +132,31 @@ const convertDate = date => {
 }
 
 if (startDate) {
+    if (startDate && startDate.value === "") {
+        startDate.setAttribute("min", today)
+        startDate.setAttribute("value", today)
+    }
+
+    if (endDate && endDate.value === "") {
+        endDate.setAttribute("min", today)
+        endDate.setAttribute("value", today)
+
+        startDate.addEventListener("change", () => {
+            endDate.setAttribute("min", startDate.value)
+            endDate.setAttribute("value", startDate.value)
+        })
+    }
+}
+
+const editStartDate = document.querySelector(".editStartDate")
+const editEndDate = document.querySelector(".editEndDate")
+
+if (editStartDate) {
     const startDateText = document.querySelector("#startDateHidden")
     const endDateText = document.querySelector("#endDateHidden")
 
-    if (startDate) {
-        if (startDate.value !== "") {
-            startDate.setAttribute("min", today)
-            startDate.setAttribute("value", convertDate(startDateText.innerText))
-        } else if (startDate.value === "") {
-            startDate.setAttribute("min", today)
-            startDate.setAttribute("value", today)
-        }
-    }
-
-    if (endDate) {
-        if (endDate.value === "") {
-            endDate.setAttribute("min", today)
-            endDate.setAttribute("value", today)
-
-            startDate.addEventListener("change", () => {
-                endDate.setAttribute("min", startDate.value)
-                endDate.setAttribute("value", startDate.value)
-            })
-        } else if (endDate.value !== "") {
-            endDate.setAttribute("value", convertDate(endDateText.innerText))
-        }
-    }
+    editStartDate.value = convertDate(startDateText.innerText)
+    editEndDate.value = convertDate(endDateText.innerText)
 }
 
 let nowDate = new Date()
