@@ -305,3 +305,32 @@ if (textExpand) {
 if (textExpand.offsetHeight < 120) {
     buttonExpand.style.display = "none"
 }
+
+// Timestamps posts
+const datePost = document.querySelector("#datePost")
+const timePost = document.querySelector("#timePost")
+
+if (datePost) {
+    datePost.value = today
+}
+
+if (timePost) {
+    timePost.value = `${nowHour}:${nowMinute}`
+}
+
+// Test 
+
+const shortDates = date => {
+    let convertedDate = new Date(date).toLocaleDateString("en-EN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    })
+
+    let splittedDate = convertedDate.split(", ")
+    let splittedMonth = splittedDate[0].split(" ")
+
+    return `${splittedMonth[1]} ${splittedMonth[0]} ${splittedDate[1]}`
+}
+
+console.log(shortDates("2021-09-17"))

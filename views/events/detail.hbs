@@ -24,7 +24,7 @@
 
     <div class="item">
         <h4>About</h4>
-        <p class="desc-paragraph">{{ description }}</p>
+        <p class="desc-paragraph formatted-paragraph">{{ description }}</p>
         <button class="btn btn-tertiary btn-expand">Read more</button>
     </div>
 
@@ -52,6 +52,8 @@
         <form action="/events/{{_id}}/post" method="POST" class="form">
             <input type="hidden" name="poster" id="poster" value="{{organiser._id}}">
             <input type="hidden" name="event" id="event" value="{{_id}}">
+            <input type="hidden" name="datePost" id="datePost" placeholder="Date">
+            <input type="hidden" name="timePost" id="timePost" placeholder="Time">
 
             <div class="item">
                 <label for="message">Post a message</label>
@@ -63,14 +65,29 @@
             </div>
         </form>
         {{/with}}
-
-        <ul class="list-posts">
-            {{#each post}}
-            <li>
-                {{this.poster.fullName}}
-            </li>
-            
-            {{/each}}
-        </ul>
     </div>
+
+    {{#if post}}
+    <ul class="list-posts item">
+        {{#each post}}
+        <li>
+            <div class="poster">
+                <img src="{{ this.poster.imgPath }}" alt="Avatar {{ this.poster.fullName }}">
+
+                <span class="name-container">
+                    <a href="/profile/{{ this.poster._id }}">{{this.poster.fullName}}</a>
+                    <em>Posted on {{ this.datePost }} at {{ this.timePost }}</em>
+                </span>
+            </div>
+
+            <p class="formatted-paragraph">{{ this.message }}</p>
+
+            <form action="/{{../event._id}}/{{this._id}}/delete" method="POST">
+                <button type="submit">delete</button>
+            </form>
+        </li>
+
+        {{/each}}
+    </ul>
+    {{/if}}
 </main>

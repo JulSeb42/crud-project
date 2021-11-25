@@ -23,7 +23,11 @@ const isOrganizer = () => {
 
 const isPoster = () => {
     return (req, res, next) => {
-        Post.findById(req.params.id).then(post => {})
+        Post.findById(req.params.id).then(post => {
+            post.poster.toString() === req.session.user._id
+                ? next()
+                : res.redirect("/")
+        })
     }
 }
 
@@ -64,10 +68,15 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
         .populate("organiser")
         .populate("invitedPeople")
         .populate("post")
-        .populate({ path: "post", populate: { path: "poster", model: "User" } })
+        .populate({
+            path: "post",
+            populate: { path: "poster", model: "User" },
+        })
         .then(eventFromDb => {
-            console.log(eventFromDb.post)
-            // console.log(pos)
+            const sortedPosts = eventFromDb.post.sort((a, b) => {
+                return b.updatedAt - a.updatedAt
+            })
+
             const canEdit =
                 eventFromDb.organiser &&
                 eventFromDb.organiser._id.toString() === req.session.user._id
@@ -76,7 +85,7 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
                 event: eventFromDb,
                 user: loggedInUser,
                 canEdit: canEdit,
-                post: eventFromDb.post,
+                post: sortedPosts,
             })
         })
         .catch(err => next(err))
@@ -93,6 +102,19 @@ const newDates = date => {
     let splittedDate = convertedDate.split(",")
 
     return splittedDate.join("")
+}
+
+const shortDates = date => {
+    let convertedDate = new Date(date).toLocaleDateString("en-EN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    })
+
+    let splittedDate = convertedDate.split(", ")
+    let splittedMonth = splittedDate[0].split(" ")
+
+    return `${splittedMonth[1]} ${splittedMonth[0]} ${splittedDate[1]}`
 }
 
 // Create Events
@@ -269,7 +291,7 @@ router.post(
             publicId = req.file.filename
         }
 
-        console.log(req.body)
+        // console.log(req.body)
 
         Event.findByIdAndUpdate(
             id,
@@ -315,11 +337,19 @@ router.post("/events/:id/post", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
     const id = req.params.id
 
-    const { event, message } = req.body
+    const { event, message, datePost, timePost } = req.body
 
-    console.log(req.body)
+    // console.log(req.body)
 
-    Post.create({ poster: loggedInUser, event, message })
+    const postedDate = shortDates(datePost)
+
+    Post.create({
+        poster: loggedInUser,
+        event,
+        message,
+        datePost: postedDate,
+        timePost,
+    })
         .then(post => {
             Event.findByIdAndUpdate(event, { $push: { post: post._id } }).then(
                 () => {
@@ -328,6 +358,16 @@ router.post("/events/:id/post", loginCheck(), (req, res, next) => {
             )
         })
         .catch(err => next(err))
+})
+
+router.post("/:eventId/:postId/delete", loginCheck(), (req, res, next) => {
+    const loggedInUser = req.session.user
+    const id = req.params.eventId
+    const postId = req.params.postId
+
+    Post.findByIdAndRemove(postId).then(() => {
+        res.redirect(`/events/${id}`)
+    })
 })
 
 module.exports = router
