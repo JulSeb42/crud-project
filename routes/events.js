@@ -292,13 +292,15 @@ router.post(
         }
 
         // console.log(req.body)
+        const newStartDate = newDates(startDate)
+        const newEndDate = newDates(endDate)
 
         Event.findByIdAndUpdate(
             id,
             {
                 title,
-                startDate,
-                endDate,
+                startDate: newStartDate,
+                endDate: newEndDate,
                 startTime,
                 endTime,
                 location,

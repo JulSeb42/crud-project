@@ -170,6 +170,8 @@ textarea {
     border-radius: $radius-s;
     font-family: var(--font-family);
     font-size: $labels;
+    width: 100%;
+    background-color: $white;
 
     &:focus {
         border: 1px solid $blue-primary;

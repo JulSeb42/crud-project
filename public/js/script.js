@@ -95,19 +95,69 @@ if (mm < 10) {
 
 today = `${yy}-${mm}-${dd}`
 
-if (startDate) {
-    startDate.setAttribute("min", today)
-    startDate.setAttribute("value", today)
+const convertDate = date => {
+    const splitted = date.split(" ")
+    const year = splitted[3]
+    let month = splitted[1]
+    const day = splitted[2]
+
+    let convertedMonth =
+        month === "January"
+            ? "01"
+            : month === "February"
+            ? "02"
+            : month === "March"
+            ? "03"
+            : month === "April"
+            ? "04"
+            : month === "May"
+            ? "05"
+            : month === "June"
+            ? "06"
+            : month === "July"
+            ? "07"
+            : month === "August"
+            ? "08"
+            : month === "September"
+            ? "09"
+            : month === "October"
+            ? "10"
+            : month === "November"
+            ? "11"
+            : month === "December"
+            ? "12"
+            : "err"
+
+    return `${year}-${convertedMonth}-${day}`
 }
 
-if (endDate) {
-    endDate.setAttribute("min", today)
-    endDate.setAttribute("value", today)
+if (startDate) {
+    const startDateText = document.querySelector("#startDateHidden")
+    const endDateText = document.querySelector("#endDateHidden")
 
-    startDate.addEventListener("change", () => {
-        endDate.setAttribute("min", startDate.value)
-        endDate.setAttribute("value", startDate.value)
-    })
+    if (startDate) {
+        if (startDate.value !== "") {
+            startDate.setAttribute("min", today)
+            startDate.setAttribute("value", convertDate(startDateText.innerText))
+        } else if (startDate.value === "") {
+            startDate.setAttribute("min", today)
+            startDate.setAttribute("value", today)
+        }
+    }
+
+    if (endDate) {
+        if (endDate.value === "") {
+            endDate.setAttribute("min", today)
+            endDate.setAttribute("value", today)
+
+            startDate.addEventListener("change", () => {
+                endDate.setAttribute("min", startDate.value)
+                endDate.setAttribute("value", startDate.value)
+            })
+        } else if (endDate.value !== "") {
+            endDate.setAttribute("value", convertDate(endDateText.innerText))
+        }
+    }
 }
 
 let nowDate = new Date()
@@ -125,11 +175,11 @@ if (nowMinute < 10) {
     nowMinute = "0" + nowMinute
 }
 
-if (startTime) {
+if (startTime && startTime.value === "") {
     startTime.setAttribute("value", `${nowHour}:${nowMinute}`)
 }
 
-if (endTime) {
+if (endTime && endTime.value === "") {
     endTime.setAttribute(
         "value",
         `${nowHour < 24 ? nowHour + 1 : "00"}:${nowMinute}`
@@ -316,21 +366,6 @@ if (datePost) {
 
 if (timePost) {
     timePost.value = `${nowHour}:${nowMinute}`
-}
-
-// Test
-
-const shortDates = date => {
-    let convertedDate = new Date(date).toLocaleDateString("en-EN", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-    })
-
-    let splittedDate = convertedDate.split(", ")
-    let splittedMonth = splittedDate[0].split(" ")
-
-    return `${splittedMonth[1]} ${splittedMonth[0]} ${splittedDate[1]}`
 }
 
 // Post modal

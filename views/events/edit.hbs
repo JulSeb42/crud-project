@@ -40,11 +40,13 @@
         <div class="item-grid">
             <div class="item">
                 <label for="startDate">Start date</label>
+                <p id="startDateHidden" class="hidden">{{ event.startDate }}</p>
                 <input type="date" name="startDate" id="startDate" value="{{event.startDate}}">
             </div>
 
             <div class="item">
                 <label for="endDate">End date</label>
+                <p id="endDateHidden" class="hidden">{{ event.endDate }}</p>
                 <input type="date" name="endDate" id="endDate" value="{{event.endDate}}">
             </div>
         </div>

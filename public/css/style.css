@@ -902,6 +902,8 @@ textarea {
           border-radius: var(--radius-s);
   font-family: var(--font-family);
   font-size: var(--labels);
+  width: 100%;
+  background-color: var(--white);
 }
 
 input[type="text"]:focus,
