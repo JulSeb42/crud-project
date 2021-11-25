@@ -2,11 +2,6 @@
 
 .container-profile {
     @include grid(1fr, 0, $margin-l);
-
-    .title-container {
-        width: 100%;
-        @include flexbox(center, space-between, nowrap);
-    }
 }
 
 .user-card {

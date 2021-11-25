@@ -9,15 +9,12 @@
         </div>
     </div>
 
-    <h6>Organised by <a href="/profile/{{ organiser._id }}" class="capitalised">{{ organiser.fullName }}</a></h6>
+    <div class="title-container">
+        <h6>Organised by <a href="/profile/{{ organiser._id }}" class="capitalised">{{ organiser.fullName }}</a></h6>
 
-    {{#if ../canEdit}}
-    <a href="/events/{{_id}}/edit" class="btn btn-primary">Edit event</a>
-    {{/if}}
-
-    <div class="item">
-        <h4>About</h4>
-        <p>{{ description }}</p>
+        {{#if ../canEdit}}
+        <a href="/events/{{_id}}/edit" class="btn btn-primary">Edit event</a>
+        {{/if}}
     </div>
 
     <div class="item">
@@ -26,21 +23,27 @@
     </div>
 
     <div class="item">
+        <h4>About</h4>
+        <p class="desc-paragraph">{{ description }}</p>
+        <button class="btn btn-tertiary btn-expand">Read more</button>
+    </div>
+
+    {{#if invitedPeople.length}}
+    <div class="item">
         <h4>Participants</h4>
 
-        <ul class="list-users">
+        <ul class="list-users-small">
             {{#each invitedPeople }}
             <li>
                 <a href="/profile/{{_id}}">
                     <img src="{{ imgPath }}" alt="Picture {{ fullName }}">
 
-                    <div class="content">
-                        <h5 class="capitalised">{{ fullName }}</h5>
-                    </div>
+                    <p class="capitalised">{{ fullName }}</p>
                 </a>
             </li>
             {{/each}}
         </ul>
     </div>
+    {{/if}}
     {{/with}}
 </main>

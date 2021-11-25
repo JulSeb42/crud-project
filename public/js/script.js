@@ -285,5 +285,21 @@ if (form) {
             submitButton.removeAttribute("disabled")
         }
     })
-    
+}
+
+// Expand text description
+const buttonExpand = document.querySelector(".btn-expand")
+const textExpand = document.querySelector(".desc-paragraph")
+const textOpen = document.querySelector(".desc-paragraph.open")
+
+if (textExpand) {
+    if (!textOpen) {
+        buttonExpand.addEventListener("click", () => {
+            textExpand.classList.toggle("open")
+        })
+    }
+}
+
+if (textExpand.offsetHeight < 120) {
+    buttonExpand.style.display = "none"
 }

@@ -49,7 +49,7 @@ p {
 
 p a,
 h4 a,
-h5 a, 
+h5 a,
 h6 a {
     color: $blue-primary;
     transition: $transition-short;
@@ -62,4 +62,9 @@ h6 a {
 
 .capitalised {
     text-transform: capitalize;
+}
+
+.title-container {
+    width: 100%;
+    @include flexbox(center, space-between, nowrap);
 }
