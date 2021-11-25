@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const Event = require("../models/Event.model")
+const Post = require("../models/Post.model")
 const { uploader } = require("../config/cloudinary")
 
 const User = require("../models/User.model")
@@ -17,6 +18,12 @@ const isOrganizer = () => {
                 ? next()
                 : res.redirect("/")
         })
+    }
+}
+
+const isPoster = () => {
+    return (req, res, next) => {
+        Post.findById(req.params.id).then(post => {})
     }
 }
 
@@ -56,16 +63,22 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
     Event.findById(id)
         .populate("organiser")
         .populate("invitedPeople")
+        .populate("post")
+        .populate({ path: "post", populate: { path: "poster", model: "User"}})
         .then(eventFromDb => {
-            const canEdit =
-                eventFromDb.organiser &&
-                eventFromDb.organiser._id.toString() === req.session.user._id
-            res.render("events/detail", {
-                doctitle: eventFromDb.title,
-                event: eventFromDb,
-                user: loggedInUser,
-                canEdit: canEdit,
-            })
+            console.log(eventFromDb.post)
+            // console.log(pos)
+             const canEdit =
+                 eventFromDb.organiser &&
+                 eventFromDb.organiser._id.toString() === req.session.user._id
+             res.render("events/detail", {
+                 doctitle: eventFromDb.title,
+                 event: eventFromDb,
+                 user: loggedInUser,
+                 canEdit: canEdit,
+                 post: eventFromDb.post,
+             })
+            
         })
         .catch(err => next(err))
 })
@@ -174,28 +187,33 @@ router.post(
     }
 )
 
-router.get("/events/:id/edit", loginCheck(), isOrganizer(), (req, res, next) => {
-    const loggedInUser = req.session.user
-    const id = req.params.id
+router.get(
+    "/events/:id/edit",
+    loginCheck(),
+    isOrganizer(),
+    (req, res, next) => {
+        const loggedInUser = req.session.user
+        const id = req.params.id
 
-    Event.findById(id)
-        .then(event => {
-            User.find()
-                .sort("fullName")
-                .then(userFromDb => {
-                    res.render("events/edit", {
-                        event,
-                        user: loggedInUser,
-                        doctitle: "Edit an event",
-                        allUsers: userFromDb,
-                        doctitle: `Edit ${event.title}`,
-                        deleteEventMsg:
-                            "Are you sure you want to delete this event?",
+        Event.findById(id)
+            .then(event => {
+                User.find()
+                    .sort("fullName")
+                    .then(userFromDb => {
+                        res.render("events/edit", {
+                            event,
+                            user: loggedInUser,
+                            doctitle: "Edit an event",
+                            allUsers: userFromDb,
+                            doctitle: `Edit ${event.title}`,
+                            deleteEventMsg:
+                                "Are you sure you want to delete this event?",
+                        })
                     })
-                })
-        })
-        .catch(err => next(err))
-})
+            })
+            .catch(err => next(err))
+    }
+)
 
 router.post(
     "/events/:id/edit",
@@ -257,12 +275,37 @@ router.post(
     }
 )
 
-router.post("/events/:id/delete", loginCheck(), isOrganizer(), (req, res, next) => {
+router.post(
+    "/events/:id/delete",
+    loginCheck(),
+    isOrganizer(),
+    (req, res, next) => {
+        const id = req.params.id
+
+        Event.findByIdAndRemove(id)
+            .then(() => {
+                res.redirect("/")
+            })
+            .catch(err => next(err))
+    }
+)
+
+// Wall
+router.post("/events/:id/post", loginCheck(), (req, res, next) => {
+    const loggedInUser = req.session.user
     const id = req.params.id
 
-    Event.findByIdAndRemove(id)
-        .then(() => {
-            res.redirect("/")
+    const { event, message } = req.body
+
+    console.log(req.body)
+
+    Post.create({ poster: loggedInUser, event, message })
+        .then(post => {
+            Event.findByIdAndUpdate(event, { $push: { post: post._id } }).then(
+                () => {
+                    res.redirect(`/events/${id}`)
+                }
+            )
         })
         .catch(err => next(err))
 })

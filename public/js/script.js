@@ -263,6 +263,7 @@ const titleInput = document.querySelector("#title")
 const locationInput = document.querySelector("#location")
 // startDate, endDate, startTime, endTime
 const descInput = document.querySelector("#description")
+const messagePost = document.querySelector("#message")
 
 if (form) {
     document.addEventListener("keyup", () => {
@@ -278,7 +279,8 @@ if (form) {
             (endDate && endDate.value === "") ||
             (startTime && startTime.value === "") ||
             (endTime && endTime.value === "") ||
-            (descInput && descInput.value === "")
+            (descInput && descInput.value === "") ||
+            (messagePost && messagePost.value === "")
         ) {
             submitButton.setAttribute("disabled", "disabled")
         } else {
