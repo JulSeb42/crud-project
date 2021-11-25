@@ -195,20 +195,47 @@ router.get(
         const loggedInUser = req.session.user
         const id = req.params.id
 
-        Event.findById(id)
-            .then(event => {
-                User.find()
-                    .sort("fullName")
-                    .then(userFromDb => {
-                        res.render("events/edit", {
-                            event,
-                            user: loggedInUser,
-                            doctitle: "Edit an event",
-                            allUsers: userFromDb,
-                            doctitle: `Edit ${event.title}`,
-                            deleteEventMsg:
-                                "Are you sure you want to delete this event?",
-                        })
+
+
+    Event.findById(id)
+        .then(event => {
+            
+            User.find()
+                .sort("fullName")
+                .then(usersFromDb => {
+                    let list = "";
+                    
+                    for (let user of usersFromDb){
+                        let checked = "";
+                        if (event.invitedPeople.includes(user._id)){
+                            checked = "checked"
+                        }
+                        list += `<li>
+                            <input type="checkbox" name="invitedPeople" id="user-${user._id}" value="${user._id}" ${checked}>
+                            <label for="user-${user._id}">
+                                <span class="img-container">
+                                <img src="${user.imgPath}" alt="Picture ${user.fullName}">
+                                </span>
+                        <span class="name">
+                        ${user.fullName}
+                        </span>
+                        <svg class="icon-check">
+                            <use xlink:href="/images/icon-sprite.svg#check"></use>
+                        </svg>
+                    </label>
+                </li>` 
+                    }
+                   
+                    res.render("events/edit", {
+                        event,
+                        list: list,
+                        user: loggedInUser,
+                        doctitle: "Edit an event",
+                        allUsers: usersFromDb,
+                        doctitle: `Edit ${event.title}`,
+                        deleteEventMsg:
+                            "Are you sure you want to delete this event?",
+
                     })
             })
             .catch(err => next(err))
@@ -234,7 +261,7 @@ router.post(
             invitedPeople,
             location,
         } = req.body
-
+        
         let imgPath, imgName, publicId
 
         // https://res.cloudinary.com/dyfxmafvr/image/upload/v1637686921/event-app/rfkqwvgddravtkkwiwhi.jpg
@@ -269,6 +296,7 @@ router.post(
             { new: true }
         )
             .then(() => {
+                
                 res.redirect(`/events/${id}`)
             })
             .catch(err => next(err))
