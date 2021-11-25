@@ -26,13 +26,13 @@
             .content {
                 @include grid(1fr, 0, 0);
                 padding: $margin-m;
-                
+
                 h5 {
                     color: $blue-primary;
                 }
 
                 .capitalised {
-                    font-weight: $weight-semibold
+                    font-weight: $weight-semibold;
                 }
             }
         }
@@ -153,7 +153,7 @@
     white-space: pre-line;
     max-height: calc(#{$body} * var(--line-height) * 5);
     overflow: hidden;
-    
+
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 5;
@@ -167,12 +167,59 @@
 }
 
 .list-users-small {
-    @include grid(repeat(8, 1fr), $margin-s, $margin-s);
+    @include grid(repeat(6, 1fr), $margin-s, $margin-s);
     @include ulNone();
 
     li {
         position: relative;
         aspect-ratio: 1;
         border-radius: $radius-m;
+        overflow: hidden;
+        transition: $transition-short;
+
+        a {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 0;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: $overlay;
+            }
+
+            p {
+                position: relative;
+                z-index: 2;
+                color: $white;
+                font-weight: $weight-semibold;
+                font-size: $labels;
+                @include flexbox(flex-start, flex-end);
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+                padding: $margin-xxs;
+            }
+        }
+
+        &:hover {
+            transform: scale(1.05);
+        }
     }
 }
