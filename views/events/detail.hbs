@@ -82,7 +82,7 @@
 
             <p class="formatted-paragraph">{{ this.message }}</p>
 
-            {{#if canDelete}}
+            {{#if isPoster}}
             <form action="/{{../event._id}}/{{this._id}}/{{this.poster._id}}/delete" method="POST">
                 <button type="submit">delete</button>
             </form>

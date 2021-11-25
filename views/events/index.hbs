@@ -5,6 +5,7 @@
         <a href="/events/new-event" class="btn btn-primary">Add a new event</a>
     </div>
     
+    {{#if event.length}}
     <ul class="list-events">
         {{#each event}}
         <li>
@@ -20,4 +21,7 @@
         </li>
         {{/each}}
     </ul>
+    {{else}}
+    <p>No events yet</p>
+    {{/if}}
 </main>

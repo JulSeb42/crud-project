@@ -21,8 +21,6 @@ const isOrganizer = () => {
     }
 }
 
-// const isDeletable = ()
-
 router.get("/", loginCheck(), (req, res, next) => {
     const loggedInUser = req.session.user
 
@@ -64,6 +62,7 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
             path: "post",
             populate: { path: "poster", model: "User" },
         })
+        .lean()
         .then(eventFromDb => {
             const sortedPosts = eventFromDb.post.sort((a, b) => {
                 return b.updatedAt - a.updatedAt
@@ -74,22 +73,19 @@ router.get("/events/:id", loginCheck(), (req, res, next) => {
                 eventFromDb.organiser._id.toString() === req.session.user._id
 
             const newSort = sortedPosts.map(post => {
-                if (eventFromDb.organiser.id === post.poster.id) {
+                if (req.session.user._id === post.poster._id.toString()) {
                     return { ...post, isPoster: true }
                 } else {
-                    return { ...post }
+                    return { ...post, isPoster: false }
                 }
             })
-
-            console.log(newSort)
 
             res.render("events/detail", {
                 doctitle: eventFromDb.title,
                 event: eventFromDb,
                 user: loggedInUser,
                 canEdit: canEdit,
-                post: sortedPosts,
-                canDelete: newSort.isPoster,
+                post: newSort,
             })
         })
         .catch(err => next(err))
