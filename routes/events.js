@@ -174,7 +174,7 @@ router.post(
     }
 )
 
-router.get("/events/:id/edit", loginCheck(), (req, res, next) => {
+router.get("/events/:id/edit", loginCheck(), isOrganizer(), (req, res, next) => {
     const loggedInUser = req.session.user
     const id = req.params.id
 
@@ -258,7 +258,7 @@ router.post(
     }
 )
 
-router.post("/events/:id/delete", (req, res, next) => {
+router.post("/events/:id/delete", loginCheck(), isOrganizer(), (req, res, next) => {
     const id = req.params.id
 
     Event.findByIdAndRemove(id)
