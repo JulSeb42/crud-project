@@ -536,7 +536,7 @@ header a:hover {
   row-gap: var(--margin-l);
 }
 
-.container-form form {
+form {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
@@ -547,12 +547,12 @@ header a:hover {
   row-gap: var(--margin-m);
 }
 
-.container-form form button[type="submit"] {
+form button[type="submit"] {
   -ms-grid-column-align: start;
       justify-self: start;
 }
 
-.container-form form .item-grid {
+form .item-grid {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[2];
@@ -563,7 +563,7 @@ header a:hover {
   row-gap: 0;
 }
 
-.container-form form .item {
+form .item {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
@@ -574,15 +574,15 @@ header a:hover {
   row-gap: var(--margin-xs);
 }
 
-.container-form form .item .input-container {
+form .item .input-container {
   position: relative;
 }
 
-.container-form form .item .input-container input {
+form .item .input-container input {
   width: 100%;
 }
 
-.container-form form .item .input-container button {
+form .item .input-container button {
   border: none;
   background-color: transparent;
   padding: var(--margin-xs);
@@ -592,17 +592,17 @@ header a:hover {
   top: -7px;
 }
 
-.container-form form .item .input-container button svg {
+form .item .input-container button svg {
   width: 24px;
   height: 24px;
 }
 
-.container-form form .item .input-container button .icon-slash {
+form .item .input-container button .icon-slash {
   position: relative;
   z-index: 1;
 }
 
-.container-form form .item .input-container button .icon-slash:after {
+form .item .input-container button .icon-slash:after {
   content: "";
   position: absolute;
   left: 0;
@@ -614,7 +614,7 @@ header a:hover {
   z-index: 2;
 }
 
-.container-form form .search-list {
+form .search-list {
   background-color: var(--white);
   padding: var(--margin-l);
   border: 1px solid var(--light-gray);
@@ -622,7 +622,7 @@ header a:hover {
           border-radius: var(--radius-l);
 }
 
-.container-form form .list-invite {
+form .list-invite {
   height: 300px;
   overflow-y: scroll;
   display: -webkit-box;
@@ -650,19 +650,19 @@ header a:hover {
   margin: 0;
 }
 
-.container-form form .list-invite li {
+form .list-invite li {
   width: 100%;
 }
 
-.container-form form .list-invite li input[type="checkbox"] {
+form .list-invite li input[type="checkbox"] {
   display: none;
 }
 
-.container-form form .list-invite li:not(:last-child) {
+form .list-invite li:not(:last-child) {
   margin-bottom: var(--margin-s);
 }
 
-.container-form form .list-invite li label {
+form .list-invite li label {
   color: var(--black);
   display: -webkit-box;
   display: -webkit-flex;
@@ -683,11 +683,11 @@ header a:hover {
   cursor: pointer;
 }
 
-.container-form form .list-invite li label .img-container {
+form .list-invite li label .img-container {
   position: relative;
 }
 
-.container-form form .list-invite li label .img-container img {
+form .list-invite li label .img-container img {
   width: 48px;
   height: 48px;
   -webkit-border-radius: 50%;
@@ -699,7 +699,7 @@ header a:hover {
      object-fit: cover;
 }
 
-.container-form form .list-invite li label .img-container:after {
+form .list-invite li label .img-container:after {
   content: "";
   position: absolute;
   top: 0;
@@ -711,14 +711,14 @@ header a:hover {
   display: none;
 }
 
-.container-form form .list-invite li label .name {
+form .list-invite li label .name {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
 
-.container-form form .list-invite li label svg {
+form .list-invite li label svg {
   color: var(--success);
   width: 24px;
   height: 24px;
@@ -727,15 +727,15 @@ header a:hover {
   display: none;
 }
 
-.container-form form .list-invite li input:checked ~ label .img-container:after {
+form .list-invite li input:checked ~ label .img-container:after {
   display: block;
 }
 
-.container-form form .list-invite li input:checked ~ label svg {
+form .list-invite li input:checked ~ label svg {
   display: block;
 }
 
-.container-form .buttons-container {
+.buttons-container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -753,7 +753,7 @@ header a:hover {
           flex-wrap: nowrap;
 }
 
-.container-form .buttons-container button {
+.buttons-container button {
   margin-right: var(--margin-s);
 }
 

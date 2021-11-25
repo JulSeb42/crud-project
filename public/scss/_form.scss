@@ -2,155 +2,155 @@
 
 .container-form {
     @include grid(1fr, 0, $margin-l);
+}
 
-    form {
-        @include grid(1fr, 0, $margin-m);
+form {
+    @include grid(1fr, 0, $margin-m);
 
-        button[type="submit"] {
-            justify-self: start;
-        }
+    button[type="submit"] {
+        justify-self: start;
+    }
 
-        .item-grid {
-            @include grid(repeat(2, 1fr), $margin-l, 0);
-        }
+    .item-grid {
+        @include grid(repeat(2, 1fr), $margin-l, 0);
+    }
 
-        .item {
-            @include grid(1fr, 0, $margin-xs);
+    .item {
+        @include grid(1fr, 0, $margin-xs);
 
-            .input-container {
-                position: relative;
+        .input-container {
+            position: relative;
 
-                input {
-                    width: 100%;
-                }
-
-                button {
-                    border: none;
-                    background-color: transparent;
-                    padding: $margin-xs;
-                    color: $blue-primary;
-                    position: absolute;
-                    right: 0;
-                    top: -7px;
-
-                    svg {
-                        $size: 24px;
-                        width: $size;
-                        height: $size;
-                    }
-
-                    .icon-slash {
-                        position: relative;
-                        z-index: 1;
-
-                        &:after {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            bottom: 0;
-                            width: 100%;
-                            height: 2px;
-                            background-color: $blue-primary;
-                            display: block;
-                            z-index: 2;
-                        }
-                    }
-                }
-            }
-        }
-
-        .search-list {
-            background-color: $white;
-            padding: $margin-l;
-            border: 1px solid $light-gray;
-            border-radius: $radius-l;
-        }
-
-        .list-invite {
-            height: 300px;
-            overflow-y: scroll;
-            @include flexbox(flex-start, flex-start, nowrap);
-            flex-direction: column;
-            @include ulNone();
-
-            li {
+            input {
                 width: 100%;
+            }
 
-                input[type="checkbox"] {
-                    display: none;
+            button {
+                border: none;
+                background-color: transparent;
+                padding: $margin-xs;
+                color: $blue-primary;
+                position: absolute;
+                right: 0;
+                top: -7px;
+
+                svg {
+                    $size: 24px;
+                    width: $size;
+                    height: $size;
                 }
 
-                &:not(:last-child) {
-                    margin-bottom: $margin-s;
-                }
+                .icon-slash {
+                    position: relative;
+                    z-index: 1;
 
-                label {
-                    color: $black;
-                    @include flexbox(center, flex-start, nowrap);
-                    width: 100%;
-                    cursor: pointer;
-
-                    .img-container {
-                        position: relative;
-
-                        img {
-                            $size: 48px;
-                            width: $size;
-                            height: $size;
-                            border-radius: 50%;
-                            margin-right: $margin-xs;
-                            position: relative;
-                            z-index: 1;
-                            object-fit: cover;
-                        }
-
-                        &:after {
-                            content: "";
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            z-index: 2;
-                            width: 100%;
-                            height: 100%;
-                            background-color: rgba(255, 255, 255, 0.5);
-                            display: none;
-                        }
-                    }
-
-                    .name {
-                        flex-grow: 1;
-                    }
-
-                    svg {
-                        color: $success;
-                        $size: 24px;
-                        width: $size;
-                        height: $size;
-                        justify-self: flex-end;
-                        margin-left: $margin-xs;
-                        display: none;
-                    }
-                }
-
-                input:checked ~ label {
-                    .img-container:after {
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        height: 2px;
+                        background-color: $blue-primary;
                         display: block;
-                    }
-
-                    svg {
-                        display: block;
+                        z-index: 2;
                     }
                 }
             }
         }
     }
 
-    .buttons-container {
-        @include flexbox(center, flex-start);
+    .search-list {
+        background-color: $white;
+        padding: $margin-l;
+        border: 1px solid $light-gray;
+        border-radius: $radius-l;
+    }
 
-        button {
-            margin-right: $margin-s;
+    .list-invite {
+        height: 300px;
+        overflow-y: scroll;
+        @include flexbox(flex-start, flex-start, nowrap);
+        flex-direction: column;
+        @include ulNone();
+
+        li {
+            width: 100%;
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            &:not(:last-child) {
+                margin-bottom: $margin-s;
+            }
+
+            label {
+                color: $black;
+                @include flexbox(center, flex-start, nowrap);
+                width: 100%;
+                cursor: pointer;
+
+                .img-container {
+                    position: relative;
+
+                    img {
+                        $size: 48px;
+                        width: $size;
+                        height: $size;
+                        border-radius: 50%;
+                        margin-right: $margin-xs;
+                        position: relative;
+                        z-index: 1;
+                        object-fit: cover;
+                    }
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 2;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(255, 255, 255, 0.5);
+                        display: none;
+                    }
+                }
+
+                .name {
+                    flex-grow: 1;
+                }
+
+                svg {
+                    color: $success;
+                    $size: 24px;
+                    width: $size;
+                    height: $size;
+                    justify-self: flex-end;
+                    margin-left: $margin-xs;
+                    display: none;
+                }
+            }
+
+            input:checked ~ label {
+                .img-container:after {
+                    display: block;
+                }
+
+                svg {
+                    display: block;
+                }
+            }
         }
+    }
+}
+
+.buttons-container {
+    @include flexbox(center, flex-start);
+
+    button {
+        margin-right: $margin-s;
     }
 }
 

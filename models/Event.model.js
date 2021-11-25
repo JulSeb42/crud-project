@@ -32,6 +32,12 @@ const eventSchema = new Schema({
             ref: "User",
         },
     ],
+    post: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Post",
+        },
+    ],
     description: String,
     location: String,
     imgPath: String,

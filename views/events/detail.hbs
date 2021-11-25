@@ -45,5 +45,32 @@
         </ul>
     </div>
     {{/if}}
-    {{/with}}
+
+    <div class="item">
+        <h4>Wall</h4>
+
+        <form action="/events/{{_id}}/post" method="POST" class="form">
+            <input type="hidden" name="poster" id="poster" value="{{organiser._id}}">
+            <input type="hidden" name="event" id="event" value="{{_id}}">
+
+            <div class="item">
+                <label for="message">Post a message</label>
+                <textarea name="message" id="message"></textarea>
+            </div>
+
+            <div class="buttons-container">
+                <button type="submit" class="btn btn-primary submit" disabled>Post a message</button>
+            </div>
+        </form>
+        {{/with}}
+
+        <ul class="list-posts">
+            {{#each post}}
+            <li>
+                {{this.poster.fullName}}
+            </li>
+            
+            {{/each}}
+        </ul>
+    </div>
 </main>
