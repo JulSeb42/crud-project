@@ -64,7 +64,7 @@
         </form>
         {{/with}}
 
-        <ul>
+        <ul class="list-posts">
             {{#each post}}
             <li>
                 {{this.poster.fullName}}
@@ -72,23 +72,5 @@
             
             {{/each}}
         </ul>
-        
-
-        {{!-- {{#if post}}
-        {{#each posters}}
-        <p>{{ posters }}</p>
-        {{/each}}
-        {{/if}} --}}
-
-
-        {{!-- <ul class="post-list">
-            {{#each post}}
-            <li>
-
-            </li>
-            {{/each}}
-        </ul> --}}
-
     </div>
-
 </main>
