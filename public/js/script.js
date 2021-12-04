@@ -81,9 +81,9 @@ if (textHint) {
 const startDate = document.querySelector("#startDate")
 const endDate = document.querySelector("#endDate")
 let today = new Date()
-const dd = today.getDate()
-const mm = today.getMonth() + 1
-const yy = today.getFullYear()
+let dd = today.getDate()
+let mm = today.getMonth() + 1
+let yy = today.getFullYear()
 
 if (dd < 10) {
     dd = "0" + dd
